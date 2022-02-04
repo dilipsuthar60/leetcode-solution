@@ -20,20 +20,20 @@ public:
     {
         int n=nums.size();
         int m=nums[0].size();
-        int l=1;
+        int l=0;
         int r=1e9;
         int ans=INT_MAX;
-        while(l<=r)
+        while(r-l>1)
         {
             int mid=(l+r)/2;
             if(find(nums,mid))
             {
                 ans=mid;
-                r=mid-1;
+                r=mid;
             }
             else
             {
-                l=mid+1;
+                l=mid;
             }
         }
         return ans;
