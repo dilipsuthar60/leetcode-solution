@@ -14,7 +14,7 @@ public:
         long long ans=0;
         for(int i=0;i<n;i++)
         {
-            ans+=1ll*nums[i]*(p[i]-p[n-i-1]);
+            ans+=1ll*nums[i]*(p[i]-p[n-i-1]+mod);
             ans%=mod;
         }
         return (int)ans;
