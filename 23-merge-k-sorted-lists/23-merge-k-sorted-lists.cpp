@@ -32,7 +32,7 @@ public:
         {
             return nums[l];
         }
-        int mid=l+(r-l)/2;
+        int mid=(l+r)/2;
         ListNode*left=find(nums,l,mid);
         ListNode*right=find(nums,mid+1,r);
         return merge(left,right);
