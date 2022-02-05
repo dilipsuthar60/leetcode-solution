@@ -1,46 +1,48 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+
 class Solution {
 public:
-    ListNode*merge(ListNode*a,ListNode*b)
+    ListNode*merge(ListNode*l1,ListNode*l2)
     {
-        if(a==NULL)
+        if(l1==NULL||l2==NULL)
         {
-            return b;
+            return l1==NULL?l2:l1;
         }
-        if(b==NULL)
+        ListNode*dummy_node=new ListNode(-1);
+        ListNode*head=dummy_node;
+        while(l1!=NULL&&l2!=NULL)
         {
-            return a;
+            if((l1->val)<(l2->val))
+            {
+                dummy_node->next=l1;
+                l1=l1->next;
+            }
+            else
+            {
+                dummy_node->next=l2;
+                l2=l2->next;
+            }
+            dummy_node=dummy_node->next;
         }
-        ListNode*c;
-        if(a->val<b->val)
+        dummy_node->next=(l1==NULL)?l2:l1;
+        return head->next;
+    }
+    ListNode*find(vector<ListNode*>&nums,int l,int r)
+    {
+        if(l==r)
         {
-            c=a;
-            c->next=merge(a->next,b);
+            return nums[l];
         }
-        else
-        {
-            c=b;
-            c->next=merge(a,b->next);
-        }
-        return c;
+        int mid=l+(r-l)/2;
+        ListNode*left=find(nums,l,mid);
+        ListNode*right=find(nums,mid+1,r);
+        return merge(left,right);
     }
     ListNode* mergeKLists(vector<ListNode*>& lists) 
     {
-        ListNode*start=NULL;
-        ListNode*end=start;
-        for(auto it:lists)
+        if(lists.size()==0)
         {
-            end=merge(end,it);
+            return NULL;
         }
-        return end;
+        return find(lists,0,lists.size()-1);
     }
 };
