@@ -96,10 +96,15 @@ public:
         s[idx]='0';
         f[idx]='1';
     }
-    
+    void Swap(string &s1,string&s2)
+    {
+        temp=s1;
+        s1=s2;
+        s2=temp;
+    }
     void flip()
     {
-        swap(s,f);
+        Swap(s,f);
         count_one=n-count_one;
     }
     
