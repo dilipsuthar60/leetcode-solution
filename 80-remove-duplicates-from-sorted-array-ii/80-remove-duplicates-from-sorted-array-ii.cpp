@@ -10,8 +10,7 @@ public:
       {
         if(nums[i]!=nums[l-2])
         {
-            nums[l]=nums[i];
-            l++;
+            nums[l++]=nums[i];
         }
       }   
       return l;
