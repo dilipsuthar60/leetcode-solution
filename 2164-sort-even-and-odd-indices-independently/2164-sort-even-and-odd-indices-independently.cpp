@@ -19,16 +19,18 @@ public:
         sort(v2.begin(),v2.end(),greater<int>());
         vector<int>ans(n,0);
         int l=0;
-        for(int i=0;i<v1.size();i++)
+        int i=0;
+        int j=0;
+        while(i<v1.size()||j<v2.size())
         {
-            ans[l]=v1[i];
-            l+=2;
-        }
-        l=1;
-        for(int i=0;i<v2.size();i++)
-        {
-            ans[l]=v2[i];
-            l+=2;
+            if(i<v1.size())
+            {
+                ans[l++]=v1[i++];
+            }
+            if(j<v2.size())
+            {
+                ans[l++]=v2[j++];
+            }
         }
         return ans;
     }
