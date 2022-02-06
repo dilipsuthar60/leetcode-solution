@@ -66,6 +66,7 @@ public:
 class Bitset {
 public:
     int n;
+    string temp="";
     string s="";
     string f="";
     int count_one=0;
@@ -98,7 +99,7 @@ public:
     
     void flip()
     {
-        s.swap(f);
+        swap(s,f);
         count_one=n-count_one;
     }
     
