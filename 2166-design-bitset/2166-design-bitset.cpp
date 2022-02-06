@@ -98,7 +98,7 @@ public:
     
     void flip()
     {
-        swap(s,f);
+        s.swap(f);
         count_one=n-count_one;
     }
     
