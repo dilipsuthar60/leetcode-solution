@@ -15,24 +15,15 @@ public:
     int minimumTime(string s) 
     {
         int n=s.size();
-        if(n==1&&s[0]=='1')
+        if(n==1)
         {
-            return 1;
+            return s[0]=='1';
         }
         vector<int>left(n,0),right(n,0);
         find(s,left);
         reverse(s.begin(),s.end());
         find(s,right);
         reverse(right.begin(),right.end());
-        // for(int i=0;i<n;i++)
-        // {
-        //     cout<<left[i]<<" ";
-        // }
-        // cout<<endl;
-        // for(int i=0;i<n;i++)
-        // {
-        //     cout<<right[i]<<" ";
-        // }
         int ans=INT_MAX;
         for(int i=0;i<n-1;i++)
         {
