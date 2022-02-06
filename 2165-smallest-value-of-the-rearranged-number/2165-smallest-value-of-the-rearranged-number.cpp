@@ -23,20 +23,30 @@ public:
         else
         {
             sort(s.begin(),s.end());
-            string str="";
-            if(zero==0)
-            {
-                return stoll(s);
-            }
+            int first=0;
             for(int i=0;i<s.size();i++)
             {
                 if(s[i]!='0')
                 {
-                    str+=s[i];
+                    first=i;
+                    break;
                 }
             }
-            string first=str.substr(0,1)+string(zero,'0')+str.substr(1);
-            return stoll(first);
+            swap(s[0],s[first]);
+            // string str="";
+            // if(zero==0)
+            // {
+            //     return stoll(s);
+            // }
+            // for(int i=0;i<s.size();i++)
+            // {
+            //     if(s[i]!='0')
+            //     {
+            //         str+=s[i];
+            //     }
+            // }
+            // string first=str.substr(0,1)+string(zero,'0')+str.substr(1);
+            return stoll(s);
         }
         return 1;
     }
