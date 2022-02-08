@@ -1,34 +1,33 @@
 class Solution {
 public:
-    string largestNumber(vector<int>& cost, int target)
+    string largestNumber(vector<int>& cost, int target) 
     {
-       
-        vector<int>dp(target+1,0);
-        dp[0]=0;
-        for(int i=1;i<=target;i++)
+        int n=cost.size();
+        vector<string>dp(target+1,"0");
+        dp[0]="";
+        auto MAX=[&](string &s1,string&s2)
         {
-            dp[i]=INT_MIN;
-            for(int j=0;j<cost.size();j++)
+            if(s1.size()==s2.size())
             {
-                if(i-cost[j]>=0)
+                return max(s1,s2);
+            }
+            if(s1.size()>s2.size())
+            {
+                return s1;
+            }
+            return s2;
+        };
+        for(int i=0;i<n;i++)
+        {
+            for(int t=1;t<=target;t++)
+            {
+                if(t-cost[i]>=0&&dp[t-cost[i]]!="0")
                 {
-                    dp[i]=max(dp[i],1+dp[i-cost[j]]);
+                   string s=to_string(i+1)+dp[t-cost[i]];
+                   dp[t]=MAX(s,dp[t]);
                 }
             }
         }
-        if(dp[target]<0)
-        {
-            return "0";
-        }
-        string s="";
-        for(int i=8;~i;i--)
-        {
-            while(target>=cost[i]&&dp[target]==dp[target-cost[i]]+1)
-            {
-                s.push_back(i+1+'0');
-                target-=cost[i];
-            }
-        }
-        return s;
+        return dp[target];
     }
 };
