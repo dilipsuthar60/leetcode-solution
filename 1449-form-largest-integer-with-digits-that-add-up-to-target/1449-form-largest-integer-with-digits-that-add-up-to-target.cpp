@@ -3,7 +3,11 @@ public:
     string largestNumber(vector<int>& cost, int target) 
     {
         int n=cost.size();
-        vector<string>dp(target+1,"0");
+        string dp[target+1];
+        for(int i=0;i<=target;i++)
+        {
+            dp[i]="0";
+        }
         dp[0]="";
         auto MAX=[&](string &s1,string&s2)
         {
