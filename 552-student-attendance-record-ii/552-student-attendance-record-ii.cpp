@@ -14,9 +14,9 @@ public:
         }
         int res=0;
         res=find(i+1,A,0,n);
-        if(A==0)
+        if(A<1)
         {
-            res=(res+find(i+1,1,0,n))%mod;
+            res=(res+find(i+1,A+1,0,n))%mod;
         }
         if(L<2)
         {
