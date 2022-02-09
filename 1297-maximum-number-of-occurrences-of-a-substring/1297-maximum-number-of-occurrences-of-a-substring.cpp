@@ -4,12 +4,12 @@ public:
     {
         int count=0;
         int n=s.size();
-        unordered_map<char,int>mp;
+        int dp[27];
+        memset(dp,0,sizeof(dp));
         unordered_map<string,int>freq;
         for(int i=0;i<mn;i++)
         {
-            mp[s[i]]++;
-            if(mp[s[i]]==1)
+            if(++dp[s[i]-97]==1)
             {
                 count++;
             }
@@ -20,19 +20,14 @@ public:
         }
         for(int i=mn;i<n;i++)
         {
-            mp[s[i]]++;
-            if(mp[s[i]]==1)
+            if(++dp[s[i]-97]==1)
             {
                 count++;
             }
-            if(mp[s[i-mn]]==1)
+            if(--dp[s[i-mn]-97]==0)
             {
                 count--;
-                mp.erase(s[i-mn]);
-            }
-            else
-            {
-                mp[s[i-mn]]--;
+                // mp.erase(s[i-mn]);
             }
             if(count<=ml)
             {
