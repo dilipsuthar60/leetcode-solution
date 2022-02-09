@@ -1,18 +1,5 @@
 class Solution {
 public:
-    class node
-    {
-        public:
-        int x;
-        int y;
-        int mask;
-        node(int x,int y,int mask)
-        {
-            this->x=x;
-            this->y=y;
-            this->mask=mask;
-        }
-    };
     vector<pair<int,int>>dir={{-1,0},{1,0},{0,-1},{0,1}};
     int shortestPathAllKeys(vector<string>&mat) 
     {
@@ -36,9 +23,9 @@ public:
                 }
             }
         }
-        queue<node>q;
-        q.push(node(startx,starty,0));
-        int vis[n+1][m+1][70];
+        queue<pair<int,int>>q;
+        q.push({startx*m+starty,0});
+        int vis[n+1][m+1][65];
         memset(vis,0,sizeof(vis));
         vis[startx][starty][0]=1;
         int level=0;
@@ -47,35 +34,37 @@ public:
             int size=q.size();
             for(int j=0;j<size;j++)
             {
-                node temp=q.front();
+                auto temp=q.front();
                 q.pop();
-                // cout<<temp.x<<"  "<<temp.y<<"  "<<temp.mask<<endl;
-                if(temp.mask==((1<<k)-1))
+                int x=temp.first/m;
+                int y=temp.first%m;
+                int mask=temp.second;
+                if(mask==((1<<k)-1))
                 {
                     return level;
                 }
                 for(auto it:dir)
                 {
-                    int nx=temp.x+it.first;
-                    int ny=temp.y+it.second;
-                    int now_mask=temp.mask;
+                    int nx=x+it.first;
+                    int ny=y+it.second;
+                    int now_mask=mask;
                     if(nx>=0&&ny>=0&&nx<n&&ny<m&&mat[nx][ny]!='#')
                     {
                         if(isupper(mat[nx][ny]))
                         {
-                            if(!(temp.mask&(1<<(mat[nx][ny]-'A'))))
+                            if(!(mask&(1<<(mat[nx][ny]-'A'))))
                             {
                                 continue;
                             }
                         }
-                         if(islower(mat[nx][ny]))
+                        if(islower(mat[nx][ny]))
                         {
-                            now_mask=(temp.mask|(1<<(mat[nx][ny]-'a')));
+                            now_mask=(mask|(1<<(mat[nx][ny]-'a')));
                         }
                         if(!vis[nx][ny][now_mask])
                         {
-                          q.push({nx,ny,now_mask});
-                          vis[nx][ny][now_mask]=1;
+                          q.push({nx*m+ny,now_mask});
+                           vis[nx][ny][now_mask]=1;
                         }
                     }
                 }
