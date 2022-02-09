@@ -1,19 +1,3 @@
-/*if(carry==((1<<K)-1)) return path; //if all keys hold, just return 
-            for(int j=0;j<4;j++){
-                int x=a+dirs[j], y=b+dirs[j+1], k=carry;
-                if(x<0 || x>=m || y<0 || y>=n || grid[x][y]=='#') continue;
-                if(grid[x][y]>='a' && grid[x][y]<='f'){
-                    k=carry|(1<<(grid[x][y]-'a')); //update hold keys
-                }
-                else if(grid[x][y]>='A' && grid[x][y]<='F'){
-                    if(!(carry & (1<<(grid[x][y]-'A')))) continue;
-                }
-                if(!visited[x][y][k]){
-                    visited[x][y][k]=1;
-                    q.push({x*n+y,k});
-               }                
-            }
-*/
 class Solution {
 public:
     class node
