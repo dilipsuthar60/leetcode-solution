@@ -7,19 +7,23 @@ public:
         int dp[27];
         memset(dp,0,sizeof(dp));
         unordered_map<string,int>freq;
+        string str="";
         for(int i=0;i<mn;i++)
         {
             if(++dp[s[i]-97]==1)
             {
                 count++;
             }
+            str+=s[i];
         }
         if(count<=ml)
         {
-            freq[s.substr(0,mn)]++;
+            freq[str]++;
         }
         for(int i=mn;i<n;i++)
         {
+            str+=s[i];
+            str.erase(str.begin());
             if(++dp[s[i]-97]==1)
             {
                 count++;
@@ -27,17 +31,15 @@ public:
             if(--dp[s[i-mn]-97]==0)
             {
                 count--;
-                // mp.erase(s[i-mn]);
             }
             if(count<=ml)
             {
-                freq[s.substr(i-mn+1,mn)]++;
+                freq[str]++;
             }
         }
         int ans=0;
         for(auto&it:freq)
         {
-            // cout<<it.first<<"  ";
             ans=max(ans,it.second);
         }
         return ans;
