@@ -22,7 +22,7 @@ public:
     }
     int find_(int i,vector<int>&bit)
     {
-        return find(N-2,bit)-find(i-1,bit);
+        return find(N-1,bit)-find(i-1,bit);
     }
     int numTeams(vector<int>& nums) 
     {
