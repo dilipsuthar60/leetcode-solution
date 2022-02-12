@@ -48,10 +48,10 @@ public:
                     }
                 }
             }
-            ind[it]+=d.size();
             for(auto t:d)
             {
-                dp[t].push_back(it);
+                dp[it].push_back(t);
+                ind[t]++;
             }
         }
             queue<int>q;
