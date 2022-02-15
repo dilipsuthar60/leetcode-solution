@@ -15,7 +15,6 @@ public:
         }
         if(s[0]=='-')
         {
-            sh=-1;
             s=s.substr(1);
             sort(s.begin(),s.end(),greater<int>());
             return -1*stoll(s);    
@@ -33,19 +32,6 @@ public:
                 }
             }
             swap(s[0],s[first]);
-            // string str="";
-            // if(zero==0)
-            // {
-            //     return stoll(s);
-            // }
-            // for(int i=0;i<s.size();i++)
-            // {
-            //     if(s[i]!='0')
-            //     {
-            //         str+=s[i];
-            //     }
-            // }
-            // string first=str.substr(0,1)+string(zero,'0')+str.substr(1);
             return stoll(s);
         }
         return 1;
