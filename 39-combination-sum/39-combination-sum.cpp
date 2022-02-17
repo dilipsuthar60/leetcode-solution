@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void find(vector<int>cand,vector<vector<int>>&res,vector<int>&v,int tar,int index)
+    void find(vector<int>&cand,vector<vector<int>>&res,vector<int>&v,int tar,int index)
     {
         if(tar<0)
         {
