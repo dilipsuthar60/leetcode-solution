@@ -12,21 +12,13 @@ public:
             }
             s.insert(it);
         }
-        int ans=INT_MAX;
-        while(true)
+        int ans=*s.rbegin()-*s.begin();
+        while((*s.rbegin())%2==0)
         {
-            int first=*s.begin();
             int last=*s.rbegin();
-            ans=min(ans,last-first);
-            if(last%2==0)
-            {
-                s.erase(s.find(last));
+                s.erase(last);
                 s.insert(last/2);
-            }
-            else
-            {
-                break;
-            }
+            ans=min(ans,*s.rbegin()-*s.begin());
         }
         return ans;
     }
