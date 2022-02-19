@@ -13,19 +13,19 @@ public:
     {
         x=find(x);
         y=find(y);
-        if(rank[x]>rank[y])
-        {
-            parent[y]=x;
-        }
-        else if(rank[x]<rank[y])
-        {
+        // if(rank[x]>rank[y])
+        // {
+        //     parent[y]=x;
+        // }
+        // else if(rank[x]<rank[y])
+        // {
+        //     parent[x]=y;
+        // }
+        // else
+        // {
+        //     rank[x]++;
             parent[x]=y;
-        }
-        else
-        {
-            rank[x]++;
-            parent[x]=y;
-        }
+        // }
     }
     vector<int> groupStrings(vector<string>&nums) 
     {
