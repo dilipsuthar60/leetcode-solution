@@ -1,15 +1,15 @@
 class Solution {
 public:
-    map<pair<vector<int>,int>,int>mp;
+    map<pair<int,vector<int>>,int>mp;
     int find(vector<int>&nums,int index,vector<int>&w,int num)
     {
         if(index>=nums.size())
         {
             return 0;
         }
-        if(mp.find({w,index})!=mp.end())
+        if(mp.find({index,w})!=mp.end())
         {
-            return mp[{w,index}];
+            return mp[{index,w}];
         }
         int ans=INT_MIN;
         for(int i=1;i<=num;i++)
@@ -21,7 +21,7 @@ public:
                 w[i]--;
             }
         }
-        return mp[{w,index}]=ans;
+        return mp[{index,w}]=ans;
     }
     int maximumANDSum(vector<int>& nums, int numSlots) 
     {
