@@ -1,44 +1,31 @@
 class Solution {
 public:
-//          if(n%2) // odd
-//             return {};
-
-// 		vector<long long> ans;
-//         long long i = 2;
-//         long long crSum=0;
-		
-//         while((crSum+i)<= n)
-//         {
-//             ans.push_back(i);
-//             crSum+=i;
-//             i+=2;
-//         }
-		
-// 		// add remaining difference to the last value in answer list
-// 		int sz = ans.size();
-//         ans[sz-1] += (n-crSum);
-//         return ans;
+    bool find(vector<long long>&ans,long long i,long long target)
+    {
+        if(target==0)
+        {
+            return true;
+        }
+        if(target<0||target<i)
+        {
+            return false;
+        }
+        ans.push_back(i);
+        if(find(ans,i+2,target-i))
+        {
+            return true;
+        }
+        ans.pop_back();
+        return find(ans,i+2,target);
+    }
     vector<long long> maximumEvenSplit(long long num) 
     {
-        if(num%2==1)
+        if(num&1)
         {
             return {};
         }
         vector<long long>ans;
-        long long sum=0;
-        for(int i=1;;i++)
-        {
-            if(sum+i*2<=num)
-            {
-                ans.push_back(i*2);
-                sum+=i*2;
-            }
-            else
-            {
-                break;
-            }
-        }
-        ans.back()+=(num-sum);
+        find(ans,2,num);
         return ans;
     }
 };
