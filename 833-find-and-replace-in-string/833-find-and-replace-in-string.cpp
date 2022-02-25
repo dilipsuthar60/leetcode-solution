@@ -15,7 +15,7 @@ public:
         {
             if(mp.find(i)!=mp.end())
             {
-                ans+=mp[i].second;
+                ans.append(mp[i].second);
                 i+=mp[i].first-1;
             }
             else
