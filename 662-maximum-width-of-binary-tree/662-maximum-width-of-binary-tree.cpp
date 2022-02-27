@@ -20,11 +20,11 @@ public:
         }
         queue<pair<TreeNode*,unsigned long long int>>q;
         q.push({root,0});
-        unsigned long long int ans=0;
+        long long int ans=0;
         while(!q.empty())
         {
-            unsigned long long int left=0,right=0;
-            unsigned long long int n=q.size();
+             long long int left=0,right=0;
+             long long int n=q.size();
             left=q.front().second;
             for(int i=0;i<n;i++)
             {
@@ -33,11 +33,11 @@ public:
                 right=it.second;
                 if(it.first->left!=NULL)
                 {
-                    q.push({it.first->left,2*it.second+1});
+                    q.push({it.first->left,1ll*2*it.second+1});
                 }
                 if(it.first->right!=NULL)
                 {
-                    q.push({it.first->right,2*it.second+2});
+                    q.push({it.first->right,1ll*2*it.second+2});
                 }
             }
             ans=max(ans,right-left+1);
