@@ -3,6 +3,10 @@ public:
     int dp[1001][1001];
     int find(vector<vector<int>>&nums,int index,int max_width,int width,int height)
     {
+        if(width>max_width)
+        {
+            return INT_MAX/2;
+        }
         if(index>=nums.size())
         {
             return height;
@@ -13,9 +17,7 @@ public:
         }
          int w=nums[index][0];
         int h=nums[index][1];
-        int same_block=INT_MAX/2;
-        if(width+w<=max_width)
-        same_block=find(nums,index+1,max_width,width+w,max(height,h));
+        int same_block=find(nums,index+1,max_width,width+w,max(height,h));
         int new_block=height+find(nums,index+1,max_width,w,h);
         return dp[index][width]=min(same_block,new_block);
     }
