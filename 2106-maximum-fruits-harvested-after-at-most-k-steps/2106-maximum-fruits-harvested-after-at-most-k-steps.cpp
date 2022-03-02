@@ -4,8 +4,9 @@ public:
     int maxTotalFruits(vector<vector<int>>&nums, int start, int k) 
     {
         int n=nums.size();
-        int dp[N];
-        memset(dp,0,sizeof(dp));
+        vector<int>dp(N,0);
+        // int dp[N];
+        // memset(dp,0,sizeof(dp));
         start++;
         for(auto &it:nums)
         {
