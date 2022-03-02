@@ -12,13 +12,13 @@ public:
     }
     long long minimumTime(vector<int>&nums, int total) 
     {    
-        if(nums.size()==1)
-        {
-            return 1ll*nums[0]*total;
-        }
+        // if(nums.size()==1)
+        // {
+        //     return 1ll*nums[0]*total;
+        // }
         long long l=1;
-        long long r=1e10;
-        int ans=nums.size();
+        long long r=1e14;
+        long long ans=0;
         while(l<=r)
         {
             long long mid=(l+r)/2;
