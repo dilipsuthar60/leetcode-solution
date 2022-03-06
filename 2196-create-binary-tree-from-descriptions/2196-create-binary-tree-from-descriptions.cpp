@@ -4,7 +4,7 @@ public:
     TreeNode* createBinaryTree(vector<vector<int>>& nums) 
     {
         unordered_map<int,TreeNode*>mp;
-        set<int>s;
+        unordered_set<int>s;
         for(auto &it:nums)
         {
             if(mp.find(it[0])==mp.end())
