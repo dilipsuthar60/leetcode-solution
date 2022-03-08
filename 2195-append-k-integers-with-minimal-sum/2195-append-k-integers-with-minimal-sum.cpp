@@ -5,7 +5,7 @@ public:
         sort(nums.begin(),nums.end());
         int n=nums.size();
         long long sum=0;
-        for(int i=0;i<n&&k;i++)
+        for(int i=0;i<n and k;i++)
         {
             long long prev=(i==0)?0:nums[i-1];
             long long missing=min(k+0ll,max(0ll,0ll+nums[i]-prev-1));
