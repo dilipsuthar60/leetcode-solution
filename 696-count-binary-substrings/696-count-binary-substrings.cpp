@@ -4,22 +4,20 @@ public:
     {
         vector<int>group;
         int n=s.size();
-        for(int i=0;i<n;)
+        int count=1;
+        for(int i=1;i<=n;i++)
         {
-            int count=0;
-            char ch=s[i];
-            int j=i;
-            while(j<n&&ch==s[j])
+            if(i<n&&s[i-1]==s[i])
             {
-                j++;
                 count++;
             }
-            if(count)
+            else
             {
                 group.push_back(count);
+                count=1;
             }
-            i=j;
         }
+        
         int ans=0;
         for(int i=0;i<group.size();i++)
         {
