@@ -1,9 +1,6 @@
 class Solution {
 public:
-    static bool cmp(pair<int,pair<int,int>>&a,pair<int,pair<int,int>>&b)
-    {
-        return a.first==b.first?a.second.first<b.second.first:a.first<b.first;
-    }
+    
     vector<int> sortJumbled(vector<int>& map, vector<int>& nums) 
     {
         int count=0;
@@ -27,7 +24,10 @@ public:
             }
             v.push_back({value(curr),{count++,it}});
         }
-        sort(v.begin(),v.end(),cmp);
+        sort(v.begin(),v.end(),[&](auto &a,auto &b)
+             {
+                   return a.first==b.first?a.second.first<b.second.first:a.first<b.first;
+             });
         vector<int>a;
         for(auto it:v)
         {
