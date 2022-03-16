@@ -10,7 +10,7 @@ class Solution{
 		{
 		    int n=nums.size();
 		    int target=accumulate(nums.begin(),nums.end(),0);
-		    int dp[n+1][target];
+		    int dp[n+1][target+1];
 		    memset(dp,0,sizeof(dp));
 		    for(int i=0;i<=n;i++)
 		    dp[i][0]=1;
