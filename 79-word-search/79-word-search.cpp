@@ -2,13 +2,13 @@ class Solution {
 public:
     bool find(vector<vector<char>>&v,int i,int j,string &s,int index)
     {
+         if(index==s.size())
+        {
+            return true;
+        }
         if(i<0||j<0||i>=v.size()||j>=v[0].size()||v[i][j]!=s[index])
         {
             return false;
-        }
-        if(index==s.size()-1)
-        {
-            return true;
         }
         char ch=v[i][j];
         v[i][j]='*';
