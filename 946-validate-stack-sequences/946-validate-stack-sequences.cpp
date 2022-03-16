@@ -3,17 +3,17 @@ public:
     bool validateStackSequences(vector<int>& pushed, vector<int>& popped) 
     {
         int n=pushed.size();
-        stack<int>s;
+        int i=0;
         int j=0;
-        for(int i=0;i<n;i++)
+        for(auto &it:pushed)
         {
-            s.push(pushed[i]);
-            while(s.size()&&popped[j]==s.top())
+            pushed[i++]=it;
+            while(i&&pushed[i-1]==popped[j])
             {
+                i--;
                 j++;
-                s.pop();
             }
         }
-        return s.size()==0;
+        return i==0;
     }
 };
