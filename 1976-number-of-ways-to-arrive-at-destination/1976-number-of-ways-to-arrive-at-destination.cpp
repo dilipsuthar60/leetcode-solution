@@ -31,7 +31,7 @@ public:
                 ll wt1=it[1];
                  if(dis[node1]>wt+wt1)
                 {
-                    dis[node1]=dis[node]+wt1;
+                    dis[node1]=wt+wt1;
                     path[node1]=path[node];
                     pq.push({dis[node1],node1});
                 }
