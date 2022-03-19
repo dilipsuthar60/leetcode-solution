@@ -13,9 +13,7 @@ public:
     long long maximumSubsequenceCount(string text, string pattern) 
     {
         string s1=pattern[0]+text;
-        string s2=text+pattern[0];
-        string s3=pattern[1]+text;
-        string s4=text+pattern[1];
-        return max({find(s1,pattern),find(s4,pattern)});
+        string s2=text+pattern[1];
+        return max({find(s1,pattern),find(s2,pattern)});
     }
 };
