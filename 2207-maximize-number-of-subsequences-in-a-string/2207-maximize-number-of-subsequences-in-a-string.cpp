@@ -1,6 +1,6 @@
 class Solution {
 public:
-    long long find(string &s,string &t)
+    long long find(string s,string t)
     {
         int m = t.length(), n = s.length();
         vector<vector<long long>> dp(m + 1, vector<long long> (n + 1, 0ll));
