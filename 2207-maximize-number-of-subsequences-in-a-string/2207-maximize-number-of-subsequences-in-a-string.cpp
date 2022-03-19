@@ -16,6 +16,6 @@ public:
         string s2=text+pattern[0];
         string s3=pattern[1]+text;
         string s4=text+pattern[1];
-        return max({find(s1,pattern),find(s2,pattern),find(s3,pattern),find(s4,pattern)});
+        return max({find(s1,pattern),find(s4,pattern)});
     }
 };
