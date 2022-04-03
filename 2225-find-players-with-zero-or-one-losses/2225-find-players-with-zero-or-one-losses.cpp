@@ -4,14 +4,14 @@ public:
     {
         map<int,int>mp1,mp2;
         set<int>s;
-        for(auto it:nums)
+        for(auto &it:nums)
         {
             mp1[it[0]]++;
             mp2[it[1]]++;
             s.insert(it[1]);
         }
         vector<int>win,lost;
-        for(auto it:mp1)
+        for(auto &it:mp1)
         {
             if(s.find(it.first)==s.end())
             {
@@ -25,11 +25,6 @@ public:
                 lost.push_back(it.first);
             }
         }
-        // vector<vector<int>>ans;
-        // ans.push_back(win);
-        // ans.push_back(lost);
-        
         return {win,lost};
-        
     }
 };
