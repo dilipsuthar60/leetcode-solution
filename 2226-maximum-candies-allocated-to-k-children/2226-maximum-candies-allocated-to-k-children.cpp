@@ -14,7 +14,7 @@ public:
     {
         long long l=1;
         int ans=0;
-        long long r=1e10;
+        long long r=accumulate(nums.begin(),nums.end(),0ll);
         while(l<=r)
         {
             long long mid=(l+r)/2;
