@@ -25,11 +25,11 @@ public:
                 lost.push_back(it.first);
             }
         }
-        vector<vector<int>>ans;
-        ans.push_back(win);
-        ans.push_back(lost);
+        // vector<vector<int>>ans;
+        // ans.push_back(win);
+        // ans.push_back(lost);
         
-        return ans;
+        return {win,lost};
         
     }
 };
