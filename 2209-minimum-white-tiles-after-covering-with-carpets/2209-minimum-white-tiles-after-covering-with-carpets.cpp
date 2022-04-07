@@ -29,11 +29,11 @@ public:
         int c=0;
         for(int i=0;i<n;i++)
         {
-            if(s[i]=='1')
+            prefix[i]=(s[i]=='1')?1:0;
+            if(i)
             {
-                c++;
+                prefix[i]+=prefix[i-1];
             }
-            prefix[i]=c;
         }
         int val=find(s,prefix,0,num,len);
         return prefix[n-1]-val;
