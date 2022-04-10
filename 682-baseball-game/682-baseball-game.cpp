@@ -17,15 +17,7 @@ public:
             }
             else if(nums[i]=="+")
             {
-                int t=2;
-                int sum=0;
-                int i=0;
-                while(t--)
-                {
-                    sum+=v[v.size()-i-1];
-                    i++;
-                }
-                v.push_back(sum);
+                v.push_back(v.back()+v[v.size()-2]);
             }
             else
             {
