@@ -3,47 +3,29 @@ public:
     vector<vector<int>> generateMatrix(int n)
     {
         vector<vector<int>>v(n,vector<int>(n,0));
-        int l=0;
-        int r=n-1;
-        int t=0;
-        int b=n-1;
-        int div=0;
-        int x=1;
-        while(l<=r&&t<=b)
+       vector<pair<int,int>>dir={{0,1},{1,0},{0,-1},{-1,0}};
+        int d=0;
+        int t=n*n;
+        int count=1;
+        int x,y,nx,ny;
+        x=y=nx=ny=0;
+        auto is_safe=[&](int x,int y)
         {
-            if(div==0)
+            return x>=0&&y>=0&&x<n&&y<n&&v[x][y]==0;
+        };
+        while(t--)
+        {
+            nx=x+dir[d].first;
+            ny=y+dir[d].second;
+            if(!is_safe(nx,ny))
             {
-                for(int i=l;i<=r;i++)
-                {
-                    v[t][i]=x++;
-                }
-                t++;
+                d=(d+1)%4;
+                nx=x+dir[d].first;
+                ny=y+dir[d].second;
             }
-            else if(div==1)
-            {
-                for(int i=t;i<=b;i++)
-                {
-                    v[i][r]=x++;
-                }
-                r--;
-            }
-            else if(div==2)
-            {
-                for(int i=r;i>=l;i--)
-                {
-                    v[b][i]=x++;
-                }
-                b--;
-            }
-            else if(div==3)
-            {
-                for(int i=b;i>=t;i--)
-                {
-                    v[i][l]=x++;
-                }
-                l++;
-            }
-            div=(div+1)%4;
+            v[x][y]=count++;
+            x=nx;
+            y=ny;
         }
         return v;
     }
