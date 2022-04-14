@@ -7,9 +7,10 @@ public:
         {
             return 0;
         }
-         if(dp[index][buy][k]!=-1)
+        int &val=dp[index][buy][k];
+         if(val!=-1)
         {
-            return dp[index][buy][k];
+            return val;
         }
         int ans=0;
         if(buy)
