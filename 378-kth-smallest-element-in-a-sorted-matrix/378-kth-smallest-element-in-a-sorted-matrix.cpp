@@ -3,8 +3,10 @@ public:
     
     int kthSmallest(vector<vector<int>>& mat, int k) 
     {
-        int l=-1e9;
-        int r=1e9;
+        int n=mat.size();
+        int m=mat[0].size();
+        int l=mat[0][0];
+        int r=mat[n-1][m-1];
         int ans=0;
         auto find=[&](int mid)
         {
