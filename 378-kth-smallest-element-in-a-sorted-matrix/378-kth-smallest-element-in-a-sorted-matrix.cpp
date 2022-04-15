@@ -11,9 +11,14 @@ public:
         auto find=[&](int mid)
         {
             int count=0;
-            for(auto it:mat)
+            int j=m-1;
+            for(int i=0;i<n;i++)
             {
-                count+=upper_bound(it.begin(),it.end(),mid)-it.begin();
+                while(j>=0&&mat[i][j]>mid)
+                {
+                    j--;
+                }
+                count+=(j+1);
             }
             return count;
         };
