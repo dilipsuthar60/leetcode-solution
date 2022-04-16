@@ -4,7 +4,7 @@ public:
     {    
         int n=sc.size();
         vector<int>dp[n+1];
-        for(auto it:nums)
+        for(auto &it:nums)
         {
             dp[it[0]].push_back(it[1]);
             dp[it[1]].push_back(it[0]);
@@ -17,7 +17,7 @@ public:
                  });
         }
         int ans=-1;
-        for(auto it:nums)
+        for(auto &it:nums)
         {
             int a=it[0];
             int b=it[1];
