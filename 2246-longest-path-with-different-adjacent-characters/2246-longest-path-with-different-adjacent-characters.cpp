@@ -1,57 +1,54 @@
 class Solution {
 public:
-    vector<vector<int>>dp;
-    pair<int,int>bfs(int x,vector<int>&vis)
-    {
+    int longestPath(vector<int>& parent, string s) {
+        
+        int n = parent.size();
+        vector<vector<int>>adj(n+1);
+        for(int i = 1; i<n; i++){
+            int nxt = parent[i];
+            if(s[nxt]!=s[i]){
+                int x = i; int y = nxt;
+                adj[x].push_back(y);
+                adj[y].push_back(x);
+            }
+        }
+        int ans = 0;
         queue<int>q;
-        int level=0;
-        q.push(x);
-        vis[x]++;
-        int far_node=x;
-        while(q.size())
-        {
-            int size=q.size();
-            for(int i=0;i<size;i++)
-            {
-                auto temp=q.front();
-                q.pop();
-                far_node=temp;
-                for(auto it:dp[temp])
-                {
-                    if(vis[it]!=vis[temp])
-                    { 
-                      vis[it]++;
-                      q.push(it);
+        vector<bool>vis(n+1);
+        vector<bool>vis2(n+1);
+        vector<int>dis(n+1);
+        vector<int>dis2(n+1);
+        for(int i = 1; i<=n; i++){
+            if(vis[i])continue;
+            vis[i] = true;
+            q.push(i);
+            int dist = 0; int node = 1;
+            while(q.size()){
+                int cur = q.front(); q.pop();
+                for(int nxt: adj[cur]){
+                    if(vis[nxt])continue;
+                    vis[nxt] = true;
+                    q.push(nxt);
+                    dis[nxt] = dis[cur]+1;
+                    if(dis[nxt]>dist){
+                        dist = dis[nxt];
+                        node = nxt;
                     }
                 }
             }
-            level++;
-        }
-        return {far_node,level};
-    }
-    int longestPath(vector<int>& parent, string s) 
-    {
-        int n=parent.size();
-        dp.resize(n+1);
-        for(int i=1;i<n;i++)
-        {
-            if(s[i]!=s[parent[i]])
-            {
-                dp[parent[i]].push_back(i);
-                dp[i].push_back(parent[i]);
+            q.push(node);
+            vis2[node] = true;
+            while(q.size()){
+                int cur = q.front(); q.pop();
+                for(int nxt: adj[cur]){
+                    if(vis2[nxt])continue;
+                    dis2[nxt] = dis2[cur]+1;
+                    q.push(nxt);
+                    vis2[nxt] = true;
+                    ans = max(ans,dis2[nxt]);
+                }
             }
         }
-        vector<int>vis(n,0);
-        int ans=0;
-        for(int i=0;i<n;i++)
-        {
-            if(vis[i]==0)
-            {
-                auto [far_node,d]=bfs(i,vis);
-                 auto [node,dis]=bfs(far_node,vis);
-                ans=max(ans,dis);
-            }
-        }
-        return ans;
+        return ans+1;
     }
 };
