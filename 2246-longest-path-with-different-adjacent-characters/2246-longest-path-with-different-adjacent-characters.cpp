@@ -1,33 +1,57 @@
 class Solution {
 public:
     vector<vector<int>>dp;
-    int ans=0;
-    int find(int x,string &s)
+    pair<int,int>bfs(int x,vector<int>&vis)
     {
-        vector<int>v={0,0};
-        int len=0;
-        for(auto it:dp[x])
+        queue<int>q;
+        int level=0;
+        q.push(x);
+        vis[x]++;
+        int far_node=x;
+        while(q.size())
         {
-            len=find(it,s);
-            if(s[x]!=s[it])
+            int size=q.size();
+            for(int i=0;i<size;i++)
             {
-                v.push_back(len);
+                auto temp=q.front();
+                q.pop();
+                far_node=temp;
+                for(auto it:dp[temp])
+                {
+                    if(vis[it]!=vis[temp])
+                    { 
+                      vis[it]++;
+                      q.push(it);
+                    }
+                }
             }
+            level++;
         }
-        sort(v.rbegin(),v.rend());
-        ans=max(ans,v[0]+v[1]+1);
-        return v[0]+1;
+        return {far_node,level};
     }
     int longestPath(vector<int>& parent, string s) 
     {
-          ans=0;
         int n=parent.size();
         dp.resize(n+1);
         for(int i=1;i<n;i++)
         {
-            dp[parent[i]].push_back(i);
+            if(s[i]!=s[parent[i]])
+            {
+                dp[parent[i]].push_back(i);
+                dp[i].push_back(parent[i]);
+            }
         }
-        find(0,s);
+        vector<int>vis(n,0);
+        int ans=0;
+        for(int i=0;i<n;i++)
+        {
+            if(vis[i]==0)
+            {
+                auto [far_node,dis]=bfs(i,vis);
+                auto [l,r]=bfs(far_node,vis);
+                ans=max(ans,r);
+            }
+        }
         return ans;
     }
 };
