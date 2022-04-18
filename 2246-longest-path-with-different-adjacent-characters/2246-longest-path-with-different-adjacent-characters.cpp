@@ -47,9 +47,9 @@ public:
         {
             if(vis[i]==0)
             {
-                auto [far_node,dis]=bfs(i,vis);
-                auto [l,r]=bfs(far_node,vis);
-                ans=max(ans,r);
+                auto [far_node,d]=bfs(i,vis);
+                 auto [node,dis]=bfs(far_node,vis);
+                ans=max(ans,dis);
             }
         }
         return ans;
