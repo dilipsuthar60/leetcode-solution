@@ -11,31 +11,25 @@
  */
 class Solution {
 public:
-    void find(TreeNode*root,vector<int>&v)
+    TreeNode*curr;
+    void find(TreeNode*root)
     {
         if(root==NULL)
         {
             return ;
         }
-        find(root->left,v);
-        v.push_back(root->val);
-        find(root->right,v);
+        find(root->left);
+        root->left=NULL;
+        curr->right=root;
+        curr=root;
+        find(root->right);
     }
     TreeNode* increasingBST(TreeNode* root) 
     {
-        if(root==NULL)
-        {
-            return root;
-        }
-        vector<int>v;
-        find(root,v);
-        TreeNode*start=new TreeNode(v[0]);
-        TreeNode*end=start;
-        for(int i=1;i<v.size();i++)
-        {
-            end->right=new TreeNode(v[i]);
-            end=end->right;
-        }
-        return start;
+        TreeNode*ans;
+        curr=new TreeNode(-1);
+        ans=curr;
+        find(root);
+        return ans->right;
     }
 };
