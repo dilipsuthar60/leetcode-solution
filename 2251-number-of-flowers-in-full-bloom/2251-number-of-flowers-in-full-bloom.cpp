@@ -1,29 +1,54 @@
 class Solution {
 public:
-    vector<int> fullBloomFlowers(vector<vector<int>>& nums, vector<int>&p) 
+    vector<int>merge(vector<int>&left,vector<int>&right)
     {
-        vector<int>ans(p.size());
-        multiset<long long>mp;
-        sort(nums.begin(),nums.end());
-        vector<vector<long long>>v;
-        for(int i=0;i<p.size();i++)
-        {
-            v.push_back({p[i],i});
-        }
-        sort(v.begin(),v.end());
+        vector<int>sorted_array;
+        int i=0;
         int j=0;
-        for(int i=0;i<v.size();i++)
+        while(i<left.size()&&j<right.size())
         {
-            while(j<nums.size()&&v[i][0]>=nums[j][0])
+            if(left[i]<right[j])
             {
-                mp.insert(nums[j][1]);
-                j++;
+                sorted_array.push_back(left[i++]);
             }
-            while(mp.size()&&v[i][0]>(*mp.begin()))
+            else
             {
-                mp.erase(mp.begin());
+                sorted_array.push_back(right[j++]);
             }
-            ans[v[i][1]]=mp.size();
+        }
+        while(i<left.size()) sorted_array.push_back(left[i++]);
+        while(j<right.size()) sorted_array.push_back(right[j++]);
+        return sorted_array;
+    }
+    vector<int> sort(vector<int>&nums,int l,int r)
+    {
+        if(l==r)
+        {
+            return {nums[l]};
+        }
+        int mid=(l+r)/2;
+        vector<int>left=sort(nums,l,mid);
+        vector<int>right=sort(nums,mid+1,r);
+        return merge(left,right);
+    }
+    vector<int> fullBloomFlowers(vector<vector<int>>& nums, vector<int>& p) 
+    {
+        vector<int>start,end;
+        for(auto &it:nums)
+        {
+            start.push_back(it[0]);
+            end.push_back(it[1]);
+        }
+        
+        start=sort(start,0,start.size()-1);
+        end=sort(end,0,end.size()-1);
+        vector<int>ans;
+        for(auto &it:p)
+        {
+            int val=it;
+            int l=upper_bound(start.begin(),start.end(),val)-start.begin();
+            int r=lower_bound(end.begin(),end.end(),val)-end.begin();
+            ans.push_back(l-r);
         }
         return ans;
     }
