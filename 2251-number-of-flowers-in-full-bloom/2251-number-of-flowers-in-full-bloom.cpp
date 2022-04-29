@@ -2,22 +2,23 @@ class Solution {
 public:
     vector<int>merge(vector<int>&left,vector<int>&right)
     {
-        vector<int>sorted_array;
+        vector<int>sorted_array(left.size()+right.size());
         int i=0;
         int j=0;
+        int k=0;
         while(i<left.size()&&j<right.size())
         {
             if(left[i]<right[j])
             {
-                sorted_array.push_back(left[i++]);
+                sorted_array[k++]=(left[i++]);
             }
             else
             {
-                sorted_array.push_back(right[j++]);
+                sorted_array[k++]=(right[j++]);
             }
         }
-        while(i<left.size()) sorted_array.push_back(left[i++]);
-        while(j<right.size()) sorted_array.push_back(right[j++]);
+        while(i<left.size()) sorted_array[k++]=(left[i++]);
+        while(j<right.size()) sorted_array[k++]=(right[j++]);
         return sorted_array;
     }
     vector<int> sort(vector<int>&nums,int l,int r)
