@@ -3,7 +3,7 @@ public:
     long long find(string &s,int k)
     {
         long long  count=0;
-        long long dp[256];
+        long long dp[26];
         memset(dp,0,sizeof(dp));
         int n=s.size();
         int unique=0;
