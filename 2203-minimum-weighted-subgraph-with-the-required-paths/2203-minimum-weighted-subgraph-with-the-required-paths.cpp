@@ -1,7 +1,7 @@
 class Solution {
 public:
     using ll=long long;
-    void find(vector<vector<pair<ll,ll>>>&dp,vector<long long>&dis,long long x,int n)
+    void find(vector<vector<pair<ll,ll>>>&dp,vector<ll>&dis,ll x,int n)
     {
         priority_queue<pair<ll,ll>,vector<pair<ll,ll>>,greater<pair<ll,ll>>>pq;
         pq.push({0ll,x});
@@ -41,7 +41,7 @@ public:
         find(dp1,dis1,src1,n);
         find(dp1,dis2,src2,n);
         find(dp2,dis3,dest,n);
-        long long ans=1e18;
+        ll ans=1e18;
         for(int i=0;i<n;i++)
         {
             
