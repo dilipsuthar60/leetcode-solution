@@ -20,9 +20,9 @@ public:
             vis[node]=1;
             for(auto &it:dp[node])
             {
-                if(dis[it.first]>cost+it.second)
+                if(dis[it.first]>dis[node]+it.second)
                 {
-                    dis[it.first]=cost+it.second;
+                    dis[it.first]=dis[node]+it.second;
                     pq.push({dis[it.first],it.first});
                 }
             }
