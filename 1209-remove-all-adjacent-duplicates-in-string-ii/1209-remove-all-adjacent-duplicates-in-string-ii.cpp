@@ -17,7 +17,7 @@ public:
         stack<node>st;
         node first('#',1);
         st.push(first);
-        for(int i=0;i<n;i++)
+        for(int i=n-1;~i;i--)
         {
             if(st.top().ch!=s[i])
             {
@@ -37,7 +37,8 @@ public:
             st.pop();
         }
         ans.pop_back();
-        reverse(ans.begin(),ans.end());
+        // ans.erase(ans.begin());
+        // reverse(ans.begin(),ans.end());
         return ans;
     }
 };
