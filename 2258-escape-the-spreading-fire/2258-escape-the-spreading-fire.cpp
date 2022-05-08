@@ -46,17 +46,14 @@ public:
     }
     bool check(vector<vector<int>>&dis,int mid)
     {
-        queue<vector<int>>q;
+        queue<tuple<int,int,int>>q;
         q.push({0,0,mid});
         int vis[n][m];
         memset(vis,0,sizeof(vis));
         while(q.size())
         {
-            auto temp=q.front();
+            auto [x,y,cost]=q.front();
             q.pop();
-            int x=temp[0];
-            int y=temp[1];
-            int cost=temp[2];
             vis[x][y]=1;
             if(x==n-1&&y==m-1)
             {
