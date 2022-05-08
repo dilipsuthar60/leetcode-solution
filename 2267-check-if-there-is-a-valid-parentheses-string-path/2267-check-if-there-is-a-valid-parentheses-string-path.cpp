@@ -26,26 +26,17 @@ public:
         }
         if(mat[row][col]=='(')
         {
-            if(find(mat,row+1,col,open+1))
-            {
-                return true;
-            }
-            if(find(mat,row,col+1,open+1))
+            if(find(mat,row+1,col,open+1)||find(mat,row,col+1,open+1))
             {
                 return true;
             }
         }
         else
         {
-            if(find(mat,row+1,col,open-1))
+            if(find(mat,row+1,col,open-1)||find(mat,row,col+1,open-1))
             {
                 return true;
             }
-            if(find(mat,row,col+1,open-1))
-            {
-                return true;
-            }
-        
         }
         return dp[row][col][open]=false;
     }
