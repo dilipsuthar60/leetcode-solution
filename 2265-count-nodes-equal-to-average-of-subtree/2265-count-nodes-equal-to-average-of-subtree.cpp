@@ -11,23 +11,35 @@
  */
 class Solution {
 public:
-    pair<int,int>find(TreeNode*root,int&sum)
+    class node
+    {
+        public:
+        int sum;
+        int size;
+        node(int sum,int size)
+        {
+            this->sum=sum;
+            this->size=size;
+        }
+    };
+    node find(TreeNode*root,int&count)
     {
         if(root==NULL)
         {
             //first sum of subtree
             // second size of subtree
-            return {0,0};
+            return node(0,0);
         }
-        auto left=find(root->left,sum);
-        auto right=find(root->right,sum);
-        int sum_of_subtree=root->val+left.first+right.first;
-        int size_of_subtree=1+left.second+right.second;
+        auto left=find(root->left,count);
+        auto right=find(root->right,count);
+        int sum_of_subtree=root->val+left.sum+right.sum;
+        int size_of_subtree=1+left.size+right.size;
         if((sum_of_subtree)/(size_of_subtree)==root->val)
         {
-            sum++;
+            count++;
         }
-        return {sum_of_subtree,size_of_subtree};
+        node new_node(sum_of_subtree,size_of_subtree);
+        return new_node;
     }
     int averageOfSubtree(TreeNode* root) 
     {
