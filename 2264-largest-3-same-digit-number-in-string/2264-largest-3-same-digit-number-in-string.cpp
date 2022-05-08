@@ -1,18 +1,20 @@
 class Solution {
 public:
-    string largestGoodInteger(string num) 
+    string largestGoodInteger(string s) 
     {
-        string s="";
-        for(int i=0;i+2<num.size();i++)
+        int n=s.size();
+        int val=-1;
+        for(int i=0;i+2<n;i++)
         {
-            string str=num.substr(i,3);
-            set<char>vis(str.begin(),str.end());
-            if(str.size()==3&&vis.size()==1)
+            if(s[i]==s[i+1]&&s[i]==s[i+2])
             {
-                s=max(str,s);
+                val=max(val,s[i]-'0');
             }
-                
         }
-        return s;
+        if(val==-1)
+        {
+            return "";
+        }
+        return string(3,val+'0');
     }
 };
