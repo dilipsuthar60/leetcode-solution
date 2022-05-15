@@ -9,7 +9,7 @@ public:
     
     void add(int left, int right) 
     {
-        auto it=s.upper_bound({left,INT_MIN});
+        auto it=s.lower_bound({left,INT_MIN});
         if(it!=s.begin()&&(--it)->second<left)
         {
             it++;
