@@ -13,7 +13,7 @@ public:
             {
                 counta+=(a==(s[i]-'a'));
                 countb+=(b==(s[i]-'a'));
-                // counta is higher
+               // counta is higher
                 if(counta&&countb)
                 {
                     ans=max(ans,counta-countb);
@@ -35,7 +35,7 @@ public:
         {
             for(int j=0;j<26;j++)
             {
-                ans=max(ans,find(s,i,j));
+                ans=max({ans,find(s,i,j)});
             }
         }
         return ans;
