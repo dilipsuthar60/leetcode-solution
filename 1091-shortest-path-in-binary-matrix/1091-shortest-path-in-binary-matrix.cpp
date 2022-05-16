@@ -7,13 +7,11 @@ public:
         int m=mat[0].size();
         queue<int>q;
         q.push(0);
-        int level=2;
-        vector<vector<int>>dis(n,vector<int>(m,-1));
+        int level=1;
         if(mat[0][0]==1||mat[n-1][m-1]==1)
         {
             return -1;
         }
-        dis[0][0]=1;
         auto is_safe=[&](int x,int y)
         {
             return x>=0&&y>=0&&x<n&&y<m&&mat[x][y]==0;
@@ -27,19 +25,23 @@ public:
                 q.pop();
                 int x=temp/m;
                 int y=temp%m;
+                if(x==n-1&&y==m-1)
+                {
+                    return level;
+                }
                 for(auto &it:d)
                 {
                     int nx=x+it.first;
                     int ny=y+it.second;
-                    if(is_safe(nx,ny)&&dis[nx][ny]==-1)
+                    if(is_safe(nx,ny))
                     {
-                        dis[nx][ny]=level;
+                        mat[nx][ny]=-1;
                         q.push(nx*m+ny);
                     }
                 }
             }
             level++;
         }
-        return dis[n-1][m-1];
+        return -1;
     }
 };
