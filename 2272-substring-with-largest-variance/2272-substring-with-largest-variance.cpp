@@ -31,11 +31,20 @@ public:
     {
         int ans=0;
         n=s.size();
+        int dp[26]={0};
+        for(auto &it:s)
+        {
+            dp[it-97]++;
+        }
         for(int i=0;i<26;i++)
         {
             for(int j=0;j<26;j++)
             {
-                ans=max({ans,find(s,i,j)});
+                if(dp[i]==0||dp[j]==0)
+                {
+                    continue;
+                }
+                ans=max(ans,find(s,i,j));
             }
         }
         return ans;
