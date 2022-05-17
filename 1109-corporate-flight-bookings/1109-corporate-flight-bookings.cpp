@@ -2,22 +2,20 @@ class Solution {
 public:
     vector<int> corpFlightBookings(vector<vector<int>>&nums, int st) 
     {
-        int n=nums.size();
-        int dp[st+2];
-        memset(dp,0,sizeof(dp));
-        for(auto it:nums)
-        {
-            dp[it[0]]+=it[2];
-            dp[it[1]+1]-=it[2];
+        map<int, int> m{{0, 0}};
+        for(auto& f:nums){
+            m[f[0]]+=f[2];
+            m[f[1]+1]-=f[2];
         }
-        for(int i=1;i<=st;i++)
-        {
-           dp[i]+=dp[i-1];
-        }
-        vector<int>ans;
-        for(int i=1;i<=st;i++)
-        {
-            ans.push_back(dp[i]);
+        
+        int sum = 0;
+        for(auto& [v,c]:m)
+            c = sum+=c;
+vector<int>persons(st);
+        iota(persons.begin(),persons.end(),1);
+        vector<int> ans;
+        for(int t:persons){
+            ans.push_back(prev(m.upper_bound(t))->second);
         }
         return ans;
     }
