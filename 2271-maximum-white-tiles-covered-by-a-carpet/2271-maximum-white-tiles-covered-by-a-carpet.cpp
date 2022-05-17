@@ -8,9 +8,6 @@ public:
         for(int i=0;i<n;i++)
         {
             sum[i]=nums[i][1]-nums[i][0]+1;
-        }
-        for(int i=0;i<n;i++)
-        {
             if(i)
             {
                 sum[i]+=sum[i-1];
