@@ -10,8 +10,11 @@ public:
         
         int sum = 0;
         for(auto& [v,c]:m)
-            c = sum+=c;
-vector<int>persons(st);
+        {
+            sum+=c;
+            c=sum;
+        }
+        vector<int>persons(st);
         iota(persons.begin(),persons.end(),1);
         vector<int> ans;
         for(int t:persons)
