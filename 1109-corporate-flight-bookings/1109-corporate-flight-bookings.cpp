@@ -14,8 +14,11 @@ public:
 vector<int>persons(st);
         iota(persons.begin(),persons.end(),1);
         vector<int> ans;
-        for(int t:persons){
-            ans.push_back(prev(m.upper_bound(t))->second);
+        for(int t:persons)
+        {
+            auto it=m.upper_bound(t);
+            it--;
+            ans.push_back(it->second);
         }
         return ans;
     }
