@@ -11,8 +11,7 @@ class Solution
     public:
     int findPlatform(int arr[], int dep[], int n)
     {
-        int mp[2359+1];
-        memset(mp,0,sizeof(mp));
+        map<int,int>mp;
         for(int i=0;i<n;i++)
         {
             mp[arr[i]]++;
@@ -25,7 +24,7 @@ class Solution
         int max_val=0;
         for(auto &it:mp)
         {
-            sum+=it;
+            sum+=it.second;
             max_val=max(max_val,sum);
         }
         return max_val;
