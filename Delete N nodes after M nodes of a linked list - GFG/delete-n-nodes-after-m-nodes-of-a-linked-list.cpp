@@ -69,15 +69,13 @@ class Solution
         {
            int i=m;
            int j=n;
-           while(curr!=NULL&&i>0)
+           for(int i=1;i<=m&&curr;i++)
            {
                pre=curr;
                curr=curr->next;
-               i--;
            }
-           while(curr!=NULL&&j>0)
+           for(int i=1;i<=n&&curr;i++)
            {
-               j--;
                curr=curr->next;
            }
            pre->next=curr;
