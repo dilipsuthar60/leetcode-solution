@@ -6,13 +6,13 @@ using namespace std;
 
 
  // } Driver Code Ends
-class Solution{
+class Solution
+{
     public:
-    //Function to find the minimum number of platforms required at the
-    //railway station such that no train waits.
     int findPlatform(int arr[], int dep[], int n)
     {
-        map<int,int>mp;
+        int mp[2359+1];
+        memset(mp,0,sizeof(mp));
         for(int i=0;i<n;i++)
         {
             mp[arr[i]]++;
@@ -23,9 +23,9 @@ class Solution{
         }
         int sum=0;
         int max_val=0;
-        for(auto it:mp)
+        for(auto &it:mp)
         {
-            sum+=it.second;
+            sum+=it;
             max_val=max(max_val,sum);
         }
         return max_val;
