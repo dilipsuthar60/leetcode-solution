@@ -6,21 +6,15 @@ public:
         int n=nums.size();
         for(int i=0;i<32;i++)
         {
-            vector<int>v(32,0);
+            int count=0;
             for(int j=0;j<n;j++)
             {
                 if(nums[j]&(1<<i))
                 {
-                    v[i]++;
+                    count++;
                 }
             }
-            for(int k=0;k<32;k++)
-            {
-                if(v[k])
-                {
-                    ans=max(ans,v[k]);
-                }
-            }
+            ans=max(ans,count);
         }
         return ans;
     }
