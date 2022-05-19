@@ -1,5 +1,5 @@
 # Rearrange characters
-##  Medium 
+## Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a string S with repeated characters. The task is to rearrange characters in a string such that no two adjacent characters are the same.<br>
 <strong>Note:</strong> The string has only lowercase English alphabets and it can have multiple solutions. Return any one of them.</span></p>
