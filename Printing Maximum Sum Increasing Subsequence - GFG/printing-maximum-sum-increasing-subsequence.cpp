@@ -16,12 +16,15 @@ public:
         vector<int>dp(n,0),parent(n,-1);
         for(int i=0;i<n;i++)
         {
-            dp[i]=nums[i];
+             dp[i]=nums[i];
             if(dp[i]>max_sum)
             {
                 max_sum=dp[i];
                 index=i;
             }
+        }
+        for(int i=0;i<n;i++)
+        {
             for(int j=0;j<i;j++)
             {
                 if(nums[i]>nums[j]&&dp[i]<dp[j]+nums[i])
