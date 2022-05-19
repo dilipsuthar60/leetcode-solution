@@ -18,7 +18,6 @@ class Solution
         priority_queue<pair<int,char>>pq;
         for(auto &it:mp)
         {
-            // cout<<it.first<<" "<<it.second<<endl;
             pq.push({it.second,it.first});
         }
         string ans="";
@@ -30,7 +29,6 @@ class Solution
             pq.pop();
             ans+=char(temp1.second);
             ans+=char(temp2.second);
-            // cout<<ans<<endl;
             temp1.first--;
             temp2.first--;
             if(temp1.first)
