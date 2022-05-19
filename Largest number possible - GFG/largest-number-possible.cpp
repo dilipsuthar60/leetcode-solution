@@ -15,7 +15,7 @@ public:
         {
             return "0";
         }
-        if(n&&sum==0)
+        if(n>1&&sum==0)
         {
             return "-1";
         }
