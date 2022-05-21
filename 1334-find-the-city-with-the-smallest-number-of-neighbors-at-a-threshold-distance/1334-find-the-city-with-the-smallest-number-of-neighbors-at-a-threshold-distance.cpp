@@ -1,39 +1,46 @@
 class Solution {
 public:
-    int findTheCity(int n, vector<vector<int>>&mat, int val) 
+    int th;
+    vector<pair<int,int>>dp[102];
+    int find(int x,vector<int>&vis)
     {
-        vector<vector<int>>dp(n,vector<int>(n,1e5));
-        for(int i=0;i<n;i++)
+        int count=0;
+        queue<pair<int,int>>q;
+        q.push({0,x});
+        while(q.size())
         {
-            dp[i][i]=0;
-        }
-        for(auto &it:mat)
-        {
-            dp[it[0]][it[1]]=it[2];
-            dp[it[1]][it[0]]=it[2];
-        }
-        for(int k=0;k<n;k++)
-        {
-            for(int i=0;i<n;i++)
+            auto [cost,node]=q.front();
+            q.pop();
+            vis[node]=1;
+            if(cost>th)
             {
-                for(int j=0;j<n;j++)
-                {
-                    dp[i][j]=min(dp[i][j],dp[i][k]+dp[k][j]);
-                }
+                continue;
             }
-        }
-        int ans=0;
-        int max_val=n;
-        for(int i=0;i<n;i++)
-        {
-            int count=0;
-            for(int j=0;j<n;j++)
+            for(auto &it:dp[node])
             {
-                if(dp[i][j]<=val)
+                if(vis[it.first]==0&&cost+it.second<=th)
                 {
                     count++;
+                    q.push({cost+it.second,it.first});
                 }
             }
+        }
+        return count;
+    }
+    int findTheCity(int n, vector<vector<int>>& edges, int val)
+    {
+        th=val;
+        for(auto it:edges)
+        {
+            dp[it[0]].push_back({it[1],it[2]});
+            dp[it[1]].push_back({it[0],it[2]});
+        }
+        int max_val=n-1;
+        int ans=n-1;
+        for(int i=0;i<n;i++)
+        {
+            vector<int>vis(n,0);
+            int count=find(i,vis);
             if(count<=max_val)
             {
                 max_val=count;
