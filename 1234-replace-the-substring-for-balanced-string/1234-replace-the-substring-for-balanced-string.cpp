@@ -35,7 +35,7 @@ public:
     }
     int balancedString(string s) 
     {
-        map<char,int>mp;
+        unordered_map<char,int>mp;
         for(auto &it:s)
         {
             mp[it]++;
