@@ -8,9 +8,13 @@ public:
         for(int i=0,n=app.size();i<n||pq.size();i++)
         {
             
-            if(i<n&&app[i]>0)
+            if(i<n)
             {
                 pq.insert({i+day[i]-1,app[i]});
+            }
+            while(pq.size()&&(*pq.begin()).second==0)
+            {
+                pq.erase(pq.begin());
             }
             while(pq.size()&&(*pq.begin()).first<i)
             {
