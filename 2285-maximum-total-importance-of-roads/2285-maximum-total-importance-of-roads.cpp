@@ -2,28 +2,17 @@ class Solution {
 public:
     long long maximumImportance(int n, vector<vector<int>>& nums)
     {
-        vector<vector<long long>>dp(n+1);
+        vector<long long>dp(n);
         for(auto &it:nums)
         {
-            dp[it[0]].push_back(it[1]);
-            dp[it[1]].push_back(it[0]);
-        }
-        vector<pair<long long,long long>>v;
-        for(int i=0;i<n;i++)
-        {
-            v.push_back({dp[i].size(),i});
-        }
-        vector<long long>value(n+1,0);
-        long long val=n;
-        sort(v.rbegin(),v.rend());
-        for(int i=0;i<n;i++)
-        {
-            value[v[i].second]=val--;
+            dp[it[0]]++;
+            dp[it[1]]++;
         }
         long long sum=0;
-        for(auto &it:nums)
+       sort(dp.begin(),dp.end());
+        for(int i=0;i<n;i++)
         {
-            sum+=(value[it[0]]+value[it[1]]);
+            sum+=(i+1)*(dp[i]);
         }
         return sum;
     }
