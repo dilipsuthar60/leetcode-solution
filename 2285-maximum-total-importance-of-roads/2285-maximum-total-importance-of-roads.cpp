@@ -9,10 +9,10 @@ public:
             dp[it[1]]++;
         }
         long long sum=0;
-       sort(dp.begin(),dp.end()-1);
+       sort(dp.rbegin(),dp.rend());
         for(int i=0;i<n;i++)
         {
-            sum+=(i+1)*(dp[i]);
+            sum+=(n-i)*(dp[i]);
         }
         return sum;
     }
