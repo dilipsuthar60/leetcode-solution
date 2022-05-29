@@ -1,29 +1,28 @@
-class Solution {
-public:
-    int maxProduct(vector<string>&nums) 
-    {
-        int n=nums.size();
-        vector<pair<int,int>>dp(n);
-        for(int i=0;i<n;i++)
+class Solution
+{
+    public:
+        int maxProduct(vector<string> &nums)
         {
-            int mask=0;
-            for(auto it:nums[i])
+            int n = nums.size();
+            vector<pair<int, int>> dp(n);
+            for (int i = 0; i < n; i++)
             {
-                mask|=1<<(it-'a');
-            }
-            dp[i]={mask,nums[i].size()};
-        }
-        int ans=0;
-        for(int i=0;i<n;i++)
-        {
-            for(int j=i+1;j<n;j++)
-            {
-                if((dp[i].first&dp[j].first)==0)
+                int mask = 0;
+                for (auto it: nums[i])
                 {
-                    ans=max(ans,dp[i].second*dp[j].second);
+                    mask |= 1 << (it - 'a');
+                }
+                dp[i] = { mask,nums[i].size()};
+            }
+            int ans = 0;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = i + 1; j < n; j++)
+                {
+                        ans = max(ans, (dp[i].first &dp[j].first)==0?dp[i].second *dp[j].second:0);
+                    
                 }
             }
+            return ans;
         }
-        return ans;
-    }
 };
