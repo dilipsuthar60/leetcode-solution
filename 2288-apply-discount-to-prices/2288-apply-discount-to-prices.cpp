@@ -34,10 +34,10 @@ public:
                 val=stoll(it.substr(1));
                 double vt=((val*(100-dis)*1.0+0.5)/(100.000));
                 string curr=to_string(vt);
-                if(vt>(double)1.000&&dis==100)
-                {
-                    curr="0.00";
-                }
+                // if(vt>(double)1.000&&dis==100)
+                // {
+                //     curr="0.00";
+                // }
                 int index=curr.find('.'); 
                 it='$'+curr.substr(0,index+1)+curr.substr(index+1,2);
             }
