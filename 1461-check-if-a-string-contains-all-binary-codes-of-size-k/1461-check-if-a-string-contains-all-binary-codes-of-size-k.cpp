@@ -2,17 +2,20 @@ class Solution {
 public:
     bool hasAllCodes(string s, int k) 
     {
-        deque<char>dq;
-        unordered_set<string>st;
-        for(int i=0;i<s.size();i++)
+        
+        int size=1<<k;
+        unordered_set<int>st;
+        int allone=size-1;
+        int hash=0;
+        
+        for(int i=0,n=s.size();i<n;i++)
         {
-            dq.push_back(s[i]);
-            if(dq.size()==k)
+            hash=((hash<<1)&(allone))|(s[i]-'0');
+            if(i>=k-1)
             {
-                st.insert({dq.begin(),dq.end()});
-                dq.pop_front();
+                st.insert(hash);
             }
         }
-        return st.size()==(1<<k);
+        return st.size()==size;
     }
 };
