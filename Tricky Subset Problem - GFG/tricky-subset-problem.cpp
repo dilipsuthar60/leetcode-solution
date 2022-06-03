@@ -15,13 +15,9 @@ public:
         long long curr=S;
         long long sum=S;
         dp.push_back(S);
-        for(int i=0;i<N;i++)
+        for(int i=0;i<N&&curr<X;i++)
         {
             curr=sum+A[i];
-            if(curr>X)
-            {
-                break;
-            }
             dp.push_back(curr);
             sum=curr+sum;
         }
