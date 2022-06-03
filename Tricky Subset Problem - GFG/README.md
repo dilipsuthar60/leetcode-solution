@@ -1,5 +1,5 @@
 # Tricky Subset Problem
-## Medium 
+##  Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">N children are made to stand in a queue. Each of them is given a number A[i]. The teacher writes a number S on a page and passes it to the first child. Each child must add all the numbers they see on the page along with their own number, write the sum on the paper and pass it to the next person.&nbsp;<br>
 In the end, the teacher must determine if X can be formed by adding some of the numbers from the series of numbers written on the paper.</span></p>
