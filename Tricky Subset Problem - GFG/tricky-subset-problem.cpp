@@ -25,32 +25,14 @@ public:
             dp.push_back(curr);
             sum=curr+sum;
         }
-        int index=lower_bound(dp.begin(),dp.end(),X)-dp.begin();
-        if(index>dp.size())
+        for(int i=dp.size()-1;i>=0;i--)
         {
-            return 0;
-        }
-        while(X>0ll)
-        {
-            if(index<dp.size()&&X==dp[index])
+            if(X>=dp[i])
             {
-                return 1;
+                X-=dp[i];
             }
-            if(index==0&&X!=dp[index])
-            {
-                return 0;
-            }
-            if(X>=dp[index-1])
-            {
-                X-=dp[index-1];
-            }
-            index--;
         }
-        if(X==0)
-        {
-            return 1;
-        }
-        return 0;
+        return X==0;
     }
 };
 
