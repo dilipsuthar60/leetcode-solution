@@ -26,6 +26,10 @@ public:
             sum=curr+sum;
         }
         int index=lower_bound(dp.begin(),dp.end(),X)-dp.begin();
+        if(index>dp.size())
+        {
+            return 0;
+        }
         while(X>0ll)
         {
             if(index<dp.size()&&X==dp[index])
