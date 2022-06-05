@@ -31,7 +31,6 @@ public:
         if(row==n)
         {
             count++;
-          
             return ;
         }
         for(int col=0;col<n;col++)
@@ -47,7 +46,7 @@ public:
     int totalNQueens(int n) 
     {
          count=0;
-          vector<vector<string>>ans;
+        vector<vector<string>>ans;
         vector<string>v(n,string(n,'.'));
         find(n,v,0);
         return count;
