@@ -25,7 +25,6 @@ public:
                 f=!f;
             } 
             nums=v;
-            
         }
         return nums[0];
     }
