@@ -4,14 +4,14 @@ public:
     vector<pair<int,int>>d={{-1,0},{0,1},{1,0},{0,-1}};
     void find(vector<vector<int>>&mat,vector<vector<int>>&dis)
     {
-        queue<pair<int,int>>q;
+        queue<int>q;
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
                 if(mat[i][j]==1)
                 {
-                    q.push({i,j});
+                    q.push(i*m+j);
                     dis[i][j]=0;
                 }
                 if(mat[i][j]==2)
@@ -28,8 +28,8 @@ public:
             {
                 auto temp=q.front();
                 q.pop();
-                int x=temp.first;
-                int y=temp.second;
+                int x=temp/m;
+                int y=temp%m;
                 for(auto it:d)
                 {
                     int nx=x+it.first;
@@ -37,7 +37,7 @@ public:
                     if(nx>=0&&ny>=0&&nx<n&&ny<m&&dis[nx][ny]==INT_MAX&&mat[nx][ny]==0)
                     {
                         dis[nx][ny]=level;
-                        q.push({nx,ny});
+                        q.push(nx*m+ny);
                     }
                 }
             }
@@ -46,14 +46,16 @@ public:
     }
     bool check(vector<vector<int>>&dis,int mid)
     {
-        queue<tuple<int,int,int>>q;
-        q.push({0,0,mid});
+        queue<pair<int,int>>q;
+        q.push({0,mid});
         int vis[n][m];
         memset(vis,0,sizeof(vis));
         while(q.size())
         {
-            auto [x,y,cost]=q.front();
+            auto [temp,cost]=q.front();
             q.pop();
+            int x=temp/m;
+            int y=temp%m;
             vis[x][y]=1;
             if(x==n-1&&y==m-1)
             {
@@ -65,7 +67,7 @@ public:
                 int ny=y+it.second;
                 if(nx>=0&&ny>=0&&nx<n&&ny<m&&dis[nx][ny]!=-1&&!vis[nx][ny]&&(cost+1<dis[nx][ny]||(nx==n-1&&ny==m-1&&cost+1<=dis[nx][ny])))
                 {
-                    q.push({nx,ny,cost+1});
+                    q.push({nx*m+ny,cost+1});
                 }
             }
         }
