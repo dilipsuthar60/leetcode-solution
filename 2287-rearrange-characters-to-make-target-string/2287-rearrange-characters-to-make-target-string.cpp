@@ -4,7 +4,7 @@ public:
     {
         int n=s.size();
         int count=0;
-        unordered_map<char,int>mp1,mp2;
+        unordered_map<int,int>mp1,mp2;
         for(auto &it:s)
         {
             mp1[it]++;
