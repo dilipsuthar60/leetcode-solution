@@ -2,7 +2,7 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) 
     {
-        int dp[260];
+        int dp[128];
         memset(dp,-1,sizeof(dp));
         int i,j;
         i=j=0;
