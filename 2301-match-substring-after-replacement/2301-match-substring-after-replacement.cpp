@@ -3,11 +3,6 @@ public:
     int mp[260][260];
     bool find(string &s,string &p)
     {
-        if(s.size()!=p.size())
-        {
-            return false;
-        }
-        
         int n=s.size();
         for(int i=0;i<n;i++)
         {
@@ -22,7 +17,7 @@ public:
         return true;
     }
    
-    bool matchReplacement(string s, string sub, vector<vector<char>>& mapp)
+bool matchReplacement(string s, string sub, vector<vector<char>>& mapp)
     {    
         int len=sub.size();
         int n=s.size();
