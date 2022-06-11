@@ -9,7 +9,6 @@ public:
         int sp=0;
         int a=1;
         string str="!@#$%^&*()-+";
-        set<char>st(str.begin(),str.end());
         for(int i=0;i<s.size();i++)
         {
             if(s[i]>='A'&&s[i]<='Z')
@@ -24,7 +23,7 @@ public:
             {
                 d++;
             }
-            else if(st.count(s[i]))
+            else if(str.find(s[i])!=string::npos)
             {
                 sp++;
             }
