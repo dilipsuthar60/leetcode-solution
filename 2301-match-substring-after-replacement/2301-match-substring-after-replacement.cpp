@@ -1,6 +1,6 @@
 class Solution {
 public:
-    map<pair<char,char>,int>mp;
+    int mp[260][260];
     bool find(string &s,string &p)
     {
         if(s.size()!=p.size())
@@ -13,7 +13,7 @@ public:
         {
             if(s[i]!=p[i])
             {
-                if(mp.find({p[i],s[i]})==mp.end())
+                if(mp[p[i]][s[i]]==0)
                 {
                     return false;
                 }
@@ -26,9 +26,10 @@ public:
     {    
         int len=sub.size();
         int n=s.size();
+        memset(mp,0,sizeof(mp));
         for(auto &it:mapp)
         {
-            mp[{it[0],it[1]}]++;
+            mp[it[0]][it[1]]++;
         }
         for(int i=0;i+len<=n;i++)
         {
