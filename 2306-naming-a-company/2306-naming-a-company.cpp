@@ -2,7 +2,7 @@ class Solution {
 public:
     long long distinctNames(vector<string>&nums)
     {
-        int dp[26][26];
+        long long  dp[26][26];
         memset(dp,0,sizeof(dp));
         unordered_set<string>vis(nums.begin(),nums.end());
         for(auto &it:nums)
