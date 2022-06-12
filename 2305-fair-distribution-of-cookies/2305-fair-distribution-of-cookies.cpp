@@ -5,11 +5,7 @@ public:
     {
         if(index>=nums.size())
         {
-            int mx=-1e8;
-            for(int i=0;i<k;i++)
-            {
-                mx=max(v[i],mx);
-            }
+            int mx=*max_element(v.begin(),v.end());
             ans=min(ans,mx);
             return ;
         }
