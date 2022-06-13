@@ -12,7 +12,7 @@ public:
         {
             for(int j=0;j<m;j++)
             {
-                dp[i][j]=1e8;
+                dp[i][j]=1e5+10;
             }
         }
         dp[0][0]=0;
