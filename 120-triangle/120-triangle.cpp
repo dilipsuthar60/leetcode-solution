@@ -1,23 +1,23 @@
 class Solution {
 public:
+    int n;
+    int dp[201][201];
+    int find(vector<vector<int>>&nums,int i,int j)
+    {
+        if(i==n-1)
+        {
+            return nums[i][j];
+        }
+        if(dp[i][j]!=-1)
+        {
+            return dp[i][j];
+        }
+        return dp[i][j]=nums[i][j]+min(find(nums,i+1,j),find(nums,i+1,j+1));
+    }
     int minimumTotal(vector<vector<int>>&nums) 
     {
-        int n=nums.size();
-        vector<int>dp(n,0);
-        for(int i=n-1;~i;i--)
-        {
-            for(int j=0;j<=i;j++)
-            {
-                if(i==n-1)
-                {
-                    dp[j]=nums[i][j];
-                }
-                else
-                {
-                    dp[j]=nums[i][j]+min(dp[j],dp[j+1]);
-                }
-            }
-        }
-        return dp.front();
+        memset(dp,-1,sizeof(dp));
+        n=nums.size();
+        return find(nums,0,0);
     }
 };
