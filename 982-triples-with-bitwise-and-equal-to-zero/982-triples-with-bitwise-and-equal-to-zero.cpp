@@ -3,8 +3,7 @@ public:
     int countTriplets(vector<int>& nums) 
     {
         int n=nums.size();
-        int dp[1<<16];
-        memset(dp,0,sizeof(dp));
+        int dp[1<<16]={0};
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<n;j++)
