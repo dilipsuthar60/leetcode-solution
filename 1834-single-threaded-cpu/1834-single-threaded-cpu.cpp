@@ -33,16 +33,18 @@ public:
         sort(nums.begin(),nums.end());
         priority_queue<node,vector<node>,cmp>pq;
         int i=0;
-        long long time=0;
+        long long time=nums[0][0];
         vector<int>ans;
         while(i<n||pq.size())
         {
-            if(!pq.size()&&i<n)
-            {
-                time=max(time,1ll*nums[i][0]);
-            }
             while(i<n&&nums[i][0]<=time)
             {
+                pq.push(node(nums[i][1],nums[i][2]));
+                i++;
+            }
+            if(pq.size()==0)
+            {
+                time=nums[i][0];
                 pq.push(node(nums[i][1],nums[i][2]));
                 i++;
             }
