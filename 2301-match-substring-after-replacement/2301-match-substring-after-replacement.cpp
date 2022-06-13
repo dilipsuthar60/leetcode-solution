@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int mp[260][260];
+    int mp[150][150];
     bool find(string &s,string &p)
     {
         int n=s.size();
