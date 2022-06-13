@@ -1,12 +1,20 @@
 class Solution {
 public:
-    int minimumObstacles(vector<vector<int>>& mat) {
-         vector<pair<int,int>>d={{-1,0},{0,1},{1,0},{0,-1}};
+    int minimumObstacles(vector<vector<int>>& mat)
+    {
+        vector<pair<int,int>>d={{-1,0},{0,1},{1,0},{0,-1}};
         int n=mat.size();
         int m=mat[0].size();
         queue<int>q;
         q.push(0);
-        vector<vector<int>>dp(n,vector<int>(m,INT_MAX));
+        int dp[n][m];
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                dp[i][j]=1e8;
+            }
+        }
         dp[0][0]=0;
         while(q.size())
         {
@@ -24,7 +32,7 @@ public:
                     if(nx>=0&&ny>=0&&nx<n&&ny<m&&dp[x][y]+mat[nx][ny]<dp[nx][ny])
                     {
                         dp[nx][ny]=dp[x][y]+mat[nx][ny];
-                         q.push(nx*m+ny);
+                        q.push(nx*m+ny);
                     }
                 }
             }
