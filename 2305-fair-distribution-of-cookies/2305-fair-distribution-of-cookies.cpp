@@ -1,55 +1,29 @@
 class Solution {
 public:
-    int n;
-    bool find(vector<int>&nums,int k,int mid)
+    int ans=1e8;
+    void find(vector<int>&nums,vector<int>&v,int k,int index)
     {
-        int count=1;
-        int sum=0;
-        for(int i=0;i<n;i++)
+        if(index>=nums.size())
         {
-            sum+=nums[i];
-            if(mid<nums[i])
+            int mx=-1e8;
+            for(int i=0;i<k;i++)
             {
-                return false;
+                mx=max(v[i],mx);
             }
-            if(sum>mid)
-            {
-                count++;
-                sum=nums[i];
-            }
+            ans=min(ans,mx);
+            return ;
         }
-        return count<=k;
-    }
-    int bs(vector<int>&nums,int k)
-    {
-        int l=0;
-        int ans=0;
-        int r=1e6;
-        while(l<=r)
+        for(int i=0;i<k;i++)
         {
-            int mid=(l+r)/2;
-            if(find(nums,k,mid))
-            {
-                ans=mid;
-                r=mid-1;
-            }
-            else
-            {
-                l=mid+1;
-            }
+            v[i]+=nums[index];
+            find(nums,v,k,index+1);
+            v[i]-=nums[index];
         }
-        return ans;
     }
-    int distributeCookies(vector<int>& nums, int k) 
+    int distributeCookies(vector<int>&nums, int k) 
     {
-        n=nums.size();
-        int ans=1e8;
-        sort(nums.begin(),nums.end());
-        do
-        {
-         ans=min(ans,bs(nums,k));   
-        }while(next_permutation(nums.begin(),nums.end()));
-       
+        vector<int>v(k);
+        find(nums,v,k,0);
         return ans;
     }
 };
