@@ -4,27 +4,43 @@ public:
     {
         unordered_map<string,int>mp;
         int ans=0;
+        int n=words.size();
         sort(words.begin(),words.end(),[&](auto &a,auto b){return a.size()<b.size();});
-        for(auto &it:words)
+        auto find=[&](string &s,string &p)
         {
-            string s=it;
-            for(int i=0;i<s.size();i++)
+            int n=s.size();
+            int m=p.size();
+            if(n!=m+1)
             {
-                string new_string=s.substr(0,i)+s.substr(i+1);
-                if(mp.find(new_string)!=mp.end())
+                return false;
+            }
+            int i=0;
+            int j=0;
+            while(i<n&&j<m)
+            {
+                if(s[i]==p[j])
                 {
-                    mp[s]=max(mp[s],mp[new_string]+1);
+                    i++;
+                    j++;
                 }
                 else
                 {
-                    mp[s]=max(mp[s],1);
+                    i++;
+                }
+            }
+            return j==m;
+        };
+        vector<int>dp(n,1);
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<i;j++)
+            {
+                if(find(words[i],words[j])&&dp[i]<dp[j]+1)
+                {
+                    dp[i]=dp[j]+1;
                 }
             }
         }
-        for(auto &[a,b]:mp)
-        {
-            ans=max(ans,b);
-        }
-        return ans;
+        return *max_element(dp.begin(),dp.end());
     }
 };
