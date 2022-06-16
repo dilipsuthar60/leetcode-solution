@@ -5,7 +5,7 @@ public:
     int count=0;
     CustomStack(int maxSize) 
     {
-        limit=maxSize;
+        this->limit=maxSize;
     }
     
     void push(int x) 
