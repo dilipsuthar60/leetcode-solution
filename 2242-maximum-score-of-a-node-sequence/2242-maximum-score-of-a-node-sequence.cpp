@@ -3,36 +3,32 @@ public:
     int maximumScore(vector<int>& sc, vector<vector<int>>&nums)
     {    
         int n=sc.size();
-        vector<int>dp[n+1];
+        set<pair<int,int>>dp[n+1];
         for(auto &it:nums)
         {
-            dp[it[0]].push_back(it[1]);
-            dp[it[1]].push_back(it[0]);
-        }
-        for(int i=0;i<n;i++)
-        {
-            sort(dp[i].begin(),dp[i].end(),[&](auto &a,auto &b)
-                 {
-                     return sc[a]>sc[b];
-                 });
+            dp[it[0]].insert({sc[it[1]],it[1]});
+            dp[it[1]].insert({sc[it[0]],it[0]});
+            if(dp[it[0]].size()>3)
+            {
+                dp[it[0]].erase(dp[it[0]].begin());
+            }
+            if(dp[it[1]].size()>3)
+            {
+                dp[it[1]].erase(dp[it[1]].begin());
+            }
         }
         int ans=-1;
         for(auto &it:nums)
         {
             int a=it[0];
             int b=it[1];
-            if(dp[a].size()<2||dp[b].size()<2)
+            for(auto &t1:dp[a])
             {
-                continue;
-            }
-            for(int x=0;x<3&&x<dp[a].size();x++)
-            {
-                for(int y=0;y<3&&y<dp[b].size();y++)
+                for(auto &t2:dp[b])
                 {
-                    set<int>unique={a,b,dp[a][x],dp[b][y]};
-                    if(unique.size()==4)
+                    if(a!=t1.second&&b!=t1.second&&t2.second!=a&&t2.second!=b&&a!=b&&t1.second!=t2.second)
                     {
-                        ans=max(ans,sc[a]+sc[b]+sc[dp[a][x]]+sc[dp[b][y]]);
+                        ans=max(ans,sc[a]+sc[b]+t1.first+t2.first);
                     }
                 }
             }
