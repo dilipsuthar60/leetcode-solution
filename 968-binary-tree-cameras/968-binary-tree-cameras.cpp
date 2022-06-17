@@ -11,32 +11,33 @@
  */
 class Solution {
 public:
-    int c=0;
-    int find(TreeNode*root)
+    int ans=0;
+    string find(TreeNode*root)
     {
         if(root==NULL)
         {
-            return 1;
+            return "covered";
         }
-        int left=find(root->left);
-        int right=find(root->right);
-        if(left==-1||right==-1)
+        string left=find(root->left);
+        string right=find(root->right);
+        if(left=="need"||right=="need")
         {
-             c++;
-            return 0;
+            ans++;
+            return "camera";
         }
-        if(left==0||right==0)
+        if(left=="camera"||right=="camera")
         {
-         return 1;   
+            return "covered";
         }
-        return -1;
+        return "need";
     }
-    int minCameraCover(TreeNode* root) 
+    int minCameraCover(TreeNode* root)
     {
-        if(find(root)==-1)
+        ans=0;
+        if(find(root)=="need")
         {
-            c++;
+            ans++;
         }
-        return c;
+        return ans;
     }
 };
