@@ -8,7 +8,7 @@ public:
         int n=s.size();
         int f=0;
         int index=-1;
-        for(int i=n-1;~i&&len<=31;i--)
+        for(int i=n-1;~i;i--)
         {
             if(s[i]=='0')
             {
@@ -16,24 +16,11 @@ public:
             }
             else
             {
-                val=val|(1ll<<len);
-                if(val<=k)
+                if(len<=32&&((val+(1ll<<len))<=k))
                 {
+                    val=val+(1ll<<len);
                     len++;
                 }
-                else
-                {
-                    break;
-                }
-            }
-            index=i;
-        }
-        while(index>0)
-        {
-            index--;
-            if(s[index]=='0')
-            {
-                len++;
             }
         }
         return len;
