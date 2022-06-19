@@ -105,6 +105,6 @@ public:
         {
             return -1;
         }
-        return sum/mid.size();
+        return sum/(m-k-k);
     } 
 };
