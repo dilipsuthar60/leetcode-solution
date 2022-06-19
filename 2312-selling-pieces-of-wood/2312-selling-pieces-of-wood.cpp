@@ -9,11 +9,11 @@ public:
             return dp[n][m];
         }
         long long ans=cost[n][m];
-        for(int i=1;i<n;i++)
+        for(int i=1;i<=n/2;i++)
         {
             ans=max(ans,find(i,m)+find(n-i,m));
         }
-        for(int j=1;j<m;j++)
+        for(int j=1;j<=m/2;j++)
         {
             ans=max(ans,find(n,j)+find(n,m-j));
         }
