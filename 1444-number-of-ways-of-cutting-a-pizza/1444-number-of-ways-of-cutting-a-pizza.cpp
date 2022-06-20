@@ -39,9 +39,10 @@ class Solution
         memset(prefix, 0, sizeof(prefix));
         n = mat.size();
         m = mat[0].size();
-        for (int i = n - 1; i >= 0; i--)
+        cout<<~(-1)<<endl;
+        for (int i = n - 1; ~i; i--)
         {
-            for (int j = m - 1; j >= 0; j--)
+            for (int j = m - 1; ~j; j--)
             {
                 prefix[i][j] = (mat[i][j] == 'A') + prefix[i + 1][j] + prefix[i][j + 1] - prefix[i + 1][j + 1];
             }
