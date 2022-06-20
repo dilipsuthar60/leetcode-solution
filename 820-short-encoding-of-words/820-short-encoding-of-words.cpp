@@ -3,7 +3,7 @@ public:
     int minimumLengthEncoding(vector<string>&nums)
     {
         unordered_set<string>s(nums.begin(),nums.end());
-        for(auto it:nums)
+        for(auto &it:nums)
         {
             int n=it.size();
             for(int i=1;i<n;i++)
@@ -12,7 +12,7 @@ public:
             }
         }
         int count=0;
-        for(auto it:s)
+        for(auto &it:s)
         {
             count+=it.size()+1;
         }
