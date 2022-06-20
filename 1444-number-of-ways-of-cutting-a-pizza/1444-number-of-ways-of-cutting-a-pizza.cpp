@@ -1,7 +1,7 @@
 class Solution
 {
     public:
-        int n;
+    int n;
     int m;
     int dp[51][51][51];
     int mod = 1e9 + 7;
