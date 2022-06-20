@@ -1,110 +1,55 @@
 class MKAverage {
 public:
-    multiset<int>left,mid,right;
-    int k;
-    int m;
-    long long sum;
-    queue<int>q;
-    MKAverage(int mt, int kt)
-    {
-        sum=0;
-        m=mt;
-        k=kt;
+    int m, k;
+    deque<int> dq;
+    long sum[100003], cnt[100003];
+    MKAverage(int m, int k) {
+        memset(sum, 0, sizeof(sum));
+        this->m = m, this->k = k;
     }
-    void remove()
-    {
-        int val=q.front();
-        q.pop();
-        if(val<=*left.rbegin())
-        {
-            left.erase(left.find(val));
-            left.insert(*mid.begin());
-            sum-=*mid.begin();
-            mid.erase(mid.begin());
-        }
-        else if(val>=*right.begin())
-        {
-            right.erase(right.find(val));
-            right.insert(*mid.rbegin());
-            sum-=*mid.rbegin();
-            mid.erase(--mid.end());
-        }
-        else
-        {
-            sum-=val;
-            mid.erase(mid.find(val));
+    void update(int num, int val) {
+        int u = val / num;
+        num += 1;
+        while (num < 100002) {
+            cnt[num] += u;
+            sum[num] += val;
+            num += num & -num;
         }
     }
-    void add(int val)
-    {
-        q.push(val);
-        if(mid.size()==0)
-        {
-            if(q.size()==m)
-            {
-                queue<int>nq=q;
-                vector<int>v;
-                while(nq.size())
-                {
-                    v.push_back(nq.front());
-                    nq.pop();
-                }
-                sort(v.begin(),v.end());
-                for(int i=0;i<m;i++)
-                {
-                    if(i<k)
-                    {
-                        left.insert(v[i]);
-                    }
-                    else if(i>m-1-k)
-                    {
-                        right.insert(v[i]);
-                    }
-                    else
-                    {
-                        mid.insert(v[i]);
-                        sum+=v[i];
-                    }
-                }
-            }
+    long get(long BIT[],int x) {
+        long res = 0;
+        x += 1;
+        while (x) {
+            res += BIT[x];
+            x -= x & -x;
         }
-        else if(val<*left.rbegin())
-        {
-            int curr=*left.rbegin();
-            left.insert(val);
-            mid.insert(curr);
-            left.erase(--left.end());
-            sum+=curr;
-        }
-        else if(val>*right.begin())
-        {
-            int curr=*right.begin();
-            right.erase(right.begin());
-            right.insert(val);
-            sum+=curr;
-            mid.insert(curr);
-        }
-        else
-        {
-            sum+=val;
-            mid.insert(val);
+        return res;
+    }
+    void addElement(int num) {
+        dq.push_back(num);
+        update(num, num);
+        if (dq.size() > m) {
+            update(dq.front(), -dq.front());
+            dq.pop_front();
         }
     }
-    void addElement(int num) 
-    {
-        add(num);
-        if(q.size()>m)
-        {
-            remove();
+    int searchIndex(int kk) { // binary search
+        int low = 0, high = 1e5 + 1;
+        while (low < high) {
+            int mid = high + low >> 1;
+            if (get(cnt, mid) < kk) low = mid + 1;
+            else high = mid;
         }
+        return low;
     }
-    
-    int calculateMKAverage() 
-    {
-        if(q.size()<m)
-        {
+    int calculateMKAverage() {
+        if (dq.size() < m)
             return -1;
-        }
-        return sum/(m-k-k);
-    } 
+        int low = searchIndex(k);
+        int high = searchIndex(m - k);
+        long ans = get(sum, high) - get(sum, low);
+        ans += (get(cnt, low) - k) * low;
+        ans -= (get(cnt, high) - (m - k)) * high;
+        return ans / (m - 2 * k);
+    }
 };
