@@ -2,7 +2,7 @@ class Solution {
 public:
     int minimumLengthEncoding(vector<string>&nums)
     {
-        set<string>s(nums.begin(),nums.end());
+        unordered_set<string>s(nums.begin(),nums.end());
         for(auto it:nums)
         {
             int n=it.size();
