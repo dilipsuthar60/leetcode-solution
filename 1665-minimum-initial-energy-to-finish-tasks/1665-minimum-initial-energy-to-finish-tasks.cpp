@@ -25,7 +25,11 @@ public:
         }
         sort(nums.begin(),nums.end(),[&](auto &a,auto &b){return a[2]>b[2];});
         long long l=0;
-        long long r=1e18;
+        long long r=0;
+        for(int i=0;i<n;i++)
+        {
+            r+=nums[i][1];
+        }
         int ans=0;
         while(l<=r)
         {
