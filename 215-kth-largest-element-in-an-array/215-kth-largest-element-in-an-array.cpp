@@ -20,18 +20,20 @@ public:
     }
     int  find(vector<int>&nums,int lo,int hi, int k)
     {
-        
+        while(1)
+        {
         int index=partition(nums,nums[hi],lo,hi);
-        if(index<k)
-        {
-          return find(nums,index+1,hi,k);
+         if(index<k)
+         {
+          lo=index+1;
+         }
+         else if(index>k)
+         {
+           hi=index-1;
+         }
+         else
+          return nums[index];
         }
-        else if(index>k)
-        {
-           return find(nums,lo,index-1,k);
-        }
-     
-        return nums[index];
     }
     int findKthLargest(vector<int>& nums, int k)
     {
