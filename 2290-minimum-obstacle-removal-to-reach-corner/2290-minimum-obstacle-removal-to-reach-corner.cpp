@@ -6,7 +6,14 @@ public:
         int m=mat[0].size();
         queue<pair<int,int>>q;
         q.push({0,0});
-        vector<vector<int>>dp(n,vector<int>(m,INT_MAX));
+        int dp[n][m];
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                dp[i][j]=1e9;
+            }
+        }
         dp[0][0]=0;
         while(q.size())
         {
