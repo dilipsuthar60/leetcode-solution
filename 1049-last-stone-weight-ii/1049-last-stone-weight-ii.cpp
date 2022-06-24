@@ -12,7 +12,7 @@ public:
          int ans=INT_MAX;
         for(int i=1;i<=n;i++)
         {
-            for(int j=1;j<=sum;j++)
+            for(int j=0;j<=sum;j++)
             {
                 if(j-nums[i-1]>=0)
                 {
