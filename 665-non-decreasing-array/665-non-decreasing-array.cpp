@@ -3,24 +3,19 @@ public:
     bool checkPossibility(vector<int>& nums) 
     {
         int n=nums.size();
-        int count=0;
-        for(int i=1;i<n;i++)
+        vector<int>ans;
+        for(int i=0;i<n;i++)
         {
-            if(nums[i-1]>nums[i])
+            auto it=upper_bound(ans.begin(),ans.end(),nums[i]);
+            if(it==ans.end())
             {
-                count++;
-                if(count>1)
-                    return false;
-                if(i==1||nums[i-2]<=nums[i])
-                {
-                    nums[i-1]=nums[i];
-                }
-                else
-                {
-                    nums[i]=nums[i-1];
-                }
+                ans.push_back(nums[i]);
+            }
+            else
+            {
+                *it=nums[i];
             }
         }
-        return count<=1;
+        return ans.size()==n||ans.size()==n-1;
     }
 };
