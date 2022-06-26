@@ -1,31 +1,23 @@
 class Solution {
 public:
+    int dp[200];
+    int find(vector<int>&nums,int n,int index)
+    {
+        if(index>=n)
+        {
+            return 0;
+        }
+        if(dp[index]!=-1)
+        {
+            return dp[index];
+        }
+        int include=nums[index]+find(nums,n,index+2);
+        int exclude=0+find(nums,n,index+1);
+        return dp[index]=max(include,exclude);
+    }
     int rob(vector<int>& nums)    
     {
-        int n=nums.size();
-        if(n==1)
-        {
-            return nums[0];
-        }
-        int prev1=0;
-        int prev2=0;
-        for(int i=0;i<n;i++)
-        {
-            if(i==0)
-            {
-               prev2=nums[i];
-            }
-            else if(i==1)
-            {
-                prev1=max(nums[i],nums[i-1]);
-            }
-            else
-            {
-                int temp=prev1;
-                prev1=max(nums[i]+prev2,prev1);
-                prev2=temp;
-            }
-        }
-        return prev1;
+        memset(dp,-1,sizeof(dp));
+        return find(nums,(int)nums.size(),0);
     }
 };
