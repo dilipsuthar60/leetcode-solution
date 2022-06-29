@@ -27,6 +27,10 @@ public:
         bit.resize(N);
         int n=nums.size();
         sort(nums.begin(),nums.end(),[&](auto &a,auto &b){return a[0]==b[0]?a[1]>b[1]:a[0]<b[0];});
+        for(auto it:nums)
+        {
+            cout<<it[0]<<" "<<it[1]<<endl;
+        }
         vector<vector<int>>ans(n);
         for(int i=1;i<n;i++)
         {
