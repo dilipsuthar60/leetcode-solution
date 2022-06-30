@@ -34,27 +34,24 @@ public:
         {
             if(abs(nums[l]-x)<=abs(nums[r]-x))
             {
-                ans.push_back(nums[l]);
                 l--;
             }
             else
             {
-                ans.push_back(nums[r]);
                 r++;
             }
             k--;
         }
         while(l>=0&&k)
         {
-            ans.push_back(nums[l--]);
+            l--;
             k--;
         }
          while(r<n&&k)
         {
-            ans.push_back(nums[r++]);
+            r++;
             k--;
         }
-        sort(ans.begin(),ans.end());
-        return ans;
+        return vector<int>(nums.begin()+l+1,nums.begin()+r);
     }
 };
