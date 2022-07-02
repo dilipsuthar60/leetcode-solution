@@ -1,13 +1,54 @@
 class Solution {
 public:
+    vector<int>merge(vector<int>&left,vector<int>&right)
+    {
+        int i=0;
+        int j=0;
+        vector<int>ans;
+        int n=left.size();
+        int m=right.size();
+        while(i<n&&j<m)
+        {
+            if(left[i]<right[j])
+            {
+                ans.push_back(left[i]);
+                i++;
+            }
+            else
+            {
+                ans.push_back(right[j]);
+                j++;
+            }
+        }
+        while(i<n)
+        {
+            ans.push_back(left[i++]);
+        }
+        while(j<m)
+        {
+            ans.push_back(right[j++]);
+        }
+        return ans;
+    }
+    vector<int> merge_sort(vector<int>&nums,int l,int r)
+    {
+        if(r==l)
+        {
+            return {nums[l]};
+        }
+        int mid=(l+r)/2;
+       auto left=merge_sort(nums,l,mid);
+       auto right=merge_sort(nums,mid+1,r);
+       return merge(left,right);
+    }
     int maxArea(int n, int m, vector<int>&h, vector<int>& v)
     {
         h.push_back(0);
         v.push_back(0);
         h.push_back(n);
         v.push_back(m);
-        sort(h.begin(),h.end());
-        sort(v.begin(),v.end());
+        h=merge_sort(h,0,h.size()-1);
+        v=merge_sort(v,0,v.size()-1);
         long long h_max=0;
         for(int i=1;i<h.size();i++)
         {
