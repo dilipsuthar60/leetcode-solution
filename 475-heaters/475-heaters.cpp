@@ -7,16 +7,15 @@ public:
         int n=houses.size();
         for(int i=0;i<n;i++)
         {
-            auto it=lower_bound(nums.begin(),nums.end(),houses[i]);
+            int index=lower_bound(nums.begin(),nums.end(),houses[i])-nums.begin();
             int curr=INT_MAX;
-            if(it!=nums.end())
+            if(index<nums.size())
             {
-                curr=*it-houses[i];
+                curr=nums[index]-houses[i];
             }
-            if(it!=nums.begin())
+            if(index-1>=0)
             {
-                it--;
-                curr=min(curr,houses[i]-*it);
+                curr=min(curr,houses[i]-nums[index-1]);
             }
             ans=max(ans,curr);
         }
