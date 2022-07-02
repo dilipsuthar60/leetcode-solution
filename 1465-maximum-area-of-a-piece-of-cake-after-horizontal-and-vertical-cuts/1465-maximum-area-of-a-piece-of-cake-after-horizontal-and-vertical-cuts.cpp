@@ -4,29 +4,30 @@ public:
     {
         int i=0;
         int j=0;
-        vector<int>ans;
         int n=left.size();
         int m=right.size();
+        vector<int>ans(n+m);
+        int k=0;
         while(i<n&&j<m)
         {
             if(left[i]<right[j])
             {
-                ans.push_back(left[i]);
+                ans[k++]=(left[i]);
                 i++;
             }
             else
             {
-                ans.push_back(right[j]);
+                ans[k++]=(right[j]);
                 j++;
             }
         }
         while(i<n)
         {
-            ans.push_back(left[i++]);
+            ans[k++]=(left[i++]);
         }
         while(j<m)
         {
-            ans.push_back(right[j++]);
+            ans[k++]=(right[j++]);
         }
         return ans;
     }
