@@ -22,11 +22,7 @@ public:
                     l=mid+1;
                 }
             }
-            if(r<0)
-            {
-                return 0;
-            }
-            return nums[r]>val?r:r+1;
+            return l;
         };
         for(int i=0;i<n;i++)
         {
