@@ -30,14 +30,20 @@ public:
         {
             for(int i=1;i<=n;i++)
             {
-                if(prev!=i)
+                // if(prev!=i)
+                // {
+                //     ans=min(ans,cost[index][i-1]+find(index+1,i,group+1));
+                // }
+                // else
+                // {
+                //     ans=min(ans,cost[index][i-1]+find(index+1,i,group));
+                // }
+                int let=group;
+                if(i!=prev)
                 {
-                    ans=min(ans,cost[index][i-1]+find(index+1,i,group+1));
+                    let++;
                 }
-                else
-                {
-                    ans=min(ans,cost[index][i-1]+find(index+1,i,group));
-                }
+                ans=min(ans,cost[index][i-1]+find(index+1,i,let));
             }
         }
         else
