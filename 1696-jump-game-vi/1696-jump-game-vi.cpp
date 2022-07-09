@@ -13,7 +13,7 @@ public:
                 dq.pop_back();
             }
             dq.push_back(i);
-            if(i-dq.front()>=k)
+            if(i-dq.front()==k)
             {
                 dq.pop_front();
             }
