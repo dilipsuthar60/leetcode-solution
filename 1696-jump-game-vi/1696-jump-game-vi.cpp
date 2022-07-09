@@ -3,21 +3,18 @@ public:
     int maxResult(vector<int>& nums, int k) 
     {
         int n=nums.size();
-        deque<int>dq;
-        dq.push_back(0);
+        multiset<int>mp;
+        mp.insert(nums[0]);
+        int j=0;
         for(int i=1;i<n;i++)
         {
-            nums[i]=nums[i]+nums[dq.front()];
-            while(dq.size()&&nums[dq.back()]<=nums[i])
+            if(mp.size()>k)
             {
-                dq.pop_back();
+                mp.erase(mp.find(nums[j++]));
             }
-            dq.push_back(i);
-            if(i-dq.front()==k)
-            {
-                dq.pop_front();
-            }
+            nums[i]=nums[i]+*mp.rbegin();
+            mp.insert(nums[i]);
         }
-        return nums[n-1];
+        return nums.back();
     }
 };
