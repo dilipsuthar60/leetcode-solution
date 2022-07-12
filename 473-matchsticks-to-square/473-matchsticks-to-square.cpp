@@ -15,7 +15,7 @@ public:
             if(vis[i]==false)
             {
                 vis[i]=true;
-                if(find(nums,i+1,nums[i]+sum,k,target,vis))
+                if(nums[i]+sum<=target&&find(nums,i+1,nums[i]+sum,k,target,vis))
                 {
                     return true;
                 }
