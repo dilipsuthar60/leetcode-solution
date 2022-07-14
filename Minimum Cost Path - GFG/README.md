@@ -1,5 +1,5 @@
 # Minimum Cost Path
-##  Hard 
+## Hard 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a square <strong>grid </strong>of size <strong>N</strong>, each cell of which contains integer cost which represents a cost to traverse through that cell, we need to find a path from top left cell to bottom right cell by which the total cost incurred is minimum.<br>
 From the cell (i,j) we can go (i,j-1), (i, j+1), (i-1, j), (i+1, j).&nbsp;</span></p>
