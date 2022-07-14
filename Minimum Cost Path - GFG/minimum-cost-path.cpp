@@ -25,7 +25,7 @@ class Solution
             }
         }
         vector<pair<int,int>>dir={{-1,0},{1,0},{0,-1},{0,1}};
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+        priority_queue<array<int,2>,vector<array<int,2>>,greater<array<int,2>>>pq;
         pq.push({mat[0][0],0});
         dis[0][0]=mat[0][0];
         int cost,x,y;
@@ -33,9 +33,9 @@ class Solution
         {
             auto temp=pq.top();
             pq.pop();
-            cost=temp.first;
-            x=temp.second/m;
-            y=temp.second%m;
+            cost=temp[0];
+            x=temp[1]/m;
+            y=temp[1]%m;
             if(vis[x][y])
             {
                 continue;
