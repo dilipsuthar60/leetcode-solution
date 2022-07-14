@@ -4,8 +4,9 @@ public:
     {
         int n=mat.size();
         int m=mat[0].size();
-        vector<vector<long long>>dp(n,vector<long long>(m,0));
-        vector<vector<int>>ind(n,vector<int>(m,0));
+        int dp[n][m],ind[n][m];
+        memset(dp,0,sizeof(dp));
+        memset(ind,0,sizeof(dp));
         vector<pair<int,int>>d={{-1,0},{1,0},{0,1},{0,-1}};
         for(int i=0;i<n;i++)
         {
@@ -23,14 +24,14 @@ public:
                 }
             }
         }
-        queue<pair<int,int>>q;
+        queue<int>q;
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
                 if(ind[i][j]==0)
                 {
-                    q.push({i,j});
+                    q.push(i*m+j);
                 }
             }
         }
@@ -43,8 +44,8 @@ public:
          { 
              auto temp=q.front();
             q.pop();
-           int x=temp.first;
-           int y=temp.second;
+           int x=temp/m;
+           int y=temp%m;
            for(auto it:d)
            {
                 int nx=x+it.first;
@@ -55,7 +56,7 @@ public:
                     --ind[nx][ny];
                     if(ind[nx][ny]==0)
                     {
-                        q.push({nx,ny});
+                        q.push(nx*m+ny);
                     }
                 }
            }
