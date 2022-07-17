@@ -2,7 +2,7 @@ class Solution {
 public:
     int minOperations(vector<int>& nums, vector<int>& d) 
     {
-        int f=d[0];
+        int f=0;
         for(auto it:d)
         {
             f=__gcd(it,f);
