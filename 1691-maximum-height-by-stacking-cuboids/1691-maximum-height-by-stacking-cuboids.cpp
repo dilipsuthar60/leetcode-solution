@@ -1,6 +1,6 @@
 class Solution {
 public:
-    unordered_map<string,int>mp;
+    map<string,int>mp;
     string get_hash(int a,int b,int c,int d)
     {
         return to_string(a)+"##"+to_string(b)+"##"+to_string(c)+"##"+to_string(d);
