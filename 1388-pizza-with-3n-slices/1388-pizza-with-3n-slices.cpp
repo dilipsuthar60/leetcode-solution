@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int find(vector<int>&nums,int index,int bound,int k,int dp[][310])
+    int find(vector<int>&nums,int index,int bound,int k,int dp[][300])
     {
         if(index>=bound||k==0)
         {
@@ -16,9 +16,9 @@ public:
     }
     int maxSizeSlices(vector<int>&nums) 
     {
-        int dp[510][310];
         int n=nums.size();
         int k=n/3;
+        int dp[n+1][300];
         memset(dp,-1,sizeof(dp));
         int val1=find(nums,0,n-1,k,dp);
         memset(dp,-1,sizeof(dp));
