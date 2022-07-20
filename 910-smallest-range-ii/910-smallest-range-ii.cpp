@@ -4,6 +4,8 @@ public:
     {
         int n=nums.size();
         vector<pair<int,int>>v;
+        auto [mn,mx]=minmax_element(nums.begin(),nums.end());
+        int ans=*mx-*mn;
         for(int i=0;i<n;i++)
         {
             v.push_back({nums[i]-k,i});
@@ -23,7 +25,7 @@ public:
             take[v[i].second]++;
             i++;
         }
-        int ans=v[i-1].first-v[j].first;
+         ans=v[i-1].first-v[j].first;
         while(i<v.size())
         {
             if(take[v[j].second]==1)
