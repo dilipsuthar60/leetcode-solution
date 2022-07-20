@@ -45,10 +45,6 @@ public:
             {
                 ans=min(ans,v[i-1].first-v[j].first);
             }
-            else
-            {
-                break;
-            }
         }
         return ans;
     }
