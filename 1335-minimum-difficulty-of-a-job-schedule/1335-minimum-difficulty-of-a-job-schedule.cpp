@@ -16,12 +16,12 @@ public:
         if(d==1)
         {
             yes=1;
-            int val=0;
-            for(int i=index;i<n;i++)
-            {
-                val=max(val,nums[i]);
-            }
-            return val;
+            // int val=0;
+            // for(int i=index;i<n;i++)
+            // {
+            //     val=max(val,nums[i]);
+            // }
+            return *max_element(nums.begin()+index,nums.end());
         }
         int max_val=nums[index];
         int ans=1e9;
