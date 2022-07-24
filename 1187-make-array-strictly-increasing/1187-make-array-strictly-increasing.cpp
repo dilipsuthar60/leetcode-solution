@@ -2,7 +2,7 @@ class Solution {
 public:
     int n;
     int yes;
-    unordered_map<int,int>mp[2001];
+    map<int,int>mp[2001];
     int find(vector<int>&nums,int index,int prev,vector<int>&arr)
     {
         if(index==n)
