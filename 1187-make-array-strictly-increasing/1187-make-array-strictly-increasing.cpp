@@ -10,7 +10,7 @@ public:
             yes=1;
             return 0;
         }
-        if(mp[index][prev]!=0)
+        if(mp[index].find(prev)!=mp[index].end())
         {
             return mp[index][prev];
         }
