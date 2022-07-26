@@ -1,7 +1,7 @@
 class Solution {
 public:
-    set<int>vis;
-    int dp[9005][3];
+    int vis[6005];
+    int dp[6005][3];
     int yes;
     int find(int index,int a,int b,int x,int f)
     {
@@ -11,9 +11,9 @@ public:
               yes=1;
             return 0;
         }
-        if(index<0||index>6000||vis.find(index)!=vis.end())
+        if(index<0||index>6000||vis[index])
         {
-            return 1e9;
+            return 1e8;
         }
         if(dp[index][f]!=-1)
         {
@@ -32,7 +32,7 @@ public:
         memset(dp,-1,sizeof(dp));
         for(auto &it:nums)
         {
-            vis.insert(it);
+            vis[it]=1;
         }
         int val=find(0,a,b,x,1);
         if(yes)
