@@ -9,7 +9,7 @@ public:
         }
         if(k==0)
         {
-            return INT_MIN/2;
+           return -1e9;
         }
         if(dp[index][k]!=0)
         {
