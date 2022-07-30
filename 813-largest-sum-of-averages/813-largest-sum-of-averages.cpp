@@ -7,9 +7,16 @@ public:
         {
             return 0;
         }
-        if(k==0)
+        if(k==1)
         {
-           return -1e9;
+            double sum=0;
+            int count=0;
+            for(int i=index;i<nums.size();i++)
+            {
+                count++;
+                sum+=nums[i];
+            }
+            return sum/count;
         }
         if(dp[index][k]!=0)
         {
