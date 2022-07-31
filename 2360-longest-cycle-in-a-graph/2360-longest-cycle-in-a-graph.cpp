@@ -1,64 +1,69 @@
-class Solution
-{
-    public:
-        int longestCycle(vector<int> &nums)
+class Solution {
+public:
+    int yes;
+    int n;
+    vector<int>dp[100005];
+    vector<int>depth;
+    int vis[100005];
+    int ans;
+    void find(int x,int d)
+    {
+        depth[x]=d;
+        vis[x]=1;
+        for(auto &it:dp[x])
         {
-            int n = nums.size();
-            int ind[n], vis[n];
-            memset(ind, 0, sizeof(ind));
-            memset(vis, 0, sizeof(vis));
-            for (int i = 0; i < n; i++)
+            if(vis[it]==0)
             {
-                if (nums[i] == -1)
-                    continue;
-                ind[nums[i]]++;
+                find(it,d+1);
             }
-            queue<int> q;
-            for (int i = 0; i < n; i++)
+            else if(vis[it]==1)
             {
-                if (ind[i] == 0)
-                {
-                    q.push(i);
-                }
+                yes=1;
+                ans=max(ans,depth[x]-depth[it]+1);
             }
-            while (q.size())
+        }
+        vis[x]=2;
+        // if(depth[x]>0)
+        // {
+        //     yes=1;
+        //     ans=max(ans,d-depth[x]);
+        //     return ;
+        // }
+        // if(depth[x]!=-1)
+        // {
+        //     return ;
+        // }
+        // depth[x]=d;
+        // for(auto &it:dp[x])
+        // {
+        //     find(it,d+1);
+        // }
+        // depth[x]=0;
+    }
+    int longestCycle(vector<int>&nums) 
+    {
+        yes=0;
+        n=nums.size();
+        depth=vector<int>(n+1,-1);
+        memset(vis,0,sizeof(vis));
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]!=-1)
             {
-                auto temp = q.front();
-                q.pop();
-                vis[temp] = 1;
-                int child = nums[temp];
-                if (child == -1)
-                {
-                    continue;
-                }
-                if (--ind[child] == 0)
-                {
-                    q.push(child);
-                }
+                dp[i].push_back(nums[i]);
             }
-            int yes = 0;
-            int ans = 0;
-            for (int i = 0; i < n; i++)
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(vis[i]==0)
             {
-                if (vis[i])
-                {
-                    continue;
-                }
-                int count = 0;
-                int now = i;
-                while (vis[now] == 0)
-                {
-                    yes = 1;
-                    count++;
-                    vis[now] = 1;
-                    now = nums[now];
-                }
-                ans = max(ans, count);
+                find(i,0);
             }
-            if (yes == 0)
-            {
-                return -1;
-            }
+        }
+        if(yes)
+        {
             return ans;
         }
+        return -1;
+    }
 };
