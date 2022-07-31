@@ -1,52 +1,63 @@
 class Solution {
 public:
-    int yes;
-    int n;
-    vector<int>dp[100005];
-    vector<int>depth;
-    int ans;
-    void find(int x,int d)
+    int longestCycle(vector<int>& nums) 
     {
-        if(depth[x]>0)
-        {
-            yes=1;
-            ans=max(ans,d-depth[x]);
-            return ;
-        }
-        if(depth[x]!=-1)
-        {
-            return ;
-        }
-        depth[x]=d;
-        for(auto &it:dp[x])
-        {
-            find(it,d+1);
-        }
-        depth[x]=0;
-    }
-    int longestCycle(vector<int>&nums) 
-    {
-        yes=0;
-        n=nums.size();
-        depth=vector<int>(n+1,-1);
+        int n=nums.size();
+        int ind[n],vis[n];
+        memset(ind,0,sizeof(ind));
+        memset(vis,0,sizeof(vis));
         for(int i=0;i<n;i++)
         {
-            if(nums[i]!=-1)
-            {
-                dp[i].push_back(nums[i]);
-            }
+            if(nums[i]==-1)
+                continue;
+            ind[nums[i]]++;
         }
+        queue<int>q;
         for(int i=0;i<n;i++)
         {
-            if(depth[i]==-1)
+            if(ind[i]==0)
             {
-                find(i,1);
+                q.push(i);
             }
         }
-        if(yes)
+        while(q.size())
         {
-            return ans;
+            auto temp=q.front();
+            q.pop();
+            vis[temp]=1;
+            int child=nums[temp];
+            if(child==-1)
+            {
+                continue;
+            }
+            if(--ind[child]==0)
+            {
+                q.push(child);
+            }
         }
-        return -1;
+        int yes=0;
+        int ans=0;
+        for(int i=0;i<n;i++)
+        {
+            if(vis[i])
+            {
+                continue;
+            }
+            int count=0;
+            int now=i;
+            while(vis[now]==0)
+            {
+                yes=1;
+                count++;
+                vis[now]=1;
+                now=nums[now];
+            }
+            ans=max(ans,count);
+        }
+        if(yes==0)
+        {
+            return -1;
+        }
+        return ans;
     }
 };
