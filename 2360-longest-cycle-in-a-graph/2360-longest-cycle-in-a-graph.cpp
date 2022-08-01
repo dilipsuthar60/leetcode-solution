@@ -2,9 +2,9 @@ class Solution {
 public:
     int yes;
     int n;
-    vector<int>dp[100005];
+    vector<vector<int>>dp;
     vector<int>depth;
-    int vis[100005];
+    vector<int>vis;
     int ans;
     void find(int x,int d)
     {
@@ -23,29 +23,14 @@ public:
             }
         }
         vis[x]=2;
-        // if(depth[x]>0)
-        // {
-        //     yes=1;
-        //     ans=max(ans,d-depth[x]);
-        //     return ;
-        // }
-        // if(depth[x]!=-1)
-        // {
-        //     return ;
-        // }
-        // depth[x]=d;
-        // for(auto &it:dp[x])
-        // {
-        //     find(it,d+1);
-        // }
-        // depth[x]=0;
     }
     int longestCycle(vector<int>&nums) 
     {
         yes=0;
         n=nums.size();
+        dp=vector<vector<int>>(n+1);
         depth=vector<int>(n+1,-1);
-        memset(vis,0,sizeof(vis));
+        vis=vector<int>(n+1);
         for(int i=0;i<n;i++)
         {
             if(nums[i]!=-1)
