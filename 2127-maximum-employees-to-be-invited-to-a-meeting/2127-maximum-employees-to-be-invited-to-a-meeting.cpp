@@ -1,7 +1,7 @@
 class Solution {
 public:
     int n;
-    vector<int>dp[100005];
+    vector<vector<int>>dp;
     vector<int>vis;
     vector<int>indegree;
     vector<int>depth;
@@ -27,9 +27,10 @@ public:
     int maximumInvitations(vector<int>& nums) 
     {
         n=nums.size();
-        vis.resize(n+1);
-        indegree.resize(n+1);
-        depth.resize(n+1);
+        dp=vector<vector<int>>(n+1);
+        vis=vector<int>(n+1);
+        indegree=vector<int>(n+1);
+        depth=vector<int>(n+1);
         for(int i=0;i<n;i++)
         {
             dp[i].push_back(nums[i]);
