@@ -2,8 +2,9 @@ class Solution {
 public:
     int n;
     vector<int>dp[100005];
-    int vis[100005];
-    int depth[100005];
+    vector<int>vis;
+    vector<int>indegree;
+    vector<int>depth;
     void cycle(int x,int d,int &start,int &end,int &cycle_len)
     {
         vis[x]=1;
@@ -16,7 +17,6 @@ public:
             }
             else if(vis[it]==1)
             {
-                // cout<<"YES"<<endl;
                 cycle_len=max(cycle_len,depth[x]-depth[it]+1);
                 start=x;
                 end=it;
@@ -27,8 +27,9 @@ public:
     int maximumInvitations(vector<int>& nums) 
     {
         n=nums.size();
-        int indegree[n];
-        memset(indegree,0,sizeof(indegree));
+        vis.resize(n+1);
+        indegree.resize(n+1);
+        depth.resize(n+1);
         for(int i=0;i<n;i++)
         {
             dp[i].push_back(nums[i]);
@@ -46,7 +47,7 @@ public:
         while(q.size())
         {
             auto temp=q.front();
-            // vis[temp]=1;
+            vis[temp]=1;
             q.pop();
             for(auto it:dp[temp])
             {
@@ -57,8 +58,8 @@ public:
                 }
             }
         }
-        int ans1=0; 
-        int ans=0;
+        int largest_cycle=0; 
+        int two_cycle_and_len=0;
         for(int i=0;i<n;i++)
         {
             if(vis[i]==0)
@@ -67,17 +68,16 @@ public:
                 int end=-1;
                 int cycle_len=0;
                 cycle(i,0,start,end,cycle_len);
-                // cout<<cycle_len<<"  "<<start<<" "<<end<<endl;
                 if(cycle_len==2)
                 {
-                    ans1+=(2+len[start]+len[end]);
+                    two_cycle_and_len+=(2+len[start]+len[end]);
                 }
                 else
                 {
-                    ans=max(ans,cycle_len);
+                    largest_cycle=max(largest_cycle,cycle_len);
                 }
             }
         }
-        return max(ans1,ans);
+        return max(two_cycle_and_len,largest_cycle);
     }
 };
