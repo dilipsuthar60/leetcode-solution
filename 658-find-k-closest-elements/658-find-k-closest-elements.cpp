@@ -8,10 +8,10 @@ public:
         while(l<=r)
         {
              mid=(l+r)>>1;
-            if(nums[mid]==k)
-            {
-                return mid;
-            }
+            // if(nums[mid]==k)
+            // {
+            //     return mid;
+            // }
             if(nums[mid]<k)
             {
                 l=mid+1;
@@ -21,13 +21,13 @@ public:
                 r=mid-1;
             }
         }
-        return l;
+        return r;
     }
     vector<int> findClosestElements(vector<int>&nums, int k, int x) 
     {
         int index=find(nums,x);
-        int l=index-1;
-        int r=index;
+        int l=index;
+        int r=index+1;
         vector<int>ans;
         int n=nums.size();
         while(l>=0&&r<n&&k)
