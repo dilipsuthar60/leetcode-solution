@@ -1,24 +1,57 @@
 class Solution {
 public:
-    vector<int> findClosestElements(vector<int>&nums, int k, int x) 
+    int find(vector<int>&nums,int k)
     {
-        int n=nums.size();
-        priority_queue<pair<int,int>>pq;
-        for(int i=0;i<n;i++)
+        int mid=0;
+        int l=0;
+        int r=nums.size()-1;
+        while(l<=r)
         {
-            pq.push({abs(nums[i]-x),nums[i]});
-            if(pq.size()>k)
+             mid=(l+r)>>1;
+            if(nums[mid]==k)
             {
-                pq.pop();
+                return mid;
+            }
+            if(nums[mid]<k)
+            {
+                l=mid+1;
+            }
+            else
+            {
+                r=mid-1;
             }
         }
+        return l;
+    }
+    vector<int> findClosestElements(vector<int>&nums, int k, int x) 
+    {
+        int index=find(nums,x);
+        int l=index-1;
+        int r=index;
         vector<int>ans;
-        while(pq.size())
+        int n=nums.size();
+        while(l>=0&&r<n&&k)
         {
-            ans.push_back(pq.top().second);
-            pq.pop();
+            if(abs(nums[l]-x)<=abs(nums[r]-x))
+            {
+                l--;
+            }
+            else
+            {
+                r++;
+            }
+            k--;
         }
-        sort(ans.begin(),ans.end());
-        return ans;
+        while(l>=0&&k)
+        {
+            l--;
+            k--;
+        }
+         while(r<n&&k)
+        {
+            r++;
+            k--;
+        }
+        return vector<int>(nums.begin()+l+1,nums.begin()+r);
     }
 };
