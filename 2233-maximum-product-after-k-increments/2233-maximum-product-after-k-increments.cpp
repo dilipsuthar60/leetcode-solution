@@ -7,10 +7,7 @@ public:
             long long  count=0;
             for(int i=0;i<n;i++)
             {
-                if(nums[i]<mid)
-                {
-                    count+=(mid-nums[i]);
-                }
+                count+=max(0ll,mid-nums[i]);
             }
             if(count>k)
             {
