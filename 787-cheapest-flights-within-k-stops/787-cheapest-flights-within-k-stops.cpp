@@ -3,7 +3,7 @@ public:
     int findCheapestPrice(int n, vector<vector<int>>& nums, int src, int dst, int k) 
     {
         vector<pair<int,int>>dp[n+10];
-        for(auto it:nums)
+        for(auto &it:nums)
         {
             dp[it[0]].push_back({it[1],it[2]});
         }
