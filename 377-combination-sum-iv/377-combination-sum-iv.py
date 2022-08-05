@@ -1,22 +1,11 @@
-class Solution {
-public:
-    int dp[1001][201];
-    int f=0;
-    int combinationSum4(vector<int>& nums,int target,int index=0) 
-    {
-        if(f==0)
-        {
-            memset(dp,-1,sizeof(dp));
-            f=1;
-        }
-       if(index>=nums.size()||target<0)
-       {
-           return target==0;
-       }
-        if(dp[target][index]!=-1)
-        {
-            return dp[target][index];
-        }
-       return dp[target][index]=combinationSum4(nums,target,index+1)+combinationSum4(nums,target-nums[index],0);
-    }
-};
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        n=len(nums)
+        dp=[0]*(target+1)
+        dp[0]=1
+        for i in range(1,target+1):
+            for j in nums:
+                if i-j>=0:
+                    dp[i]+=dp[i-j]                    
+        return dp[target]            
+        
