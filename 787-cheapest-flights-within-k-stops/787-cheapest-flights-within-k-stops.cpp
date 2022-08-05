@@ -7,7 +7,14 @@ public:
         {
             dp[it[0]].push_back({it[1],it[2]});
         }
-        vector<vector<int>>dis(n+1,vector<int>(k+2,INT_MAX));
+        int dis[n+10][k+2];
+        for(int i=0;i<n+10;i++)
+        {
+            for(int j=0;j<k+2;j++)
+            {
+                dis[i][j]=1e9;
+            }
+        }
         dis[src][0]=0;
         priority_queue<array<int,3>,vector<array<int,3>>,greater<array<int,3>>>pq;
         pq.push({0,src,0});
