@@ -18,6 +18,7 @@ public:
             }
             else if(vis[it]==1)
             {
+                cout<<it<<" "<<x<<endl;
                 yes=1;
                 ans=max(ans,depth[x]-depth[it]+1);
             }
@@ -35,7 +36,8 @@ public:
         {
             if(nums[i]!=-1)
             {
-                dp[i].push_back(nums[i]);
+                // dp[i].push_back(nums[i]);
+                  dp[nums[i]].push_back(i);
             }
         }
         for(int i=0;i<n;i++)
