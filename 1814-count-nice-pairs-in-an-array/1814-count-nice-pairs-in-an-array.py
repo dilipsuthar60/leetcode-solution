@@ -8,11 +8,13 @@ class Solution:
             if i-val in mp:
                 mp[i-val]+=1
             else:
-                mp[i-val]=1
+                mp[i-val]=1    
         ans=0
+        mod=10**9+7
         for a,b in mp.items():
             ans+=(b*(b-1)//2)
-        return ans%(10**9+7)   
+            ans=ans%mod
+        return ans
             
         
         
