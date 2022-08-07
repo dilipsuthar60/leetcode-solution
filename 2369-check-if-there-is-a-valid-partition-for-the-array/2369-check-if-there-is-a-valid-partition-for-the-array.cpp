@@ -1,15 +1,41 @@
 class Solution {
 public:
-    bool validPartition(vector<int>& nums) {
-        int n=nums.size();
-        vector<int>dp(n+1,0);
-        dp[0]=1;
-        for(int i=2;i<=n;i++)
+    int n;
+    int dp[100005];
+    bool find(vector<int>&nums,int index)
+    {
+        if(index>=n)
         {
-            dp[i]|=dp[i-2]&&(nums[i-1]==nums[i-2]);
-            dp[i]|=(i>2)&&(dp[i-3])&&(nums[i-1]==nums[i-2]&&nums[i-2]==nums[i-3]);
-            dp[i]|=(i>2)&&(dp[i-3])&&(nums[i-1]-nums[i-2]==1&&nums[i-2]-nums[i-3]==1);
+            return true;
         }
-        return dp[n];
+        if(dp[index]!=-1)
+        {
+            return dp[index];
+        }
+        if(index+1<n&&nums[index]==nums[index+1])
+        {
+            if(find(nums,index+2))
+            {
+                return dp[index]=true;
+            }
+        }
+        if(index+2<n&&nums[index]==nums[index+1]&&nums[index+2]==nums[index+1])
+        {
+            if(find(nums,index+3))
+            {
+                return dp[index]=true;
+            }
+        }
+        if(index+2<n&&nums[index+1]-nums[index]==1&&nums[index+2]-nums[index+1]==1)
+        {
+            if(find(nums,index+3))
+            return dp[index]=true;
+        }
+        return dp[index]=false;
+    }
+    bool validPartition(vector<int>& nums) {
+        n=nums.size();
+        memset(dp,-1,sizeof(dp));
+        return find(nums,0);
     }
 };
