@@ -28,21 +28,17 @@ public:
     int dp[2501][2501];
     int find(vector<int>&nums,int prev,int index)
     {
-        if(index>=n)
+       set<int>s;
+        for(auto &val:nums)
         {
-            return 0;
+            auto it=s.lower_bound(val);
+            if(it!=s.end())
+            {
+                s.erase(it);
+            }
+            s.insert(val);
         }
-        int &ans=dp[prev+1][index];
-        if(ans!=-1)
-        {
-            return ans;
-        }
-        if(prev==-1||nums[index]>nums[prev])
-        {
-            ans=max(ans,1+find(nums,index,index+1));
-        }
-        ans=max(ans,find(nums,prev,index+1));
-        return dp[prev+1][index]=ans;
+        return s.size();
     }
     int lengthOfLIS(vector<int>& nums) 
     {
