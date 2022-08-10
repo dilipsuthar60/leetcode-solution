@@ -1,9 +1,10 @@
 class Solution:
     def reachableNodes(self, n: int, edges: List[List[int]], res: List[int]) -> int:
-        dp = defaultdict(set)
+        dp =[[] for _ in range(n+1)]
         for a,b in edges:
-            dp[a].add(b)
-            dp[b].add(a)
+            dp[a].append(b)
+            dp[b].append(a)
+        # print(dp)
         vis=set(res)    
         vis.add(0)
         q=deque([0])
