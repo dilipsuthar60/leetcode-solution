@@ -39,7 +39,7 @@
 class Solution {
 public:
     int k;
-    bool find(string &s,int &window,unordered_map<string,int>mp)
+    bool find(string &s,int &window,unordered_map<string,int>&mp)
     {
         if(s.size()<k)
         {
@@ -57,7 +57,7 @@ public:
     }
     vector<int> findSubstring(string s, vector<string>& words) 
     {
-        unordered_map<string,int>mp;
+        unordered_map<string,int>mp,new_map;
         int first_len=words[0].size();
         k=words[0].size()*(words.size());
         for(auto &it:words)
@@ -67,8 +67,9 @@ public:
         vector<int>ans;
         for(int i=0;i<s.size()-k+1;i++)
         {
+            new_map=mp;
             string str=s.substr(i,k);
-            if(find(str,first_len,mp))
+            if(find(str,first_len,new_map))
             {
                 ans.push_back(i);
             }
