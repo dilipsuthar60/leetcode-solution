@@ -1,7 +1,7 @@
 class Solution {
 public:
     string s;
-    int dp[10][2][20];
+    int dp[10][2][10];
     int find(int n,int pos=0,int tight=1,int count=0)
     {
         if(pos==n)
