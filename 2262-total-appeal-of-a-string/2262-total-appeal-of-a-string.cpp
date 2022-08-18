@@ -29,12 +29,21 @@ public:
     }
     long long appealSum(string s) 
     {
+        int n=s.size();
         long long count=0;
-        for(int i=1;i<=26;i++)
+        vector<int>dp(26,-1);
+        for(int i=0;i<n;i++)
         {
-            long long x=find(s,i)-find(s,i-1);
-            count+=(1ll*x*i);
+            long long sum=(n-i)*(i-dp[s[i]-'a']);
+            count+=sum;
+            dp[s[i]-'a']=i;
         }
         return count;
+        // for(int i=1;i<=26;i++)
+        // {
+        //     long long x=find(s,i)-find(s,i-1);
+        //     count+=(1ll*x*i);
+        // }
+        // return count;
     }
 };
