@@ -1,34 +1,32 @@
+
 class Solution {
 public:
     bool isPossible(vector<int>& nums) {
         int n=nums.size();
-        unordered_map<int,int>mp,present;
-        for(auto &it:nums)
-        {
-            mp[it]++;
-        }
+        unordered_map<int,priority_queue<int,vector<int>,greater<int>>>mp;
         for(int i=0;i<n;i++)
         {
-            if(mp[nums[i]]==0)
+            if(mp.find(nums[i]-1)==mp.end())
             {
-                continue;
-            }
-            if(present[nums[i]]>0)
-            {
-                present[nums[i]]--;
-                present[nums[i]+1]++;
-            }
-            else if(mp[nums[i]]>0&&mp[nums[i]+1]>0&&mp[nums[i]+2]>0)
-            {
-                mp[nums[i]+1]--;
-                mp[nums[i]+2]--;
-                present[nums[i]+3]++;
+                mp[nums[i]].push(1);
             }
             else
             {
+                auto temp=mp[nums[i]-1].top();
+                mp[nums[i]-1].pop();
+                if(mp[nums[i]-1].size()==0)
+                {
+                    mp.erase(nums[i]-1);
+                }
+                mp[nums[i]].push(temp+1);
+            }
+        }
+        for(auto &it:mp)
+        {
+            if(it.second.top()<3)
+            {
                 return false;
             }
-            mp[nums[i]]--;
         }
         return true;
     }
