@@ -21,9 +21,9 @@ public:
                 mp[nums[i]].push(temp+1);
             }
         }
-        for(auto &it:mp)
+        for(auto &[a,b]:mp)
         {
-            if(it.second.top()<3)
+            if(b.top()<3)
             {
                 return false;
             }
