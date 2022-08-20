@@ -19,9 +19,9 @@ public:
         {
             return ;
         }
-        sum[x]+=sum[y];
-        max_val=max(max_val,sum[x]);
-        parent[y]=x;
+        sum[y]+=sum[x];
+        max_val=max(max_val,sum[y]);
+        parent[x]=y;
     }
     vector<long long> maximumSegmentSum(vector<int>& nums, vector<int>& r)
     {
