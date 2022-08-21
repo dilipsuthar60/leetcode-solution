@@ -27,10 +27,6 @@ public:
         }
         for(int i=0;i<n;i++)
         {
-            dp[i]=(dp[i]+26)%26;
-        }
-        for(int i=0;i<n;i++)
-        {
             int sum=(dp[i]+(s[i]-'a')+26)%26;
             s[i]=(sum+'a');
         }
