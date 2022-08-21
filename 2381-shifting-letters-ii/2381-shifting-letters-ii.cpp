@@ -3,7 +3,7 @@ public:
     string shiftingLetters(string s, vector<vector<int>>&q) {
         int n=s.size();
         vector<int>dp(n+1,0);
-        for(auto it:q)
+        for(auto &it:q)
         {
             if(it[2]==0)
             {
