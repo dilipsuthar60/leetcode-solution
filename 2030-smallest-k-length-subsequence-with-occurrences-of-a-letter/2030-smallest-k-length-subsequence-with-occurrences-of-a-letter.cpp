@@ -5,18 +5,21 @@ public:
         int n=s.size();
         int restletter=count(s.begin(),s.end(),letter);
         string stack="";
+        int size=0;
         for(int i=0;i<n;i++)
         {
-            while(stack.size()&&stack.back()>s[i]&&(n+stack.size()-i)>k&&(stack.back()!=letter||rep<restletter))
+            while(size>0&&stack.back()>s[i]&&(n+size-i)>k&&(stack.back()!=letter||rep<restletter))
             {
                 if(stack.back()==letter)
                 {
                     rep++;
                 }
                 stack.pop_back();
+                size--;
             }
-            if(stack.size()<k&&(s[i]==letter||stack.size()+rep<k))
+            if(size<k&&(s[i]==letter||size+rep<k))
             {
+                size++;
                 stack.push_back(s[i]);
                 if(s[i]==letter)
                 {
