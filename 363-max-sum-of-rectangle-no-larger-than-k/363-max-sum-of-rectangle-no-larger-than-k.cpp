@@ -1,7 +1,7 @@
 class Solution {
 public:
     int n,m;
-    int find(vector<int>&nums,int k)
+    int find(int nums[],int k)
     {
         set<int>s;
         s.insert(0);
@@ -26,7 +26,8 @@ public:
         int ans=-1e8;
         for(int i=0;i<n;i++)
         {
-            vector<int>nums(m,0);
+            int nums[m];
+            memset(nums,0,sizeof(nums));
             for(int j=i;j<n;j++)
             {
                 for(int k=0;k<m;k++)
