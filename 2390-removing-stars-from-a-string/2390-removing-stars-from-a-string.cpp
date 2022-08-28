@@ -7,10 +7,7 @@ public:
         {
             if(s[i]=='*')
             {
-               if(stack.size())
-               {
-                   stack.pop_back();
-               }
+                stack.pop_back();
             }
             else
             {
