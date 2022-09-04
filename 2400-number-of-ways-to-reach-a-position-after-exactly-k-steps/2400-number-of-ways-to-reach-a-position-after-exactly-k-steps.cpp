@@ -23,7 +23,6 @@ public:
     int numberOfWays(int s, int e, int k) 
     {
         memset(dp,-1,sizeof(dp));
-        int b=(int)find(s,e,0,k);
-        return b;
+        return (int)find(s,e,0,k);
     }
 };
