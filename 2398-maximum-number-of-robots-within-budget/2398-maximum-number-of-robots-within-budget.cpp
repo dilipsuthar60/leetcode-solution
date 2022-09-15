@@ -1,66 +1,22 @@
-class Solution
-{
-    public:
-        long long n;
-    int find(vector<int> &ch, vector<int> &run, int k, long long bud)
+class Solution {
+public:
+    int maximumRobots(vector<int>& charge, vector<int>& run, long long target) 
     {
-        deque<int> q;
-        long long sum = 0;
-        for (int i = 0; i < k; i++)
+        int len=0;
+        multiset<long long,greater<long long>>s;
+        long long curr_sum=0;
+        for(int i=0,n=run.size(),j=0;i<n;i++)
         {
-            while (q.size() && ch[q.back()] < ch[i])
+            curr_sum+=run[i];
+            s.insert(charge[i]);
+            while(*s.begin()+1ll*(i-j+1)*curr_sum>target)
             {
-                q.pop_back();
+                curr_sum-=run[j];
+                s.erase(s.find(charge[j]));
+                j++;
             }
-            q.push_back(i);
-            sum += run[i];
+            len=max(len,i-j+1);
         }
-        int xt = 0;
-        long long max_val = ch[q.front()];
-        if (max_val + k * sum <= bud)
-        {
-            return true;
-        }
-        for (int i = k; i < n; i++)
-        {
-            if (q.front() == i - k)
-            {
-                q.pop_front();
-            }
-            while (q.size() && ch[q.back()] < ch[i])
-            {
-                q.pop_back();
-            }
-            q.push_back(i);
-            sum -= run[i - k];
-            sum += run[i];
-            max_val = ch[q.front()];
-            if (max_val + k * sum <= bud)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    int maximumRobots(vector<int> &charge, vector<int> &run, long long bud)
-    {
-        n = charge.size();
-        long long l = 1;
-        long long r = n;
-        int ans = 0;
-        while (l <= r)
-        {
-            long long mid = (l + r) / 2;
-            if (find(charge, run, mid, bud))
-            {
-                ans = mid;
-                l = mid + 1;
-            }
-            else
-            {
-                r = mid - 1;
-            }
-        }
-        return ans;
+        return len;
     }
 };
