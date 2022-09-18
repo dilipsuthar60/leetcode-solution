@@ -3,7 +3,6 @@ public:
         struct node
     {
         node*child[26]={NULL};
-        int end=0;
         int count=0;
     };
     node*root=new node();
@@ -21,20 +20,19 @@ public:
             curr=curr->child[index];
             curr->count++;
         }
-        curr->end=1;
     }
-    void find(node*curr,string &s,int &ans)
+    int find(node*curr,string &s)
     {
+        int ans=0;
         for(char &ch:s)
         {
             if(curr->child[ch-'a']!=NULL)
             {
                 curr=curr->child[ch-'a'];
-                // cout<<curr->count<<" ";
                 ans+=curr->count;
             }
         }
-        // cout<<endl;
+        return ans;
     }
     vector<int> sumPrefixScores(vector<string>&nums) 
     {
@@ -47,10 +45,9 @@ public:
         for(int i=0;i<n;i++)
         {
             node*curr=root;
-            int count=0;
-            find(curr,nums[i],count);
+            int value=find(curr,nums[i]);
             // cout<<endl;
-            ans.push_back(count);
+            ans.push_back(value);
         }
         return ans;
     }
