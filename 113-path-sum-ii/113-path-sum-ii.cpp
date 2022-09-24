@@ -17,21 +17,16 @@ public:
         {
             return ;
         }
+        curr.push_back(root->val);
         sum-=root->val;
         if(root->left==NULL&&root->right==NULL)
         {
-            curr.push_back(root->val);
             if(sum==0)
             {
                 ans.push_back(curr);
             }
-            curr.pop_back();
-            return ;
         }
-        curr.push_back(root->val);
         find(root->left,sum,curr,ans);
-        curr.pop_back();
-        curr.push_back(root->val);
         find(root->right,sum,curr,ans);
         curr.pop_back();
     }
