@@ -1,30 +1,30 @@
 class Solution {
 public:
-    int minCost(string s, vector<int>& cost) 
+    int minCost(string s, vector<int>&nums) 
     {
+        int cost=0;
         int n=s.size();
-        stack<pair<char,int>>st;
-        int ans=0;
+        vector<pair<char,int>>stack;
         for(int i=0;i<n;i++)
         {
-            if(!st.empty()&&st.top().first==s[i])
+            if(stack.size()&&stack.back().first==s[i])
             {
-                if(st.top().second<cost[i])
+                if(nums[i]>stack.back().second)
                 {
-                    ans+=st.top().second;
-                    st.pop();
-                    st.push({s[i],cost[i]});
+                    cost+=stack.back().second;
+                    stack.pop_back();
+                    stack.push_back({s[i],nums[i]});
                 }
                 else
                 {
-                    ans+=cost[i];
+                    cost+=nums[i];
                 }
             }
             else
             {
-                st.push({s[i],cost[i]});
+                stack.push_back({s[i],nums[i]});
             }
         }
-        return ans;
+        return cost;
     }
 };
