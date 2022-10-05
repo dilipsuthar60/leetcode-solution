@@ -1,31 +1,28 @@
 class Solution {
 public:
+    int n,m;
+    int dp[1001][1001];
+    int find(vector<vector<int>>&mat,int i,int j)
+    {
+        if(i==n-1&&j==m-1)
+        {
+            return mat[i][j];
+        }
+        if(i>=n||j>=m)
+        {
+            return 1e8;
+        }
+        if(dp[i][j]!=-1)
+        {
+            return dp[i][j];
+        }
+        return dp[i][j]= min(mat[i][j]+find(mat,i+1,j),mat[i][j]+find(mat,i,j+1));
+    }
     int minPathSum(vector<vector<int>>& grid) 
     {
-        int n=grid.size();
-        int m=grid[0].size();
-        vector<vector<int>>dp(n+1,vector<int>(m+1,INT_MAX));
-        dp[n][m-1]=0;
-        dp[n-1][m]=0;
-        for(int i=n-1;i>=0;i--)
-        {
-            for(int j=m-1;j>=0;j--)
-            {
-                dp[i][j]=grid[i][j]+min({dp[i+1][j],dp[i][j+1]});
-                // if(i==n-1&&j==m-1)
-                //     dp[i][j]=grid[i][j];
-                // else if(i==n-1)
-                // {
-                //     dp[i][j]=dp[i][j+1]+grid[i][j];
-                // }
-                // else if(j==m-1)
-                // {
-                //     dp[i][j]=dp[i+1][j]+grid[i][j];
-                // }
-                // else
-                //     dp[i][j]=min(dp[i+1][j],dp[i][j+1])+grid[i][j];
-            }
-        }
-        return dp[0][0];
+        memset(dp,-1,sizeof(dp));
+        n=grid.size();
+        m=grid[0].size();
+        return find(grid,0,0);
     }
 };
