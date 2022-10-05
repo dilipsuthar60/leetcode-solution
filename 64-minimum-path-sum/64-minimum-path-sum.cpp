@@ -1,7 +1,7 @@
 class Solution {
 public:
     int n,m;
-    int dp[1001][1001];
+    int dp[202][202];
     int find(vector<vector<int>>&mat,int i,int j)
     {
         if(i==n-1&&j==m-1)
