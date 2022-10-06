@@ -6,7 +6,7 @@ public:
         int n=fee.size();
         vector<pair<int,int>>dp[n+100];
         vector<int>dis(n+1000,INT_MAX);
-        for(auto it:nums)
+        for(const auto &it:nums)
         {
             dp[it[0]].push_back({it[1],it[2]});
             dp[it[1]].push_back({it[0],it[2]});
@@ -24,7 +24,7 @@ public:
             {
                 return f;
             }
-            for(auto &it:dp[node])
+            for(const auto &it:dp[node])
             {
                 int new_time=time+it.second;
                 if(new_time<=maxtime&&dis[it.first]>(time+it.second))
