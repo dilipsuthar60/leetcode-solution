@@ -21,7 +21,7 @@ public:
     }
     int componentValue(vector<int>& N, vector<vector<int>>& edges) 
     {
-        this->nums=N;
+        nums=N;
         for(auto it:edges)
         {
             dp[it[0]].push_back(it[1]);
