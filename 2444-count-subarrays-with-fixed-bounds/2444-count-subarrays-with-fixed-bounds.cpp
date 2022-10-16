@@ -9,11 +9,11 @@ public:
         int j=0;
         for(int i=0;i<n;i++)
         {
-            if(nums[i]>max_val||nums[i]<min_val)
-            {
-                min_index=-1;
-                max_index=-1;
-            }
+            // if(nums[i]>max_val||nums[i]<min_val)
+            // {
+            //     min_index=-1;
+            //     max_index=-1;
+            // }
             if(nums[i]==min_val)
             {
                 min_index=i;
