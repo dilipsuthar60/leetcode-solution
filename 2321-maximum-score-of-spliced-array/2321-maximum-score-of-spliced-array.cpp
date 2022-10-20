@@ -4,12 +4,15 @@ public:
     {
         int sum=0;
         int max_sum=0;
-        for(int i=0;i<nums.size();i++)
+        vector<int>dp(nums.size(),0);
+        dp[0]=nums[0];
+        for(int i=1;i<nums.size();i++)
         {
-            sum=max(nums[i],nums[i]+sum);
-            max_sum=max(max_sum,sum);
+            dp[i]=max(dp[i-1]+nums[i],nums[i]);
+            // sum=max(nums[i],nums[i]+sum);
+            // max_sum=max(max_sum,sum);
         }
-        return max_sum;
+        return *max_element(dp.begin(),dp.end());
     }
     int maximumsSplicedArray(vector<int>& nums1, vector<int>& nums2) 
     {
