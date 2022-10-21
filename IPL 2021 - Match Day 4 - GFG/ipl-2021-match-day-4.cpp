@@ -26,7 +26,7 @@ class Solution
     int maxAND (int arr[], int n)
     {
         int ans=0;
-        for(int i=31;i>=0;i--)
+        for(int i=(int)log2(1000000);i>=0;i--)
         {
             int count=find(ans|(1<<i),arr,n);
             if(count>=2)
