@@ -8,86 +8,62 @@ using namespace std;
 //User function template for C++
 
 class Solution{
-	
-	int ans;
-
-	private:
-	int root(int i, vector<int> &parent)
+	public:
+	int ans=0;
+	int find(vector<int>&parent,int x)
 	{
-	    while(parent[i]!=i)
+	    if(x==parent[x])
 	    {
-	        parent[i] = parent[parent[i]];
-	        i = parent[i];
+	        return x;
 	    }
-	    return i;
+	    return parent[x]=find(parent,parent[x]);
 	}
-
-    int Union(int a, int b, vector<int> &parent, vector<int> &sz)
-    {
-    	int ra = root(a, parent);
-	    int rb = root(b, parent);
-	    
-	    if(ra == rb)
-	        return sz[ra]*sz[ra];
-	    
-	    ans += sz[ra]*sz[rb];
-	    if(sz[ra] < sz[rb])
+	int merge(vector<int>&parent,vector<int>&rank,int x,int y)
+	{
+	    x=find(parent,x);
+	    y=find(parent,y);
+	    if(x==y)
 	    {
-	        sz[rb]+=sz[ra];
-	        parent[ra]=rb;
+	        return rank[x]*rank[y];
+	    }
+	     ans+=rank[x]*rank[y];
+	    if(rank[x]<rank[y])
+	    {
+	        rank[y]+=rank[x];
+	        parent[x]=y;
 	    }
 	    else
 	    {
-	        
-	        sz[ra]+=sz[rb];
-	        parent[rb]=ra;
+	        rank[x]+=rank[y];
+	        parent[y]=x;
 	    }
 	    return ans;
-    
-  	}
- 
-	public:
-	vector<int> maximumWeight(int n, vector<vector<int>> edges, int q, vector<int> &queries)
+	}
+	vector<int> maximumWeight(int n, vector<vector<int>>nums, int Q, vector<int> &q)
 	{
-		ans = 0;
-
-		vector<int> parent(n+1, 0), sz(n+1, 0);
-		for(int i = 0;i <= n; i++)
-		{
-            parent[i] = i;
-            sz[i] = 1;
-        }
-
-        vector<pair<int, pair<int, int>>> wt;
-       	for(int i = 0; i < n-1; i++)
-           	wt.push_back({edges[i][2] , {edges[i][0], edges[i][1]}}); 
-       	
-        sort(wt.begin() , wt.end());
-
-        map<int, int> mp;
-
-        for(int i = 0;i < n-1; i++){
-            int a = wt[i].first;
-            int b = wt[i].second.first;
-            int c = wt[i].second.second;
- 
-            mp[a] = Union(b, c, parent, sz);  
-        }
-
-        vector<int> res;
-
-        for(int i = 0; i < q; i++)
-        {
-           	auto val = mp.upper_bound(queries[i]);
-            if(val == mp.begin())
-                res.push_back(0);
-            else
-            {
-                val--;
-                res.push_back(val->second);
-            }
-       	}
-       	return res;
+	    vector<int>parent(n+1),rank(n+1,1);
+	    iota(parent.begin(),parent.end(),0);
+	    sort(nums.begin(),nums.end(),[&](auto &a,auto &b){return a[2]<b[2];});
+	    map<int,int>mp;
+	    for(int i=0;i<nums.size();i++)
+	    {
+	        mp[nums[i][2]]=merge(parent,rank,nums[i][0],nums[i][1]);
+	    }
+	    vector<int>ans;
+	    for(auto val:q)
+	    {
+	        auto it=mp.upper_bound(val);
+	        if(it==mp.begin())
+	        {
+	            ans.push_back(0);
+	        }
+	        else
+	        {
+	            it--;
+	            ans.push_back(it->second);
+	        }
+	    }
+	    return ans;
 	}
 };
 
