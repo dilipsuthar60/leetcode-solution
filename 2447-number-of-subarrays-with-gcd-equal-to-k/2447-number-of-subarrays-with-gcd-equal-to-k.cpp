@@ -20,14 +20,14 @@ public:
         for(int i=0;i<n;i++)
         {
             unordered_map<int,int>dp2;
-            // if(nums[i]%k==0)
-            // {
+            if(nums[i]%k==0)
+            {
                 dp1[nums[i]]++;
                 for(auto &[a,b]:dp1)
                 {
                     dp2[__gcd(nums[i],a)]+=b;
                 }
-            // }
+            }
             count+=dp2[k];
             swap(dp2,dp1);
         }
