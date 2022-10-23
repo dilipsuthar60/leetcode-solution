@@ -7,6 +7,10 @@ public:
         {
             while(nums[i]!=nums[nums[i]-1])
             {
+                // int a=nums[i];
+                // int b=nums[nums[i]-1];
+                // nums[i]=b;
+                // nums[nums[i]-1]=a;
                 swap(nums[i],nums[nums[i]-1]);
             }
         }
