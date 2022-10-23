@@ -29,7 +29,7 @@ public:
                 }
             // }
             count+=dp2[k];
-            dp1=dp2;
+            dp1.swap(dp2);
         }
         return count;
     }
