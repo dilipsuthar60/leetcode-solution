@@ -1,24 +1,25 @@
 class Solution {
 public:
-    vector<int> fullBloomFlowers(vector<vector<int>>& nums, vector<int>& p)
+    vector<int> fullBloomFlowers(vector<vector<int>>&nums, vector<int>& p) 
     {
-        map<int,int>mp{{0,0}};
-        for(auto &it:nums)
+        map<int,int>mp;
+        mp.insert({0,0});
+        for(auto it:nums)
         {
             mp[it[0]]++;
             mp[it[1]+1]--;
         }
         int sum=0;
-        for(auto &[value,counter]:mp)
+        for(auto &it:mp)
         {
-            sum+=counter;
-            counter=sum;
+            sum+=it.second;
+            it.second=sum;
         }
         vector<int>ans;
-        for(int i=0;i<p.size();i++)
+        for(auto it:p)
         {
-            auto it=mp.upper_bound(p[i]);
-            ans.push_back(prev(it)->second);
+            auto val=mp.upper_bound(it);
+            ans.push_back(prev(val)->second);
         }
         return ans;
     }
