@@ -1,34 +1,36 @@
 class Solution {
 public:
-    string hash(string &s)
+    string get_hash(string s)
     {
-        int dp[26];
-        memset(dp,0,sizeof(dp));
-        string hash_value="";
+        vector<int>dp(26,0);
         for(int i=0;i<s.size();i++)
         {
-            dp[s[i]-'a']++;
+            dp[s[i]-97]++;
         }
+        string str;
         for(int i=0;i<26;i++)
         {
-            hash_value+=to_string(dp[i])+"##";
+            str+='#'+dp[i]+'#';
         }
-        return hash_value;
+        return str;
     }
-    vector<vector<string>> groupAnagrams(vector<string>& strs) 
-    {
-        vector<vector<string>>ans;
+    vector<vector<string>> groupAnagrams(vector<string>& w)
+    {    
+        vector<vector<string>>v;
         unordered_map<string,vector<string>>mp;
-        for(auto it:strs)
+        for(auto it:w)
         {
-            string new_string=it;
-            sort(new_string.begin(),new_string.end());
-            mp[new_string].push_back(it);
+            mp[get_hash(it)].push_back(it);
         }
-        for(auto&[a,b]:mp)
+        for(auto it:mp)
         {
-            ans.push_back(b);
+            vector<string>val;
+            for(auto x:it.second)
+            {
+                val.push_back(x);
+            }
+            v.push_back(val);
         }
-        return ans;
+        return v;
     }
 };
