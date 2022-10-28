@@ -21,7 +21,9 @@ public:
         unordered_map<string,vector<string>>mp;
         for(auto it:strs)
         {
-            mp[hash(it)].push_back(it);
+            string new_string=it;
+            sort(new_string.begin(),new_string.end());
+            mp[new_string].push_back(it);
         }
         for(auto&[a,b]:mp)
         {
