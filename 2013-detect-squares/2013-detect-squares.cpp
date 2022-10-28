@@ -16,7 +16,7 @@ public:
         int count=0;
         int x=point[0];
         int y=point[1];
-        for(auto t:mp)
+        for(auto &t:mp)
         {
             pair<int,int>it=t.first;
             if(it.first!=x&&it.second!=y&&(abs(it.first-x)==abs(it.second-y)))
