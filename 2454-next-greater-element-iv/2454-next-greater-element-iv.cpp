@@ -66,7 +66,7 @@ public:
         find(nums);
         vector<int>ans(n,-1);
         vector<int>ng=next(nums);
-        for(int i=0;i<n;i++)
+        for(int i=0;i<n-2;i++)
         {
             // cout<<ng[i]<<" ";
             if(ng[i]==-1)
