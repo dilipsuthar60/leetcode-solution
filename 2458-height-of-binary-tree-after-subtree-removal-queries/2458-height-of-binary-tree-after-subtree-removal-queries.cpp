@@ -35,28 +35,3 @@ public:
         return ans;
     }
 };
-
-// class Solution {
-// public:
-//     int cnt, L[200005], R[200005], pre[200005], d[200005], suf[200005];
-//     void dfs(TreeNode* x, int dep) {
-//         L[x -> val] = ++ cnt;
-//         d[cnt] = dep;
-//         if (x -> left) dfs(x -> left, dep + 1);
-//         if (x -> right) dfs(x -> right, dep + 1);
-//         R[x -> val] = cnt;
-//     }
-//     vector<int> treeQueries(TreeNode* root, vector<int>& queries) {
-//         cnt = 0;
-//         dfs(root, 0);
-//         vector<int> v;
-//         for (int i = 1; i <= cnt; i ++) pre[i] = max(pre[i - 1], d[i]);
-//         suf[cnt + 1] = 0;
-//         for (int i = cnt; i >= 1; i --) suf[i] = max(suf[i + 1], d[i]);
-//         for (int i = 0; i < queries.size(); i ++) {
-//             int x = queries[i];
-//             v.push_back(max(pre[L[x] - 1], suf[R[x] + 1]));
-//         }
-//         return v;
-//     }
-// };
