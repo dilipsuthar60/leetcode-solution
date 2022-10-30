@@ -1,4 +1,5 @@
-class Solution {
+class Solution
+{
 public:
     int dp[21][100005];
     void find(vector<int>&nums)
@@ -40,19 +41,39 @@ public:
         }
         return ans;
     }
+    vector<int>next(vector<int>&nums)
+    {
+        int n=nums.size();
+        vector<int>ans(n,-1);
+        stack<int>s;
+        for(int i=n-1;i>=0;i--)
+        {
+            while(s.size()&&nums[i]>=nums[s.top()])
+            {
+                s.pop();
+            }
+            if(s.size())
+            {
+                ans[i]=s.top();
+            }
+            s.push(i);
+        }
+        return ans;
+    }
     vector<int> secondGreaterElement(vector<int>& nums) 
     {
         int n=nums.size();
         find(nums);
         vector<int>ans(n,-1);
-        for(int i=0;i<n-2;i++)
+        vector<int>ng=next(nums);
+        for(int i=0;i<n;i++)
         {
-            int index=binary(i+1,n-1,nums[i]);
-            if(index==-1)
+            // cout<<ng[i]<<" ";
+            if(ng[i]==-1)
             {
                 continue;
             }
-            index=binary(index+1,n-1,nums[i]);
+            int index=binary(ng[i]+1,n-1,nums[i]);
             if(index==-1)
             {
                 continue;
