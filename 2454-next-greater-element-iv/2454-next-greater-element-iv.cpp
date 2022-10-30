@@ -45,7 +45,7 @@ public:
         int n=nums.size();
         find(nums);
         vector<int>ans(n,-1);
-        for(int i=0;i<n;i++)
+        for(int i=0;i<n-2;i++)
         {
             int index=binary(i+1,n-1,nums[i]);
             if(index==-1)
