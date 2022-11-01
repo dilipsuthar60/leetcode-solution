@@ -2,10 +2,10 @@ class Solution {
 public:
     int longestValidParentheses(string s) 
     {
-        if(s.size()==0)
-        {
-            return 0;
-        }
+        // if(s.size()==0)
+        // {
+        //     return 0;
+        // }
         int n=s.size();
         vector<int>dp(n+1,-1);
         dp[n]=0;
