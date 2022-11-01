@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[4010];
+    int dp[4001];
     vector<int>kmp(string s)
     {
         vector<int>lps(s.size(),0);
