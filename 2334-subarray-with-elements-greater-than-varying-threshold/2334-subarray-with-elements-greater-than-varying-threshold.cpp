@@ -1,50 +1,35 @@
 class Solution {
 public:
-    int validSubarraySize(vector<int>& nums, int val) 
+    int validSubarraySize(vector<int>& nums, int threshold) 
     {
         int n=nums.size();
         vector<int>left(n,-1),right(n,n);
-        vector<int>stack;
+        vector<pair<int,int>>v;
         for(int i=0;i<n;i++)
         {
-            while(stack.size()&&nums[stack.back()]>=nums[i])
-            {
-                stack.pop_back();
-            }
-            if(stack.size())
-            {
-                left[i]=stack.back();
-            }
-            stack.push_back(i);
+            v.push_back({nums[i],i});
         }
-        stack.clear();
-        for(int i=n-1;i>=0;i--)
+        set<int>s;
+        sort(v.begin(),v.end());
+        for(auto &[val,i]:v)
         {
-            while(stack.size()&&nums[stack.back()]>=nums[i])
+            auto it=s.lower_bound(i);
+            if(it!=s.end())
             {
-                stack.pop_back();
+                right[i]=*it;
             }
-            if(stack.size())
+            if(it!=s.begin())
             {
-                right[i]=stack.back();
+                it--;
+                left[i]=*it;
             }
-            stack.push_back(i);
+            s.insert(i);
         }
-//         for(int i=0;i<n;i++)
-//         {
-//             cout<<left[i]<<" ";
-//         }
-//         cout<<endl;
-        
-//         for(int i=0;i<n;i++)
-//         {
-//             cout<<right[i]<<" ";
-//         }
-//         cout<<endl;
         for(int i=0;i<n;i++)
         {
-            int len=right[i]-left[i]-1;
-            if(1ll*nums[i]*len>val)
+            // cout<<left[i]<<"  "<<right[i]<<endl;
+            int len=(right[i]-left[i]-1);
+            if(1ll*nums[i]*len>threshold)
             {
                 return len;
             }
