@@ -15,12 +15,30 @@ public:
         int k=(n*m+1)/2;
         int l=0;
         int r=1e8;
+        auto bs=[&](vector<int>&nums,int x)
+        {
+            int l=0;
+            int r=nums.size()-1;
+            while(l<=r)
+            {
+                int mid=(l+r)/2;
+                if(nums[mid]>x)
+                {
+                    r=mid-1;
+                }
+                else
+                {
+                    l=mid+1;
+                }
+            }
+            return l;
+        };
         auto find=[&](int target)
         {
           int count=0;
           for(int i=0;i<n;i++)
           {
-              count+=upper_bound(mat[i].begin(),mat[i].end(),target)-mat[i].begin();
+              count+=bs(mat[i],target);
           }
           return count;
         };
