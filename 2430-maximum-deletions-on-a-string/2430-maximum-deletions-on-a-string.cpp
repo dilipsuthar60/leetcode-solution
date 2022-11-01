@@ -35,9 +35,10 @@ public:
         {
             return 0;
         }
-        if(dp[index]!=-1)
+        int &val=dp[index];
+        if(val!=-1)
         {
-            return dp[index];
+            return val;
         }
         int ans=1;
         for(int i=1;i<nums[index].size();i++)
@@ -47,7 +48,7 @@ public:
                 ans=max(ans,1+find(nums,nums[index][i]+index));
             }
         }
-        return dp[index]=ans;
+        return val=ans;
     }
     int deleteString(string s) 
     {
