@@ -1,51 +1,33 @@
 class Solution {
 public:
-    vector<int>findl(vector<int>&nums)
-    {
-        int n=nums.size();
-        stack<int>s;
-        vector<int>left(n,-1);
-        for(int i=0;i<n;i++)
-        {
-            while(s.size()&&nums[i]<=nums[s.top()])
-            {
-                s.pop();
-            }
-            if(s.size())
-            {
-                left[i]=s.top();
-            }
-            s.push(i);
-        }
-        return left;
-    }
-    vector<int>findr(vector<int>&nums)
-    {
-        int n=nums.size();
-        stack<int>s;
-        vector<int>right(n,n);
-        for(int i=n-1;i>=0;i--)
-        {
-            while(s.size()&&nums[i]<=nums[s.top()])
-            {
-                s.pop();
-            }
-            if(s.size())
-            {
-                right[i]=s.top();
-            }
-            s.push(i);
-        }
-        return right;
-    }
     int validSubarraySize(vector<int>& nums, int threshold) 
     {
         int n=nums.size();
-        vector<int>left=findl(nums);
-        vector<int>right=findr(nums);
+        vector<int>left(n,-1),right(n,n);
+        vector<pair<int,int>>v;
         for(int i=0;i<n;i++)
         {
-            // cout<<left[i]<<" "<<right[i]<<endl;
+            v.push_back({nums[i],i});
+        }
+        set<int>s;
+        sort(v.begin(),v.end());
+        for(auto &[val,i]:v)
+        {
+            auto it=s.lower_bound(i);
+            if(it!=s.end())
+            {
+                right[i]=*it;
+            }
+            if(it!=s.begin())
+            {
+                it--;
+                left[i]=*it;
+            }
+            s.insert(i);
+        }
+        for(int i=0;i<n;i++)
+        {
+            // cout<<left[i]<<"  "<<right[i]<<endl;
             int len=(right[i]-left[i]-1);
             if(1ll*nums[i]*len>threshold)
             {
