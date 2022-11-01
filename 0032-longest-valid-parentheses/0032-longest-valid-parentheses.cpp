@@ -7,7 +7,8 @@ public:
             return 0;
         }
         int n=s.size();
-        vector<int>dp(n,-1);
+        vector<int>dp(n+1,-1);
+        dp[n]=0;
         stack<int>st;
         for(int i=0;i<n;i++)
         {
@@ -30,7 +31,7 @@ public:
                 }
             }
         }
-        int mx=*max_element(dp.begin(),dp.end());
-        return mx==-1?0:mx;
+        return *max_element(dp.begin(),dp.end());
+        
     }
 };
