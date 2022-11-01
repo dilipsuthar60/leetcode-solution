@@ -5,7 +5,7 @@ public:
     vector<int>dp[100005];
     ll power(ll a,ll b)
     {
-       ll res=1;
+        ll res=1;
         while(b)
         {
             if(b&1)
@@ -17,7 +17,7 @@ public:
         }
         return res;
     }
-    void find(int node,vector<int>&sub,int p=-1)
+    void find(int node,vector<ll>&sub,int p=-1)
     {
         for(auto &it:dp[node])
         {
@@ -38,7 +38,7 @@ public:
                 dp[nums[i]].push_back(i);
             }
         }
-        vector<int>sub(n,1);
+        vector<ll>sub(n,1);
         find(0,sub);
         ll fact=1;
         for(int i=2;i<=n;i++)
