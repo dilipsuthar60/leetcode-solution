@@ -2,8 +2,7 @@ class Solution {
 public:
     int find(vector<vector<int>>&dp,int x2,int y2,int x1,int y1)
     {
-        return dp[x2][y2]-dp[x2][y1-1]-dp[x1-1][y2]+dp[x1-1][y1-1];
-        
+        return dp[x2][y2]-dp[x2][y1-1]-dp[x1-1][y2]+dp[x1-1][y1-1]; 
     }
     bool possibleToStamp(vector<vector<int>>& grid, int sh, int sw) 
     {
