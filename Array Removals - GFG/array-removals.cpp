@@ -18,11 +18,9 @@ class Solution{
         int n=arr.size();
         for(int i=0;i<n;i++)
         {
-            int diff=arr[i]-arr[j];
-            while(diff>k)
+            while(arr[i]-arr[j]>k)
             {
                 j++;
-                diff=arr[i]-arr[j];
             }
             ans=max(ans,i-j+1);
         }
