@@ -35,7 +35,7 @@ public:
         {
             for(int j=1;j<=m;j++)
             {
-                dp[i][j]=-dp[i-1][j-1]+dp[i-1][j]+dp[i][j-1]+brr[i][j];
+                brr[i][j]=brr[i][j]+brr[i-1][j]+brr[i][j-1]-brr[i-1][j-1];
             }
         }
         for(int i=1;i<=n;i++)
@@ -48,7 +48,7 @@ public:
                 }
                 int x1=max(1,i-sh+1);
                 int y1=max(1,j-sw+1);
-                if(find(dp,i,j,x1,y1)==0)
+                if(find(brr,i,j,x1,y1)==0)
                 {
                     return false;
                 }
