@@ -1,5 +1,6 @@
 class Solution {
 public:
+    vector<vector<int>>dp;
     int find_cost(vector<int>&nums,int start,int end)
     {
         int cost=0;
@@ -10,7 +11,7 @@ public:
         }
         return cost;
     }
-    int find(vector<int>&nums,int index,int k,int dp[][101])
+    int find(vector<int>&nums,int index,int k)
     {
         if(k==1)
         {
@@ -24,16 +25,15 @@ public:
         for(int i=index,n=nums.size();i<n;i++)
         {
             int cost=find_cost(nums,index,i);
-            ans=min(ans,cost+find(nums,i+1,k-1,dp));
+            ans=min(ans,cost+find(nums,i+1,k-1));
         }
         return dp[index][k]=ans;
     }
     int minDistance(vector<int>&nums, int k)
     {
         int n=nums.size();
-        int dp[n+1][101];
-        memset(dp,-1,sizeof(dp));
+        dp=vector<vector<int>>(n+1,vector<int>(k+1,-1));
         sort(nums.begin(),nums.end());
-        return find(nums,0,k,dp);
+        return find(nums,0,k);
     }
 };
