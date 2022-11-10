@@ -12,7 +12,7 @@ class Solution {
         {
             q.push(i);
         }
-        vector<int>v;
+        long long ans=0;
         while(1)
         {
             auto temp=q.front();
@@ -21,7 +21,7 @@ class Solution {
             {
                 break;
             }
-            v.push_back(temp);
+            ans=max(ans,temp);
             int last_digit=temp%10;
             if(last_digit>0)
             {
@@ -32,8 +32,7 @@ class Solution {
                 q.push(temp*10+last_digit+1);
             }
         }
-        sort(v.begin(),v.end());
-        return v.back();
+        return ans;
     }
 };
 
