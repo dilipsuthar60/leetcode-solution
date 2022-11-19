@@ -81,7 +81,7 @@ Node* buildTree(string str) {
 
 class Solution{
     public:
-    void find(Node*root,map<int,vector<int>>&dp,int level=0)
+    void find(Node*root,unordered_map<int,vector<int>>&dp,int level=0)
     {
         if(root==NULL)
         {
@@ -99,7 +99,7 @@ class Solution{
     }
     bool areAnagrams(Node *root1, Node *root2)
     {
-        map<int,vector<int>>dp1,dp2;
+        unordered_map<int,vector<int>>dp1,dp2;
         find(root1,dp1);
         find(root2,dp2);
         int size=dp1.size();
