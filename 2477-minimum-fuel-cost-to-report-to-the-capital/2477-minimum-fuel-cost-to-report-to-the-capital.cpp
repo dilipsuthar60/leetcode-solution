@@ -3,7 +3,7 @@ public:
     vector<int>dp[100005];
     void find(int node,vector<int>&sub,int p=-1)
     {
-        for(auto it:dp[node])
+        for(auto &it:dp[node])
         {
             if(it!=p)
             {
