@@ -14,7 +14,7 @@ public:
     }
     long long minimumFuelCost(vector<vector<int>>&nums, int seats) 
     {
-        for(auto it:nums)
+        for(auto &it:nums)
         {
             dp[it[0]].push_back(it[1]);
             dp[it[1]].push_back(it[0]);
