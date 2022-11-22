@@ -1,16 +1,30 @@
 class Solution {
 public:
-    int numSquares(int n)
+    int dp[10005];
+    int find(int target)
     {
-        vector<int>dp(n+1,INT_MAX);
-        dp[0]=0;
-        for(int i=1;i<=n;i++)
+        if(target==0)
         {
-            for(int j=1;j*j<=i;j++)
-            {
-                dp[i]=min(dp[i],dp[i-j*j]+1);
-            }
+            return 0;
         }
-        return dp[n];
+        if(target<0)
+        {
+            return 1e9;
+        }
+        if(dp[target]!=-1)
+        {
+            return dp[target];
+        }
+        int ans=1e9;
+        for(int i=1;i*i<=target;i++)
+        {
+            ans=min(ans,1+find(target-i*i));
+        }
+        return dp[target]=ans;
+    }
+    int numSquares(int n) 
+    {
+        memset(dp,-1,sizeof(dp));
+        return find(n);
     }
 };
