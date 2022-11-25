@@ -7,7 +7,7 @@ public:
         vector<int>left(n,-1),right(n,n);
         for(int i=0;i<n;i++)
         {
-            while(s.size()&&arr[i]<=arr[s.top()])
+            while(s.size()&&arr[i]<arr[s.top()])
             {
                 s.pop();
             }
@@ -20,7 +20,7 @@ public:
         s=stack<int>();
         for(int i=n-1;i>=0;i--)
         {
-            while(s.size()&&arr[i]<arr[s.top()])
+            while(s.size()&&arr[i]<=arr[s.top()])
             {
                 s.pop();
             }
