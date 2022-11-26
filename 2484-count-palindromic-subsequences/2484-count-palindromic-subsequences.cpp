@@ -4,13 +4,9 @@ public:
     long long dp[10004][11][11][6];
     int find(string &s,int index,int first,int second,int count)
     {
-        if(count==5)
-        {
-            return 1;
-        }
         if(index>=s.size())
         {
-            return 0;
+            return count==5;
         }
         if(dp[index][first][second][count]!=-1)
         {
