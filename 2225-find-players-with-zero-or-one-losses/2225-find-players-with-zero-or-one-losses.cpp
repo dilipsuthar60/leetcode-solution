@@ -1,30 +1,31 @@
 class Solution {
 public:
-    vector<vector<int>> findWinners(vector<vector<int>>& nums) 
+    vector<vector<int>> findWinners(vector<vector<int>>&nums)
     {
-        map<int,int>mp1,mp2;
-        set<int>s;
+        int n=nums.size();
+        unordered_map<int,int>mp1,mp2;
         for(auto &it:nums)
         {
             mp1[it[0]]++;
             mp2[it[1]]++;
-            s.insert(it[1]);
         }
-        vector<int>win,lost;
-        for(auto &it:mp1)
+        vector<int>first,second;
+        for(auto &[a,b]:mp1)
         {
-            if(s.find(it.first)==s.end())
+            if(mp2.find(a)==mp2.end())
             {
-                win.push_back(it.first);
+                first.push_back(a);
             }
         }
-        for(auto &it:mp2)
+        for(auto &[a,b]:mp2)
         {
-            if(it.second==1)
+            if(b==1)
             {
-                lost.push_back(it.first);
+                second.push_back(a);
             }
         }
-        return {win,lost};
+        sort(first.begin(),first.end());
+        sort(second.begin(),second.end());
+        return {first,second};
     }
 };
