@@ -2,16 +2,20 @@ class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) 
     {
-        unordered_map<int,int>mp;
-        for(auto &it:arr)
-        {
-            mp[it]++;
-        }
-        unordered_set<int>s;
-        for(auto &[a,b]:mp)
-        {
-            s.insert(b);
-        }
-        return s.size()==mp.size();
+      map<int,int>mp;
+      set<int>s;
+      for(int i=0;i<arr.size();i++)
+      {
+        mp[arr[i]]++;
+      }
+      int count=0;
+      for(auto it=mp.begin();it!=mp.end();it++)
+      {
+        if(s.find(it->second)!=s.end())
+          return false;
+        s.insert(it->second);
+      }
+      return true;
+
     }
 };
