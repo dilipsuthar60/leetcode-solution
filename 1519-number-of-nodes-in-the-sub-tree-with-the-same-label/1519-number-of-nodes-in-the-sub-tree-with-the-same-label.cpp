@@ -1,8 +1,8 @@
 class Solution {
 public:
     vector<int> countSubTrees(int n, vector<vector<int>>& mat, string s) {
-        unordered_map<int,unordered_set<int>>dp;
-        for(auto it:mat)
+        map<int,set<int>>dp;
+        for(auto &it:mat)
         {
             dp[it[0]].insert(it[1]);
             dp[it[1]].insert(it[0]);
@@ -21,7 +21,7 @@ public:
         {
             auto child=q.front();
             q.pop();
-            for(auto node:dp[child])
+            for(auto &node:dp[child])
             {
                 dp[node].erase(child);
                 for(int i=0;i<26;i++)
