@@ -1,33 +1,44 @@
 class Solution {
 public:
-    vector<int>dp[100005];
-    vector<int>find(int node,int p,string &s,vector<int>&ans)
-    {
-        vector<int>freq(26,0);
-        freq[s[node]-'a']++;
-        for(auto it:dp[node])
+    vector<int> countSubTrees(int n, vector<vector<int>>& mat, string s) {
+        unordered_map<int,unordered_set<int>>dp;
+        for(auto it:mat)
         {
-            if(it!=p)
+            dp[it[0]].insert(it[1]);
+            dp[it[1]].insert(it[0]);
+        }
+        queue<int>q;
+        vector<vector<int>>now(n,vector<int>(26,0));
+        for(int i=0;i<n;i++)
+        {
+            if(dp[i].size()==1&&i!=0)
             {
-                vector<int>v=find(it,node,s,ans);
+                q.push(i);
+            }
+            now[i][s[i]-'a']=1;
+        }
+        while(q.size())
+        {
+            auto child=q.front();
+            q.pop();
+            for(auto node:dp[child])
+            {
+                dp[node].erase(child);
                 for(int i=0;i<26;i++)
                 {
-                    freq[i]+=v[i];
+                    now[node][i]+=now[child][i];
+                }
+                if(node!=0&&dp[node].size()==1)
+                {
+                    q.push(node);
                 }
             }
         }
-        ans[node]=freq[s[node]-'a'];
-        return freq;
-    }
-    vector<int> countSubTrees(int n, vector<vector<int>>&mat, string labels) 
-    {
-        for(auto &it:mat)
-        {
-            dp[it[0]].push_back(it[1]);
-            dp[it[1]].push_back(it[0]);
-        }
         vector<int>ans(n);
-        find(0,-1,labels,ans);
+        for(int i=0;i<n;i++)
+        {
+            ans[i]=now[i][s[i]-'a'];
+        }
         return ans;
     }
 };
