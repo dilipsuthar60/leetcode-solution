@@ -1,24 +1,26 @@
 class Solution {
 public:
-    int find(vector<int>&nums,int index,vector<int>&dp)
+    int find(vector<int>&nums,int index,vector<int>&storeOverlappingSubProblem)
     {
         if(index>=nums.size())
         {
             return 0;
         }
-        if(dp[index]!=-1)
+        // check this point value exist or not over current storage 
+        if(storeOverlappingSubProblem[index]!=-1)
         {
-            return dp[index];
+            // return  this storage value
+            return storeOverlappingSubProblem[index];
         }
-        int robTakeThisPointGold=nums[index]+find(nums,index+2,dp);
-        int robNotTakeThisPointGold=find(nums,index+1,dp);
-        return dp[index] = max(robTakeThisPointGold,robNotTakeThisPointGold);
+        int robTakeThisPointGold=nums[index]+find(nums,index+2,storeOverlappingSubProblem);
+        int robNotTakeThisPointGold=find(nums,index+1,storeOverlappingSubProblem);
+        return storeOverlappingSubProblem[index] = max(robTakeThisPointGold,robNotTakeThisPointGold);
     }
     int rob(vector<int>& nums) 
     {
         int n=nums.size();
-        vector<int>dp(n+1,-1);
-        return find(nums,0,dp);
+        vector<int>storeOverlappingSubProblem(n+1,-1);
+        return find(nums,0,storeOverlappingSubProblem);
         // if(nums.size()==1)
         // {
         //     return nums[0];
