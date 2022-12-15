@@ -1,7 +1,6 @@
 class Solution {
 public:
-    vector<int>dp[510];
-    bool checkOddCycle(int node,vector<int>&vis)
+    bool checkOddCycle(int node,vector<int>&vis,vector<vector<int>>&dp)
     {
         queue<int>q;
         q.push(node);
@@ -28,7 +27,7 @@ public:
         }
         return true;
     }
-    int findFarDistance(int node,int n)
+    int findFarDistance(int node,int n,vector<vector<int>>&dp)
     {
         queue<int>q;
         q.push(node);
@@ -55,7 +54,7 @@ public:
         }
         return level;
     }
-    int findMaxOfAllNodeGroup(int node,int n,vector<int>&vis, vector<int>&dis)
+    int findMaxOfAllNodeGroup(int node,int n,vector<int>&vis, vector<int>&dis,vector<vector<int>>&dp)
     {
         queue<int>q;
         q.push(node);
@@ -80,6 +79,7 @@ public:
     }
     int magnificentSets(int n, vector<vector<int>>&edges) 
     {
+        vector<vector<int>>dp(n+1);
         for(auto &it:edges)
         {
             dp[it[0]].push_back(it[1]);
@@ -90,7 +90,7 @@ public:
         {
             if(vis[i]==0)
             {
-                if(!checkOddCycle(i,vis))
+                if(!checkOddCycle(i,vis,dp))
                 {
                     return -1;
                 }
@@ -99,7 +99,7 @@ public:
         vector<int>dis(n+1,0);
         for(int i=1;i<=n;i++)
         {
-            dis[i]=findFarDistance(i,n);
+            dis[i]=findFarDistance(i,n,dp);
         }
         vis=vector<int>(n+1,0);
         int group=0;
@@ -107,7 +107,7 @@ public:
         {
             if(vis[i]==0)
             {
-                group+=findMaxOfAllNodeGroup(i,n,vis,dis);
+                group+=findMaxOfAllNodeGroup(i,n,vis,dis,dp);
             }
         }
         return group;
