@@ -25,11 +25,11 @@ public:
         {
             if(j==m-1)
             {
-                ans=1+find(mat,i+1,0,mask|(1<<j),0);
+                ans=max(ans,1+find(mat,i+1,0,mask|(1<<j),0));
             }
             else
             {
-                ans=1+find(mat,i,j+1,prev,mask|(1<<j));
+                ans=max(ans,1+find(mat,i,j+1,prev,mask|(1<<j)));
             }
         }
         if(j==m-1)
