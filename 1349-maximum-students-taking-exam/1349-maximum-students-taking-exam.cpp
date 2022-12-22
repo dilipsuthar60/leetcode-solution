@@ -2,7 +2,7 @@ class Solution {
 public:
     int dp[10][10][300][300];
     int n,m;
-    int check(int mask,int x)
+    int setbit(int mask,int x)
     {
         if(x<0)
         {
@@ -21,7 +21,7 @@ public:
             return dp[i][j][prev][mask];
         }
         int ans=0;
-        if(check(prev,j-1)&&check(prev,j+1)&&check(mask,j-1)&&mat[i][j]=='.')
+        if(setbit(prev,j-1)&&setbit(prev,j+1)&&setbit(mask,j-1)&&mat[i][j]=='.')
         {
             if(j==m-1)
             {
