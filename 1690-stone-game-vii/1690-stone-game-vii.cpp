@@ -1,7 +1,7 @@
 class Solution {
 public:
     int n;
-    int dp[1001][1001];
+    vector<vector<int>>dp;
     vector<int>prefix;
     int sum(int l,int r)
     {
@@ -35,7 +35,7 @@ public:
     int stoneGameVII(vector<int>& nums) 
     {
         n=nums.size();
-        memset(dp,-1,sizeof(dp));
+        dp=vector<vector<int>>(n+1,vector<int>(n+1,-1));
         prefix=vector<int>(n+1,0);
         for(int i=0;i<n;i++)
         {
