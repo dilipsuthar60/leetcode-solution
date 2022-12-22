@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[9][9][1<<9][1<<9];
+    int dp[9][9][(1<<8)+1][(1<<8)+1];
     int n,m;
     int setbit(int mask,int x)
     {
