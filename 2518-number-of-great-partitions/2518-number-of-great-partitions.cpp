@@ -49,6 +49,6 @@ public:
             total%=mod;
         }
         long long value=find(nums,0,0,k);
-        return (int)(total-2*value+mod)%mod;
+        return (total-2*value+mod)%mod;
     }
 };
