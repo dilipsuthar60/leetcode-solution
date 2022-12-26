@@ -1,7 +1,7 @@
 class Solution {
 public:
     int mod=1e9+7;
-    long long dp[1001][100];
+    long long dp[1001][1<<6];
     vector<vector<int>>result;
     void allColor(vector<int>&nums,int index,int m,vector<int>curr)
     {
@@ -107,6 +107,6 @@ public:
             ans+=find(result,i,1,n);
             ans%=mod;
         }
-        return ans;
+        return (int)ans;
     }
 };
