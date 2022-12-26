@@ -40,7 +40,7 @@ public:
     //     }
     //     return dp[index][a][b][c] = ans%mod;
     // }
-    long long find2(vector<vector<int>>&result,int curr,int index,int n)
+    long long find2(vector<vector<int>>&result,int curr,int index,int &n)
     {
         if(index==n)
         {
