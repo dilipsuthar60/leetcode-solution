@@ -41,7 +41,7 @@ public:
     TreeNode* canMerge(vector<TreeNode*>& trees) 
     {
         unordered_map<int,int>mp;
-        for(auto it:trees)
+        for(auto &it:trees)
         {
             mp[it->val]++;
             if(it->left!=NULL)
@@ -54,7 +54,7 @@ public:
             }
         }
         TreeNode*root=NULL;
-        for(auto it:trees)
+        for(auto &it:trees)
         {
             if(mp[it->val]==1)
             {
@@ -69,13 +69,13 @@ public:
             }
         }
         unordered_map<int,TreeNode*>node;
-        for(auto it:trees)
+        for(auto &it:trees)
         {
             node[it->val]=it;
         }
         find(root,node);
         int count=0;
-        for(auto it:node)
+        for(auto &it:node)
         {
             if(it.second!=NULL)
             {
