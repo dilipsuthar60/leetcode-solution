@@ -5,18 +5,31 @@ public:
     vector<vector<int>>result;
     void allColor(vector<int>&nums,int index,vector<int>curr)
     {
-        if(index==3)
+        // if(index==3)
+        // {
+        //     result.push_back(curr);
+        //     return ;
+        // }
+        // for(int i=0;i<nums.size();i++)
+        // {
+        //     if(curr.size()==0||curr.back()!=nums[i])
+        //     {
+        //         curr.push_back(nums[i]);
+        //         allColor(nums,index+1,curr);
+        //         curr.pop_back();
+        //     }
+        // }
+        for(int i=1;i<=3;i++)
         {
-            result.push_back(curr);
-            return ;
-        }
-        for(int i=0;i<nums.size();i++)
-        {
-            if(curr.size()==0||curr.back()!=nums[i])
+            for(int j=1;j<=3;j++)
             {
-                curr.push_back(nums[i]);
-                allColor(nums,index+1,curr);
-                curr.pop_back();
+                for(int k=1;k<=3;k++)
+                {
+                    if(i!=j&&j!=k)
+                    {
+                        result.push_back({i,j,k});
+                    }
+                }
             }
         }
     }
