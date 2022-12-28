@@ -1,15 +1,20 @@
 class Solution {
 public:
     vector<vector<int>>dp;
+    vector<vector<int>>dp2;
     int find_cost(vector<int>&nums,int start,int end)
     {
+        if(dp2[start][end]!=-1)
+        {
+            return dp2[start][end];
+        }
         int cost=0;
         int mid_point=(start+end)/2;
         for(int i=start;i<=end;i++)
         {
             cost+=abs(nums[i]-nums[mid_point]);
         }
-        return cost;
+        return dp2[start][end] = cost;
     }
     int find(vector<int>&nums,int index,int k)
     {
@@ -33,6 +38,7 @@ public:
     {
         int n=nums.size();
         dp=vector<vector<int>>(n+1,vector<int>(k+1,-1));
+        dp2=vector<vector<int>>(n+1,vector<int>(n+1,-1));
         sort(nums.begin(),nums.end());
         return find(nums,0,k);
     }
