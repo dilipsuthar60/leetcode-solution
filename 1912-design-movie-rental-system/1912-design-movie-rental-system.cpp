@@ -6,7 +6,7 @@ class MovieRentingSystem
     set<pair<int,pair<int,int>>>st;
     MovieRentingSystem(int n, vector<vector < int>> &entries) 
     {
-        for(auto it:entries)
+        for(auto &it:entries)
         {
             av[it[1]].insert({it[2],it[0]});
             pr[it[1]].insert({it[0],it[2]});
@@ -16,7 +16,7 @@ class MovieRentingSystem
     {
         int index=0;
         vector<int>ans;
-        for(auto it:av[movie])
+        for(auto &it:av[movie])
         {
             ans.push_back(it.second);
             index++;
@@ -48,7 +48,7 @@ class MovieRentingSystem
     {
         int index=0;
         vector<vector<int>>v;
-        for(auto it:st)
+        for(auto &it:st)
         {
             v.push_back({it.second.first,it.second.second});
             index++;
