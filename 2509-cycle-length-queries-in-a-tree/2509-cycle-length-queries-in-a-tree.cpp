@@ -7,7 +7,7 @@ public:
         {
             int a=it[0];
             int b=it[1];
-            int count=1;
+            int count=0;
             while(a!=b)
             {
                 if(a>b)
@@ -20,7 +20,7 @@ public:
                 }
                 count++;
             }
-            ans.push_back(count);
+            ans.push_back(count+1);
         }
         return ans;
     }
