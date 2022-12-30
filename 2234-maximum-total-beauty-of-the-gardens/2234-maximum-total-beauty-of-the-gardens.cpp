@@ -11,7 +11,7 @@ public:
         {
             prefix[i]=prefix[i-1]+flower[i];
         }
-        auto find=[&]()
+        auto find=[&](int bs)
         {
             int l=0;
             int r=target-1;
@@ -19,7 +19,7 @@ public:
             while(l<=r)
             {
                 long long mid=(l+r)/2;
-                auto it=upper_bound(flower.begin(),flower.end(),mid);
+                auto it=upper_bound(flower.begin(),flower.begin()+bs,mid);
                 if(it==flower.begin())
                 {
                     l=mid+1;
@@ -38,7 +38,8 @@ public:
             }
             return ans;
         };
-        long long ans=1ll*find()*partial;
+        long long ans=1ll*find(n)*partial;
+        int bs_index=n;
         for(int i=n-1;i>=0;i--)
         {
             newflower-=max(0ll,0ll+target-flower[i]);
@@ -46,8 +47,8 @@ public:
             {
                 break;
             }
-            flower.pop_back();
-            ans=max(ans,1ll*full*(n-i)+1ll*find()*partial);
+            bs_index--;
+            ans=max(ans,1ll*full*(n-i)+1ll*find(bs_index)*partial);
         }
         return ans;
     }
