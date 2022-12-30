@@ -1,28 +1,40 @@
 class Solution {
 public:
-    void find(vector<vector<int>>&dp,int src,int target,vector<int>&curr,vector<vector<int>>&result)
-    
+    bool is_safe(int node,vector<int>&v)
     {
-        // cout<<src<<endl;
-        curr.push_back(src);
-        if(src==target)
+        for(auto &it:v)
         {
-            result.push_back(curr);
-            return ;
+            if(it==node)
+            {
+                return false;
+            }
         }
-        for(auto it:dp[src])
-        {
-            find(dp,it,target,curr,result);
-            curr.pop_back();
-        }
+        return true;
     }
-    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) 
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>&nums) 
     {
-        vector<int>curr;
-        vector<vector<int>>result;
-        
-          find(graph,0,graph.size()-1,curr,result);
-        
-        return result;
+        vector<vector<int>>ans;
+        queue<vector<int>>q;
+        q.push({0});
+        while(q.size())
+        {
+            auto temp=q.front();
+            q.pop();
+            int back_element=temp.back();
+            if(back_element==nums.size()-1)
+            {
+                ans.push_back(temp);
+            }
+            for(auto &it:nums[back_element])
+            {
+                if(is_safe(it,temp))
+                {
+                    vector<int>res(temp.begin(),temp.end());
+                    res.push_back(it);
+                    q.push(res);
+                }
+            }
+        }
+        return ans;
     }
 };
