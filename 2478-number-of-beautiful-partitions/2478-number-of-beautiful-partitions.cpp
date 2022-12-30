@@ -1,14 +1,13 @@
 class Solution
 {
     public:
-    int n;
+        int n;
     int mod = 1e9 + 7;
     long long dp[1001][1001];
     bool yes(char & ch)
     {
         return (ch == '2') || (ch == '3') || (ch == '5') || (ch == '7');
     }
-    
     long long find(string &s, int index, int k, int &len)
     {
         if (index + k * len > n || !yes(s[index]))
