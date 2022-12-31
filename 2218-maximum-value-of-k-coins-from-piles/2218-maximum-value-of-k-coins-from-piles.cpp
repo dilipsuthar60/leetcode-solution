@@ -1,25 +1,38 @@
 class Solution {
 public:
-    int maxValueOfCoins(vector<vector<int>>& rows, int k) {
-        vector<int> dp(k + 1, -1e9);
-    dp[0] = 0;
-        for(auto &it:rows)
+    int n;
+    int dp[1001][2001];
+    int find(vector<vector<int>>&nums,int index,int k)
+    {
+        if(k==0)
         {
-            reverse(it.begin(),it.end());
+            return 0;
         }
-    for (const auto& nums : rows) {
-        int n = nums.size();
-        auto dpc = dp;
-
-        for (int i = 1; i <= k; ++i) {
-            int sum = 0;
-            for (int j = 1; j <= min(i, n); ++j)
-                dpc[i] = max(dpc[i], (sum += nums[n - j]) + dp[i - j]);
+        if(index>=n)
+        {
+            return 0 ;
         }
-
-        dp = dpc;
+        if(dp[index][k]!=-1)
+        {
+            return dp[index][k];
+        }
+        int sum=0;
+        int ans=0;
+        for(int i=0;i<nums[index].size();i++)
+        {
+            if((k-i-1)>=0)
+            {
+                sum+=nums[index][i];
+                ans=max(ans,sum+find(nums,index+1,k-i-1));
+            }
+        }
+        ans=max(ans,find(nums,index+1,k));
+        return dp[index][k] = ans;
     }
-
-    return dp[k];
+    int maxValueOfCoins(vector<vector<int>>&nums, int k) 
+    {
+        memset(dp,-1,sizeof(dp));
+        n=nums.size();
+        return find(nums,0,k);
     }
 };
