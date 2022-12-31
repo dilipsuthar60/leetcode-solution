@@ -18,7 +18,7 @@ public:
         }
         int sum=0;
         int ans=0;
-        for(int i=0;i<nums[index].size();i++)
+        for(int i=0;i<min(k,(int)nums[index].size());i++)
         {
             if((k-i-1)>=0)
             {
