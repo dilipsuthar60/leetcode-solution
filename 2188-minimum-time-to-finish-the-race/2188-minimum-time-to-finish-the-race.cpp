@@ -1,23 +1,24 @@
 class Solution {
 public:
-    long long nums[1001];
-    long long dp[1001];
-    long long find(int n,int change)
+    long long nums[1005];
+    long long dp[1005];
+    long long find(int index,int n,int change)
     {
-        if(n==0)
+        if(index==n)
         {
             return 0;
         }
-        if(dp[n]!=-1)
+        if(dp[index]!=-1)
         {
-            return dp[n];
+            return dp[index];
         }
         long long ans=1e9;
         for(int i=1;i<=n;i++)
         {
-            ans=min(ans,change+nums[i]+find(n-i,change));
+            if(index+i<=n)
+            ans=min(ans,change+nums[i]+find(index+i,n,change));
         }
-        return dp[n]=ans;
+        return dp[index]=ans;
     }
     int minimumFinishTime(vector<vector<int>>& tires, int changeTime, int num) 
     {
@@ -43,6 +44,6 @@ public:
                 last+=r;
             }
         }
-        return (int)find(num,changeTime)-changeTime;
+        return (int)find(0,num,changeTime)-changeTime;
     }
 };
