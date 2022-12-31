@@ -33,14 +33,10 @@ public:
             long long f=it[0];
             long long r=it[0];
             long long last=f;
-            for(int i=1;i<=num;i++)
+            for(int i=1;i<=num&&r<(f+changeTime);i++)
             {
                 nums[i]=min(nums[i],last);
                 r=r*it[1];
-                if(r>1e8)
-                {
-                    break;
-                }
                 last+=r;
             }
         }
