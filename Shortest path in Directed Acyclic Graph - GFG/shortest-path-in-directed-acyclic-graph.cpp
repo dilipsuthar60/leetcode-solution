@@ -30,11 +30,11 @@ class Solution {
             pq.pop();
             ll cost=temp.first;
             ll node=temp.second;
-            // if(vis[node])
-            // {
-            //     continue;
-            // }
-            // vis[node]=1;
+            if(vis[node])
+            {
+                continue;
+            }
+            vis[node]=1;
             for(auto &it:dp[node])
             {
                 if(dis[it.first]>dis[node]+it.second)
