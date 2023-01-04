@@ -6,69 +6,55 @@ using namespace std;
 
 // } Driver Code Ends
 // User function Template for C++
-// class Solution {
-//   public:
-//      vector<int> shortestPath(int N,int M, vector<vector<int>>& edges){
-//         // code here
-//     }
-// };
-
 class Solution {
   public:
-  vector<int> vis;
-  vector<int> dis;
-  stack<int> st;
-  void topo(int node,vector<pair<int,int>>adj[])
-  {
-      if(vis[node]) return;
-      vis[node]=1;
-      for(auto x:adj[node])
-      {
-          topo(x.first,adj);
-      }
-      st.push(node);
-      
-  }
-     vector<int> shortestPath(int N,int M, vector<vector<int>>& edges)
+   using ll=long long;
+     vector<int> shortestPath(int N,int M, vector<vector<int>>& nums)
      {
-        vector<pair<int,int>> adj[N];
-        for(int i=0;i<M;i++)
+        // code here
+        vector<vector<pair<ll,ll>>>dp(N);
+         for(auto it:nums)
         {
-            int u=edges[i][0];
-            int v=edges[i][1];
-            int w=edges[i][2];
-            adj[u].push_back({v,w});
+            dp[it[0]].push_back({it[1],it[2]});
+            // dp[it[1]].push_back({it[0],it[2]});
         }
-       
-        vis.resize(N,0);
-         for(int i=0;i<N;i++)
-         {
-             if(vis[i]==0) 
-             {topo(i,adj);
-             }
-         }
-        dis.resize(N,1e9);
-        dis[0]=0;
-        while(st.size())
+        int x=0;
+        vector<int>dis(N,1e9);
+         priority_queue<pair<ll,ll>,vector<pair<ll,ll>>,greater<pair<ll,ll>>>pq;
+        pq.push({0ll,x});
+        vector<int>vis(N,0);
+        dis[x]=0ll;
+        while(pq.size())
         {
-             
-                int j=st.top();
-                st.pop();
-                if(dis[j]!=1e9)
-                for(auto x:adj[j])
+            auto temp=pq.top();
+            pq.pop();
+            ll cost=temp.first;
+            ll node=temp.second;
+            // if(vis[node])
+            // {
+            //     continue;
+            // }
+            // vis[node]=1;
+            for(auto &it:dp[node])
+            {
+                if(dis[it.first]>dis[node]+it.second)
                 {
-                    if(dis[x.first]>x.second+dis[j]) dis[x.first]=x.second+dis[j];
+                    dis[it.first]=dis[node]+it.second;
+                    pq.push({dis[it.first],it.first});
                 }
-            
+            }
         }
-        for(int i=0;i<dis.size();i++)
+        for(int i=0;i<N;i++)
         {
-            if(dis[i]==1e9) dis[i]=-1;
+            if(dis[i]==1e9)
+            {
+                dis[i]=-1;
+            }
         }
         return dis;
-         
     }
 };
+
 
 //{ Driver Code Starts.
 int main() {
