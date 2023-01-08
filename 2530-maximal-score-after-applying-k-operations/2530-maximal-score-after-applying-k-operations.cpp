@@ -6,7 +6,7 @@ public:
         while(pq.size()&&k--)
         {
             sum+=pq.top();
-            int val=(pq.top()+2)/3;
+            int val=(pq.top()%3==0)?pq.top()/3:pq.top()/3+1;
             pq.pop();
             pq.push(val);
         }
