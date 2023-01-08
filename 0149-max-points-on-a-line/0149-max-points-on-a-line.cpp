@@ -16,14 +16,14 @@ class Solution
                     if (it2 == it1) continue;
                     double x2 = it2[0], y2 = it2[1];
                     double slope;
-                    if (x2 - x1 == 0)
-                    {
-                        slope = INT_MAX;
-                    }
-                    else
-                    {
+                    // if (x2 - x1 == 0)
+                    // {
+                    //     slope = INT_MAX;
+                    // }
+                    // else
+                    // {
                         slope = (y2 - y1) / (x2 - x1);
-                    }
+                    // }
                     mp[slope]++;
                     ans = max(ans, mp[slope]);
                 }
