@@ -7,9 +7,9 @@ public:
         {
             return 0;
         }
-        int ol=l;
-        if(dp[ol][r]!=-1){
-            return dp[ol][r];
+        // int ol=l;
+        if(dp[l][r]!=-1){
+            return dp[l][r];
         }
         while(l+1<=r&&s[l]==s[l+1])
         {
@@ -21,7 +21,7 @@ public:
             if(s[l]==s[m])
             ans=min(ans,find(s,m,r)+find(s,l+1,m-1));
         }
-        return dp[ol][r] = ans;
+        return dp[l][r] = ans;
     }
     int strangePrinter(string s) 
     {
