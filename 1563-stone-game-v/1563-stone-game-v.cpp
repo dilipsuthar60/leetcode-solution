@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<vector<int>>dp;
+    int dp[501][501];
     int find(vector<int>&nums,int l,int r)
     {
         if(l>=r)
@@ -34,7 +34,7 @@ public:
     int stoneGameV(vector<int>&nums) 
     {
         int n=nums.size();
-        dp=vector<vector<int>>(n+1,vector<int>(n+1,-1));
+        memset(dp,-1,sizeof(dp));
         for(int i=1;i<n;i++)
         {
             nums[i]+=nums[i-1];
