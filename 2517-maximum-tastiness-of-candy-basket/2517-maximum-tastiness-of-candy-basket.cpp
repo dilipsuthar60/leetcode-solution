@@ -21,7 +21,7 @@ public:
         int l=0;
         int r=1e9;
         int ans=0;
-        while(l+1<r)
+        while(r-l>1)
         {
             int mid=(l+r)/2;
             if(find(price,mid,k))
