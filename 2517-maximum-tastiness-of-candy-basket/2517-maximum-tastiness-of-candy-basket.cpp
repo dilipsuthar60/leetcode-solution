@@ -21,19 +21,18 @@ public:
         int l=0;
         int r=1e9;
         int ans=0;
-        while(l<=r)
+        while(l+1<r)
         {
             int mid=(l+r)/2;
             if(find(price,mid,k))
             {
-                ans=mid;
-                l=mid+1;
+                l=mid;
             }
             else
             {
-                r=mid-1;
+                r=mid;
             }
         }
-        return ans;
+        return l;
     }
 };
