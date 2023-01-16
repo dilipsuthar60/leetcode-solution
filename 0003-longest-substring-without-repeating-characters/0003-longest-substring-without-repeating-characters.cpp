@@ -5,16 +5,22 @@ public:
         // int i=0;
         int j=0;
         int len=0;
-        unordered_map<char,int>mp;
+        int mp[256];
+        memset(mp,0,sizeof(mp));
+        int count=0;
         for(int i=0;i<n;i++)
         {
+            if(mp[s[i]]==0)
+            {
+                count++;
+            }
             mp[s[i]]++;
-            while((i-j+1)>mp.size())
+            while((i-j+1)>count)
             {
                 mp[s[j]]--;
                 if(mp[s[j]]==0)
                 {
-                    mp.erase(s[j]);
+                    count--;
                 }
                 j++;
             }
