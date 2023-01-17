@@ -101,11 +101,6 @@ class Solution
 public:
 int ans=0;
 int maxgcd=0;
-// 2  3  1
-// 4  5  1
-// 8  9  1
-// 6  7  1
-// 1
 void find(Node*root)
 {
     if(root==NULL)
@@ -115,27 +110,18 @@ void find(Node*root)
     if(root->left!=NULL&&root->right!=NULL)
     {
         int c=__gcd(root->left->data,root->right->data);
-        maxgcd=max(maxgcd,c);
-    }
-    find(root->left);
-    find(root->right);
-}
-void find1(Node*root)
-{
-    if(root==NULL)
-    {
-        return;
-    }
-    if(root->left!=NULL&&root->right!=NULL)
-    {
-        int c=__gcd(root->left->data,root->right->data);
-        if(maxgcd==c)
+        if(c>maxgcd)
+        {
+            maxgcd=c;
+            ans=root->data;
+        }
+        else if(c==maxgcd)
         {
             ans=max(ans,root->data);
         }
     }
-    find1(root->left);
-    find1(root->right);
+    find(root->left);
+    find(root->right);
 }
     int maxGCD( Node* root)
     {
@@ -146,7 +132,6 @@ void find1(Node*root)
             return 0;
         }
         find(root);
-        find1(root);
         return ans;
     }
 };
