@@ -9,7 +9,7 @@ public:
         mp[0]=1;
         for(int i=0;i<n;i++)
         {
-            sum=sum+A[i];
+            sum+=A[i];
             if(mp.find(((sum%k)+k)%k)!=mp.end())
             {
                 count+=mp[((sum%k)+k)%k];
