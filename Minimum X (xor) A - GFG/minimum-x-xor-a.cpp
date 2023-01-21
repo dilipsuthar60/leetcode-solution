@@ -9,30 +9,19 @@ using namespace std;
 
 class Solution {
   public:
-    int minVal(int a, int b) {
-        // code here
-        int bit=__builtin_popcount(b);
-        int ans=0;
-        for(int i=31;i>=0&&bit;i--)
-        {
-            if(a&(1<<i))
-            {
-                ans|=(1<<i);
-                bit--;
+    int minVal(int num1, int num2) {
+        int a = __builtin_popcount(num1), b = __builtin_popcount(num2), res = num1;
+        for (int i = 0; i < 32; ++i) {
+            if (a > b && ((1 << i) & num1) > 0) {
+                res ^= 1 << i;
+                a--;
+            }
+            if (a < b && ((1 << i) & num1) == 0) {
+                res ^= 1 << i;
+                a++;
             }
         }
-        if(bit)
-        {
-            for(int i=0;i<32&&bit;i++)
-            {
-                if((a&(1<<i))==0)
-                {
-                    ans|=(1<<i);
-                    bit--;
-                }
-            }
-        }
-        return ans;
+        return res;
     }
 };
 
