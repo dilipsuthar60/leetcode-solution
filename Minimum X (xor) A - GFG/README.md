@@ -1,5 +1,5 @@
 # Minimum X (xor) A
-## Hard
+## Medium
 <div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given two integers&nbsp;<strong>A</strong>&nbsp;and&nbsp;<strong>B</strong>, the task is to find an integer&nbsp;<strong>X</strong>&nbsp;such that&nbsp;<strong>(X XOR A)</strong>&nbsp;is minimum possible and the count of set bit in&nbsp;<strong>X</strong>&nbsp;is equal to the count of set bits in&nbsp;<strong>B</strong>.</span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
@@ -34,7 +34,7 @@ number of set bits in 12.</span></pre>
 
 <div>&nbsp;</div>
 
-<div><strong><span style="font-size:18px">Expected Time Complexity : </span></strong><span style="font-size:18px">O(log N)</span></div>
+<div><strong><span style="font-size:18px">Expected Time Complexity : </span></strong><span style="font-size:18px">O(log MAX(A,B))</span></div>
 
 <div><strong><span style="font-size:18px">Expected Auxiliary Space : </span></strong><span style="font-size:18px">O(1)</span></div>
 
@@ -42,7 +42,7 @@ number of set bits in 12.</span></pre>
 
 <div><strong><span style="font-size:18px">Constraints :</span></strong></div>
 
-<div><span style="font-size:18px">0 &lt;= A, B &lt;= 10<sup>9</sup></span></div>
+<div><span style="font-size:18px">1 &lt;= A, B &lt;= 10<sup>9</sup></span></div>
 
 <div>&nbsp;</div>
 </div>
