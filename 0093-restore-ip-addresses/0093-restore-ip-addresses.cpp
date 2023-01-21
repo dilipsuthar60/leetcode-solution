@@ -1,34 +1,47 @@
 class Solution {
 public:
-    vector<string> restoreIpAddresses(string s) {
-        vector<string>ans;
-        for(int a=1;a<=3;a++)
+    bool valid(string s)
+    {
+        if(s.size()>3||s.size()==0)
         {
-            for(int b=1;b<=3;b++)
+            return false;
+        }
+        if(s[0]=='0'&&s.size()>1)
+        {
+            return false;
+        }
+        if(stoi(s)<0||stoi(s)>255)
+        {
+            return false;
+        }
+        return true;
+    }
+    void find(string &s,int index,string curr,vector<string>&ans,int dot)
+    {
+        if(dot==3)
+        {
+            if(valid(s.substr(index)))
             {
-                for(int c=1;c<=3;c++)
-                {
-                    for(int d=1;d<=3;d++)
-                    {
-                        if(a+b+c+d==s.size())
-                        {
-                            int val1=stoi(s.substr(0,a));
-                            int val2=stoi(s.substr(a,b));
-                            int val3=stoi(s.substr(a+b,c));
-                            int val4=stoi(s.substr(a+b+c,d));
-                            if(val1<=255&&val2<=255&&val3<=255&&val4<=255)
-                            {
-                                string curr=to_string(val1)+'.'+to_string(val2)+'.'+to_string(val3)+'.'+to_string(val4);
-                                if(curr.size()==s.size()+3)
-                                {
-                                    ans.push_back(curr);
-                                }
-                            }
-                        }
-                    }
-                }
+                ans.push_back(curr+s.substr(index));
+            }
+            return ;
+        }
+        for(int i=index;i<s.size();i++)
+        {
+            if(valid(s.substr(index,i-index+1)))
+            {
+                curr.push_back(s[i]);
+                curr.push_back('.');
+                find(s,i+1,curr,ans,dot+1);
+                curr.pop_back();
+                
             }
         }
+     }
+    vector<string> restoreIpAddresses(string s) 
+    {
+        vector<string>ans;
+        find(s,0,"",ans,0);
         return ans;
     }
 };
