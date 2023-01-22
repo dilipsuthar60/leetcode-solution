@@ -1,38 +1,38 @@
 class Solution {
 public:
-    bool valid(string s)
+    bool pal(string s)
     {
-        int n=s.size();
-        for(int i=0;i<n/2;i++)
+        for(int i=0;i<s.size()/2;i++)
         {
-            if(s[i]!=s[n-i-1])
+            if(s[i]!=s[s.size()-1-i])
             {
                 return false;
             }
         }
         return true;
     }
-    void find(string &s,int index,vector<string>curr,vector<vector<string>>&ans)
+    void find(string s,int index,vector<string>&res,vector<vector<string>>&ans)
     {
-        if(index>=s.size())
+        if(index==s.size())
         {
-            ans.push_back(curr);
+            ans.push_back(res);
             return ;
         }
         for(int i=index;i<s.size();i++)
         {
-            if(valid(s.substr(index,i-index+1)))
+            if(pal(s.substr(index,i-index+1)))
             {
-                curr.push_back(s.substr(index,i-index+1));
-                find(s,i+1,curr,ans);
-                curr.pop_back();
+                res.push_back(s.substr(index,i-index+1));
+                find(s,i+1,res,ans);
+                res.pop_back();
             }
         }
     }
-    vector<vector<string>> partition(string s) {
+    vector<vector<string>> partition(string s) 
+    {
+        vector<string>res;
         vector<vector<string>>ans;
-        vector<string>curr;
-        find(s,0,curr,ans);
+        find(s,0,res,ans);
         return ans;
     }
 };
