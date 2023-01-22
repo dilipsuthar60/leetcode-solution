@@ -1,21 +1,21 @@
 class Solution {
 public:
     int n;
-    long long memo[1004];
-    long long find(vector<int>&nums,int index,int &k,vector<vector<int>>&dp)
+    int memo[1004];
+    int find(vector<int>&nums,int index,int &k,vector<vector<int>>&dp)
     {
         if(index>=n)
         {
-            return 0ll;
+            return 0;
         }
         if(memo[index]!=-1)
         {
             return memo[index];
         }
-        long long ans=1e18;
+        int ans=INT_MAX;
         for(int i=index;i<n;i++)
         {
-            ans=min(ans,1ll*dp[index][i]+1ll*k+find(nums,i+1,k,dp));
+            ans=min(ans,dp[index][i]+k+find(nums,i+1,k,dp));
         }
         return memo[index]= ans;
     }
