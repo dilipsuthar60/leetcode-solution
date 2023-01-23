@@ -2,7 +2,7 @@ class Solution {
 public:
     int minScore(int n, vector<vector<int>>&nums) 
     {
-        vector<pair<int,int>>dp[n+1];
+        vector<vector<pair<int,int>>>dp(n+10);
         for(auto &it:nums)
         {
             dp[it[0]].push_back({it[1],it[2]});
