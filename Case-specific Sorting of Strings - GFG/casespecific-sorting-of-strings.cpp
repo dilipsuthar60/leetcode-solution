@@ -14,31 +14,44 @@ class Solution
     //Function to perform case-specific sorting of strings.
     string caseSort(string str, int n)
     {
-        vector<char>small,big;
+        vector<int>small(26,0),big(26,0);
         for(int i=0;i<n;i++)
         {
             if(str[i]>='a'&&str[i]<='z')
             {
-                small.push_back(str[i]);
+                small[str[i]-'a']++;
             }
             else
             {
-                big.push_back(str[i]);
+                big[str[i]-'A']++;
             }
         }
-        int index1=0;
-        int index2=0;
-        sort(small.begin(),small.end());
-        sort(big.begin(),big.end());
+        
         for(int i=0;i<n;i++)
         {
             if(str[i]>='a'&&str[i]<='z')
             {
-                str[i]=small[index1++];
+                for(int j=0;j<26;j++)
+                {
+                    if(small[j]>0)
+                    {
+                        str[i]=char(j+'a');
+                        small[j]--;
+                        break;
+                    }
+                }
             }
             else
             {
-                str[i]=big[index2++];
+                for(int j=0;j<26;j++)
+                {
+                    if(big[j]>0)
+                    {
+                        str[i]=char(j+'A');
+                        big[j]--;
+                        break;
+                    }
+                }
             }
         }
         return str;
