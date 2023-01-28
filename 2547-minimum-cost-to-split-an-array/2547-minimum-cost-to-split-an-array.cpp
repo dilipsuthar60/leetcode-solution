@@ -1,50 +1,54 @@
 class Solution {
 public:
     int n;
-    int dp[1004];
-    int find(vector<int>&nums,int index,int &k,vector<vector<int>>&range)
+    long long memo[1004];
+    long long find(vector<int>&nums,int index,int &k,vector<vector<int>>&dp)
     {
         if(index>=n)
         {
-            return 0;
+            return 0ll;
         }
-        if(dp[index]!=-1)
+        if(memo[index]!=-1)
         {
-            return dp[index];
+            return memo[index];
         }
-        int ans=INT_MAX;
+        long long ans=1e18;
         for(int i=index;i<n;i++)
         {
-            ans=min(ans,range[index][i]+k+find(nums,i+1,k,range));
+            ans=min(ans,1ll*dp[index][i]+1ll*k+find(nums,i+1,k,dp));
         }
-        return dp[index]= ans;
+        return memo[index]= ans;
     }
     int minCost(vector<int>& nums, int k) {
         n=nums.size();
-        memset(dp,-1,sizeof(dp));
-        vector<vector<int>>range(n,vector<int>(n,0));
+        memset(memo,-1,sizeof(memo));
+        vector<vector<int>>dp(n,vector<int>(n,0));
         for(int i=0;i<n;i++)
         {
             int mp[1004];
             int count=0;
+            int f[1004];
             memset(mp,0,sizeof(mp));
+            memset(f,0,sizeof(f));
             for(int j=i;j<n;j++)
             {
+                int prev=mp[nums[j]];
                 mp[nums[j]]++;
                 if(mp[nums[j]]>=2)
                 {
-                    if(mp[nums[j]]==2)
+                    if(f[nums[j]]==1)
                     {
-                        count+=2;
+                    count+=(mp[nums[j]]-prev);
                     }
                     else
                     {
-                        count++;
+                        f[nums[j]]=1;
+                        count+=(mp[nums[j]]);
                     }
                 }
-                range[i][j]=count;
+                dp[i][j]=count;
             }
         }
-        return find(nums,0,k,range);
+        return find(nums,0,k,dp);
     }
 };
