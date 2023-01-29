@@ -22,13 +22,11 @@ public:
     {
         long long ans=0;
         int n=nums.size();
+        vector<int>bitl(4500);
         for(int j=1;j<n-2;j++)
         {
-            vector<int>bitl(4500),bitr(4500);
-            for(int i=0;i<j;i++)
-            {
-                update(nums[i],1,bitl);
-            }
+            vector<int>bitr(4500);
+            update(nums[j-1],1,bitl);
             for(int i=j+1;i<n;i++)
             {
                 update(nums[i],1,bitr);
