@@ -22,26 +22,25 @@ public:
     {
         long long ans=0;
         int n=nums.size();
-        for(int k=1;k<n-2;k++)
+        for(int j=1;j<n-2;j++)
         {
-            vector<int>bitl(4100);
-            vector<int>bitr(4100);
-            for(int j=k+1;j<n;j++)
+            vector<int>bitl(4500),bitr(4500);
+            for(int i=0;i<j;i++)
             {
-                update(nums[j],1,bitr);
+                update(nums[i],1,bitl);
             }
-            for(int j=0;j<k;j++)
+            for(int i=j+1;i<n;i++)
             {
-                update(nums[j],1,bitl);
+                update(nums[i],1,bitr);
             }
-            for(int j=k+1;j<n-1;j++)
+            for(int k=j+1;k<n-1;k++)
             {
-                update(nums[j],-1,bitr);
-                if(nums[j]<nums[k])
+                update(nums[k],-1,bitr);
+                if(nums[j]>nums[k])
                 {
-                    int left=find(nums[j]-1,bitl);
-                    int right=find(4005,bitr)-find(nums[k],bitr);
-                    ans+=(left*right);
+                    int left=find(nums[k]-1,bitl);
+                    int right=find(4005,bitr)-find(nums[j],bitr);
+                    ans+=left*right;
                 }
             }
         }
