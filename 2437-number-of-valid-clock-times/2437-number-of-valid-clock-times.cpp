@@ -11,7 +11,6 @@ public:
     {
         if(index==5)
         {
-            // cout<<s<<endl;
             ans+=v(s);
             return ;
         }
@@ -21,7 +20,20 @@ public:
         }
         else
         {
-            for(int i=0;i<=9;i++)
+            int t=0;
+            if(index==0)
+            {
+                t=2;
+            }
+            if(index==1||index==4)
+            {
+                t=9;
+            }
+            if(index==3)
+            {
+                t=5;
+            }
+            for(int i=0;i<=t;i++)
             {
                 s[index]=char(i+'0');
                 find(s,index+1);
