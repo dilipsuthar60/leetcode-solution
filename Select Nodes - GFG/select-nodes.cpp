@@ -17,16 +17,18 @@ class Solution{
           if(it!=p)
           {
               find(it,val,node);
-          }
-      }
-      for(auto &it:dp[node])
-      {
-          if(it!=p)
-          {
               val[node][0]+=val[it][1];
               val[node][1]+=min(val[it][1],val[it][0]);
           }
       }
+    //   for(auto &it:dp[node])
+    //   {
+    //       if(it!=p)
+    //       {
+    //           val[node][0]+=val[it][1];
+    //           val[node][1]+=min(val[it][1],val[it][0]);
+    //       }
+    //   }
   }
     int countVertex(int n, vector<vector<int>>edges)
     {
