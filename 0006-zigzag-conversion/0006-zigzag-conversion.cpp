@@ -19,7 +19,7 @@ public:
                d=1;
         }
         string str;
-        for(auto it:v)
+        for(auto&it:v)
         {
             str.append(it);
         }
