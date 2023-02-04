@@ -8,8 +8,7 @@ public:
             string s=to_string(value);
             for(auto ch:s)
             {
-                int vt=ch-'0';
-                v.push_back(vt);
+              v.push_back(stoi(string(1,ch)));
             }
         }
         return v;
