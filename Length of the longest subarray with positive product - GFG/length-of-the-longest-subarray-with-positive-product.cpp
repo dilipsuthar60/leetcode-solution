@@ -18,22 +18,31 @@ class Solution {
         {
             int ans=0;
             int n=nums.size();
-            vector<int>pos(n,0),neg(n,0);
+            int pos=0;
+            int neg=0;
+            // vector<int>pos(n,0),neg(n,0);
             for(int i=0;i<n;i++)
             {
+                if(nums[i]==0)
+                {
+                    pos=0;
+                    neg=0;
+                }
                 if(nums[i]>0)
                 {
-                    pos[i]=(i-1>=0)?pos[i-1]+1:1;
-                    neg[i]=(i-1>=0)?neg[i-1]:0;
+                    pos++;
+                    // pos[i]=(i-1>=0)?pos[i-1]+1:1;
+                    // neg[i]=(i-1>=0)?neg[i-1]:0;
                 }
                 if(nums[i]<0)
                 {
-                    pos[i]=(i-1>=0)?pos[i-1]:0;
-                    neg[i]=(i-1>=0)?neg[i-1]+1:1;
+                    neg++;
+                    // pos[i]=(i-1>=0)?pos[i-1]:0;
+                    // neg[i]=(i-1>=0)?neg[i-1]+1:1;
                 }
-                if(neg[i]%2==0)
+                if(neg%2==0)
                 {
-                    ans=max(ans,pos[i]+neg[i]);
+                    ans=max(ans,pos+neg);
                 }
             }
             return ans;
