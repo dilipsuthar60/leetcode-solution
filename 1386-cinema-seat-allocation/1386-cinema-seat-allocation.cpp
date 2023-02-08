@@ -1,29 +1,30 @@
-class Solution {
-public:
-    int maxNumberOfFamilies(int n, vector<vector<int>>&nums) 
-    {
-        unordered_map<int,int>dp;
-        for(auto &it:nums)
+class Solution
+{
+    public:
+        int maxNumberOfFamilies(int n, vector<vector < int>> &nums)
         {
-            int row=it[0];
-            int pos=it[1];
-            dp[row]|=(1<<(pos-1));
-        }
-        int ans=2*(n-dp.size());
-        for(auto &[row,pos]:dp)
-        {
-            if(!(pos&(0b0111111110)))
+            unordered_map<int, int> dp;
+            for (auto &it: nums)
             {
-                ans+=2;
+                int numberOfRow = it[0];
+                int position= it[1];
+                dp[numberOfRow] |= (1 << (position - 1));
             }
-            else
+            int ans = 2 *(n - dp.size());
+            for (auto &[numberOfRow, postion]: dp)
             {
-                if(!(pos&(0b0111100000))||!(pos&(0b0001111000))||!(pos&(0b0000011110)))
+                if (!(postion&(0b0111111110)))
                 {
-                    ans++;
+                    ans += 2;
+                }
+                else
+                {
+                    if (!(postion&(0b0111100000)) || !(postion&(0b0001111000)) || !(postion&(0b0000011110)))
+                    {
+                        ans++;
+                    }
                 }
             }
+            return ans;
         }
-        return ans;
-    }
 };
