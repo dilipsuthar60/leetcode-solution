@@ -3,7 +3,7 @@ public:
     int maxNumberOfFamilies(int n, vector<vector<int>>&nums) 
     {
         unordered_map<int,int>dp;
-        for(auto it:nums)
+        for(auto &it:nums)
         {
             int row=it[0];
             int pos=it[1];
