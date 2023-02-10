@@ -21,8 +21,7 @@ public:
         int size,x,y,nx,ny;
         while(q.size())
         {
-             size=q.size();
-            for(int i=0;i<size;i++)
+            for(int i=q.size()-1;~i;i--)
             {
                 auto temp=q.front();
                 x=temp/m;
