@@ -11,25 +11,25 @@
  */
 class Solution {
 public:
-    void find(TreeNode* root,vector<int>&v)
+    void find(TreeNode* root,int &prev,int &ans)
     {
         if(root==NULL)
         {
             return ;
         }
-        find(root->left,v);
-        v.push_back(root->val);
-        find(root->right,v);
+        find(root->left,prev,ans);
+        if(prev!=-1)
+        {
+            ans=min(ans,root->val-prev);
+        }
+        prev=root->val;
+        find(root->right,prev,ans);
     }
     int minDiffInBST(TreeNode* root) 
     {
-        vector<int>v;
-        find(root,v);
-        int min_diff=INT_MAX;
-        for(int i=1;i<v.size();i++)
-        {
-            min_diff=min(min_diff,abs(v[i]-v[i-1]));
-        }
-        return min_diff;
+        int prev=-1;
+        int ans=1e9;
+        find(root,prev,ans);
+        return ans;
     }
 };
