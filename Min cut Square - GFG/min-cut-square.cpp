@@ -22,11 +22,11 @@ class Solution{
 	        return dp[n][m];
 	    }
 	    int ans=1e9;
-	    for(int i=1;i<n;i++)
+	    for(int i=1;i<=n/2;i++)
 	    {
 	        ans=min(ans,find(i,m)+find(n-i,m));
 	    }
-	    for(int i=1;i<m;i++)
+	    for(int i=1;i<=m/2;i++)
 	    {
 	        ans=min(ans,find(n,i)+find(n,m-i));
 	    }
