@@ -1,6 +1,7 @@
 class Solution {
 public:
-    vector<int> leftRigthDifference(vector<int>& nums) {
+    vector<int> leftRigthDifference(vector<int>& nums)
+    {
         int n=nums.size();
         int right=accumulate(nums.begin(),nums.end(),0);
         int left=0;
