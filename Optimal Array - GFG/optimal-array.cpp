@@ -15,17 +15,10 @@ public:
     vector<int> optimalArray(int n,vector<int> &a){
     
         vector<int>nums(n);
-        for(int i=0;i<n;i++)
+        nums=a;
+        for(int i=1;i<n;i++)
         {
-            if(i)
-            {
-                nums[i]=a[i];
-                nums[i]+=nums[i-1];
-            }
-            else
-            {
-                nums[i]=a[i];
-            }
+            nums[i]+=nums[i-1];
         }
         vector<int>ans;
         int sum=0;
