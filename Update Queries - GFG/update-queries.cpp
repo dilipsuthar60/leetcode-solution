@@ -5,7 +5,6 @@
 using namespace std;
 
 // } Driver Code Ends
-//User function Template for C++
 
 class Solution{
     public:
@@ -13,7 +12,7 @@ class Solution{
         {
             int dp[n][20];
             memset(dp,0,sizeof(dp));
-            for(auto it:q)
+            for(auto &it:q)
             {
                 int l=it[0]-1;
                 int r=it[1]-1;
@@ -23,6 +22,7 @@ class Solution{
                     if(x&(1<<i))
                     {
                       dp[l][i]++;
+                      if(r+1<n)
                       dp[r+1][i]--;
                     }
                 }
