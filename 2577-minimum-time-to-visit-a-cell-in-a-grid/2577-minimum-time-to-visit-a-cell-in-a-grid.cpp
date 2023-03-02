@@ -28,7 +28,7 @@ public:
                 continue;
             }
             vis[x][y]=1;
-            for(auto it:d)
+            for(auto &it:d)
             {
                 int nx=x+it.first;
                 int ny=y+it.second;
