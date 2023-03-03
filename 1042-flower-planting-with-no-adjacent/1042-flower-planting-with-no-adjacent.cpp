@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int>dp[20005+100];
+    vector<vector<int>>dp;
     void find(int node,vector<int>&col,int p=-1)
     {
         for(int i=1;i<=4;i++)
@@ -30,7 +30,8 @@ public:
     }
     vector<int> gardenNoAdj(int n, vector<vector<int>>& paths) 
     {
-        for(auto it:paths)
+        dp=vector<vector<int>>(n+1);
+        for(auto &it:paths)
         {
             dp[it[0]-1].push_back(it[1]-1);
             dp[it[1]-1].push_back(it[0]-1);
