@@ -20,7 +20,7 @@ public:
                 break;
             }
         }
-        for(auto it:dp[node])
+        for(auto &it:dp[node])
         {
             if(col[it]==-1)
             {
