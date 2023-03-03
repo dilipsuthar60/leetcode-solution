@@ -32,16 +32,15 @@ public:
     {
         for(auto it:paths)
         {
-            dp[it[0]].push_back(it[1]);
-            dp[it[1]].push_back(it[0]);
+            dp[it[0]-1].push_back(it[1]-1);
+            dp[it[1]-1].push_back(it[0]-1);
         }
-        vector<int>col(n+1,-1);
-        for(int i=1;i<=n;i++)
+        vector<int>col(n,-1);
+        for(int i=0;i<n;i++)
         {
             if(col[i]==-1)
               find(i,col);
         }
-        col.erase(col.begin());
         return col;
     }
 };
