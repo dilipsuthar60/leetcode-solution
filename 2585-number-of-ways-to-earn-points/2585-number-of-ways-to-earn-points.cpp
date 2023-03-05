@@ -1,7 +1,7 @@
 class Solution {
 public:
     int mod=1e9+7;
-    long long dp[1050][1050];
+    long long dp[52][1050];
     long long find(vector<vector<int>>&nums,int index,int target)
     {
         if(index>=nums.size())
