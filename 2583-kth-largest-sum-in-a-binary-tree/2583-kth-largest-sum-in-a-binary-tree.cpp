@@ -11,36 +11,29 @@
  */
 class Solution {
 public:
-    long long kthLargestLevelSum(TreeNode* root, int k) {
-        queue<TreeNode*>q;
-        vector<long long>v;
-        q.push(root);
-        while(q.size())
+    void find(TreeNode*root,unordered_map<int,long long>&mp,int level=0)
+    {
+        if(root==NULL)
         {
-            int size=q.size();
-            long long sum=0;
-            for(int i=0;i<size;i++)
-            {
-                auto temp=q.front();
-                q.pop();
-                sum+=temp->val;
-                if(temp->left!=NULL)
-                {
-                    q.push(temp->left);
-                }
-                if(temp->right!=NULL)
-                {
-                    q.push(temp->right);
-                }
-                    
-            }
-            v.push_back(sum);
+            return ;
+        }
+        mp[level]+=root->val;
+        find(root->left,mp,level+1);
+        find(root->right,mp,level+1);
+    }
+    long long kthLargestLevelSum(TreeNode* root, int k) 
+    {
+        unordered_map<int,long long>mp;
+        find(root,mp);
+        vector<long long>v;
+        for(auto it:mp){
+            v.push_back(it.second);
         }
         if(v.size()<k)
         {
             return -1;
         }
-        sort(v.rbegin(),v.rend());
+        sort(v.begin(),v.end(),greater<long long>());
         return v[k-1];
     }
 };
