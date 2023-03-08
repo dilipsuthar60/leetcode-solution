@@ -22,7 +22,7 @@ class Solution
             }
             if(nums[i]+dp[i]<mid)
             {
-                long long need=mid-(nums[i]+dp[i]);
+                long long need=mid-(1ll*nums[i]+dp[i]);
                 dp[i]+=need;
                  ans+=need;
                 if(i+w<n)
@@ -37,7 +37,7 @@ class Solution
         {
             long long ans=0;
             long long l=0;
-            long long r=1e14;
+            long long r=1e16;
             while(l<=r)
             {
                 long long mid=(l+r)/2;
