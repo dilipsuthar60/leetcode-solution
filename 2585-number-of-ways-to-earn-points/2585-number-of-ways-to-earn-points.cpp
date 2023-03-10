@@ -1,7 +1,7 @@
 class Solution {
 public:
     int mod=1e9+7;
-    long long dp[52][1050];
+    long long dp[1050][1050];
     long long find(vector<vector<int>>&nums,int index,int target)
     {
         if(index>=nums.size())
@@ -22,10 +22,6 @@ public:
             if(target-(i+1)*nums[index][1]>=0)
             {
                 ans+=find(nums,index+1,target-(i+1)*nums[index][1]);
-            }
-            else
-            {
-                 break;
             }
         }
         return dp[index][target]= ans%mod;
