@@ -11,38 +11,24 @@
  */
 class Solution {
 public:
-    int sumNumbers(TreeNode* root) 
+    void find(TreeNode*root,int curr,int &ans)
     {
         if(root==NULL)
         {
-            return 0;
+            return ;
         }
-        int ans=0;
-        queue<pair<TreeNode*,int>>q;
-        q.push({root,root->val});
-        while(q.size())
+        curr=curr*10+root->val;
+        if(root->left==root->right)
         {
-            int size=q.size();
-            for(int i=0;i<size;i++)
-            {
-                auto temp=q.front();
-                q.pop();
-                TreeNode*node=temp.first;
-                int sum=temp.second;
-                if(node->left==NULL&&node->right==NULL)
-                {
-                    ans=ans+sum;
-                }
-                if(node->left!=NULL)
-                {
-                    q.push({node->left,sum*10+node->left->val});
-                }
-                if(node->right!=NULL)
-                {
-                     q.push({node->right,sum*10+node->right->val});
-                }
-            }
+            ans+=curr;
         }
+        find(root->left,curr,ans);
+        find(root->right,curr,ans);
+    }
+    int sumNumbers(TreeNode* root) 
+    {
+        int ans=0;
+        find(root,0,ans);
         return ans;
     }
 };
