@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void find(TreeNode*root,int curr,int &ans)
+    void find(TreeNode* &root,int curr,int &ans)
     {
         if(root==NULL)
         {
