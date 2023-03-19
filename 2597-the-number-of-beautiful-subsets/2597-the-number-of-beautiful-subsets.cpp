@@ -8,11 +8,6 @@ public:
         int n=nums.size();
         for(int i=1;i<(1<<n);i++)
         {
-            if(__builtin_popcount(i)==1)
-            {
-                count++;
-                continue;
-            }
             int f=1;
             for(int j=0;j<n;j++)
             {
