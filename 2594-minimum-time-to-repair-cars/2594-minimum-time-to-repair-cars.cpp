@@ -5,7 +5,7 @@ public:
         int n=ranks.size();
         long long ans=0;
         long long l=1;
-        long long r=1e18;
+        long long r=1e15;
         while(l<=r)
         {
             long long mid=(l+r)/2;
