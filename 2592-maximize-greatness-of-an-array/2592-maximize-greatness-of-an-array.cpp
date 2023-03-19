@@ -3,10 +3,10 @@ public:
     int maximizeGreatness(vector<int>& nums) 
     {
         int n=nums.size();
-        map<int,int>mp;
+        multiset<int>mp;
         for(auto it:nums)
         {
-            mp[it]++;
+            mp.insert(it);
         }
         int count=0;
         for(int i=0;i<n;i++)
@@ -15,11 +15,7 @@ public:
             if(it!=mp.end())
             {
                 count++;
-                mp[it->first]--;
-                if(mp[it->first]==0)
-                {
-                    mp.erase(it->first);
-                }
+                mp.erase(it);
             }
         }
         return count;
