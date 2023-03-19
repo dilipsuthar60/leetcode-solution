@@ -14,9 +14,8 @@ class node
 };
 class WordDictionary {
 public:
-    node*root;
+    node*root=new node();
     WordDictionary() {
-        root=new node();
     }
     
     void addWord(string word) 
@@ -32,26 +31,24 @@ public:
         }
         curr->end=1;
     }
-    bool find(string &s,node*rt,int index)
+    bool find(string &s,node*root,int index)
     {
-        if(rt==NULL)
+        if(root==NULL)
         {
             return false;
         }
         if(index==s.size())
         {
-            return rt->end;
+            return root->end;
         }
         if(s[index]!='.')
         {
-            return find(s,rt->child[s[index]-'a'],index+1);
+            return find(s,root->child[s[index]-'a'],index+1);
         }
         for(int i=0;i<26;i++)
         {
-            if(find(s,rt->child[i],index+1))
-            {
-                return true;
-            }
+            if(find(s,root->child[i],index+1))
+               return true;
         }
         return false;
     }
