@@ -3,40 +3,30 @@ public:
     bool checkValidGrid(vector<vector<int>>&mat) 
     {
         int n=mat.size();
+        vector<vector<int>>dp(n*n);
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                dp[mat[i][j]]={i,j};
+            }
+        }
         if(mat[0][0]!=0)
         {
             return false;
         }
-        queue<pair<int,int>>q;
-        q.push({0,0});
-        int next=1;
-        vector<pair<int,int>>d={{1, -2}, {2, -1}, {2, 1}, {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}};
-        while(q.size())
+        int prevx=0;
+        int prevy=0;
+        for(int i=1;i<n*n;i++)
         {
-            auto temp=q.front();
-            q.pop();
-            int x=temp.first;
-            int y=temp.second;
-            int f=0;
-            for(auto &it:d)
-            {
-                int nx=x+it.first;
-                int ny=y+it.second;
-                if(nx>=0&&ny>=0&&nx<n&&ny<n&&mat[nx][ny]==next)
-                {
-                    f=1;
-                    q.push({nx,ny});
-                    break;
-                }
-            }
-            if(f)
-            {
-                next++;
-            }
-            else if(next!=n*n)
+            int currx=dp[i][0];
+            int curry=dp[i][1];
+            if(!((abs(currx-prevx)==1&&abs(curry-prevy)==2)||(abs(currx-prevx)==2&&abs(curry-prevy)==1)))
             {
                 return false;
             }
+            prevx=currx;
+            prevy=curry;
         }
         return true;
     }
