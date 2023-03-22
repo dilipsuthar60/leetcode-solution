@@ -21,7 +21,7 @@ public:
         {
             total++;
         }
-        for(auto it:dp[node])
+        for(auto &it:dp[node])
         {
             if(it!=p)
             {
