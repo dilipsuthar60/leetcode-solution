@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int>dp[100005];
+    vector<vector<int>>dp;
     set<pair<int,int>>s;
     int k;
     int  find(int node,int p=-1)
@@ -31,6 +31,7 @@ public:
     }
     int rootCount(vector<vector<int>>& edges, vector<vector<int>>& g, int K) 
     {
+        dp=vector<vector<int>>(edges.size()+1);
         k=K;
         for(auto it:g)
         {
