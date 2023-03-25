@@ -1,39 +1,38 @@
 class Solution {
 public:
-    vector<int>dp[100005];
-    void find(int i,vector<int>&vis,long long &count)
+    vector<int>dp[100005+10];
+    void find(int node,long long &count,vector<int>&vis)
     {
+        vis[node]=1;
         count++;
-        vis[i]=1;
-        for(auto it:dp[i])
+        for(auto it:dp[node])
         {
-            if(vis[it]==0)
+            if(!vis[it])
             {
-                find(it,vis,count);
+                find(it,count,vis);
             }
         }
     }
-    long long countPairs(int n, vector<vector<int>>& mat) 
-    {
-        for(auto it:mat)
+    long long countPairs(int n, vector<vector<int>>& edges) {
+        // first creating graph
+        for(auto &it:edges)
         {
             dp[it[0]].push_back(it[1]);
             dp[it[1]].push_back(it[0]);
-            
         }
-    long long ans=0;
+        long long ans=0;
         vector<int>vis(n,0);
-       
         for(int i=0;i<n;i++)
         {
-            if(vis[i]==0)
+            if(!vis[i])
             {
-                 long long count=0;
-                find(i,vis,count);
-                ans+=1ll*(count)*(n-count);
+                // find connected component size
+                long long count=0;
+                find(i,count,vis);
+                ans+=(count)*(n-count);
             }
         }
-    
-        return ans/2;;
+        // contribute in both component
+        return ans/2;
     }
 };
