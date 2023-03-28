@@ -57,7 +57,6 @@ class Solution
         {
             return "Zero";
         }
-
         return find(num).substr(1);
     }
 };
