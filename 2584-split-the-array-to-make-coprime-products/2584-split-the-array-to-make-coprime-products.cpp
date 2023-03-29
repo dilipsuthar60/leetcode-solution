@@ -23,7 +23,9 @@ public:
     int findValidSplit(vector<int>& nums) 
     {
         int n=nums.size();
-        int hash[2000000]={0};
+        int max_val=*max_element(nums.begin(),nums.end());
+        int hash[max_val+1];
+        memset(hash,0,sizeof(hash));
         for(int i=0;i<n;i++)
         {
             for(auto &it:find(nums[i]))
