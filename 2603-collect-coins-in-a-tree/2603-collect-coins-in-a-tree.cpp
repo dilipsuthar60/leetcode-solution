@@ -1,11 +1,11 @@
 class Solution {
 public:
-    vector<int>dp[31000];
     int collectTheCoins(vector<int>& coins, vector<vector<int>>& edges) 
     {
         int n=coins.size();
+        vector<vector<int>>dp(n+1);
         vector<int>ind(n,0);
-        for(auto it:edges)
+        for(auto &it:edges)
         {
             ind[it[0]]++;
             ind[it[1]]++;
@@ -24,7 +24,7 @@ public:
         {
             auto temp=q.front();
             q.pop();
-            for(auto it:dp[temp])
+            for(auto &it:dp[temp])
             {
                 if(ind[it]>=1)
                 {
@@ -48,7 +48,7 @@ public:
         {
             auto temp=q.front();
             q.pop();
-            for(auto it:dp[temp])
+            for(auto &it:dp[temp])
             {
                 if(ind[it]>=1)
                 {
@@ -62,7 +62,7 @@ public:
             ind[temp]=0;
         }
         int count=0;
-        for(auto it:edges)
+        for(auto &it:edges)
         {
             if(ind[it[0]]&&ind[it[1]])
             {
