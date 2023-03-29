@@ -26,9 +26,11 @@ public:
         int max_val=*max_element(nums.begin(),nums.end());
         int hash[max_val+1];
         memset(hash,0,sizeof(hash));
+        vector<vector<int>>v(n);
         for(int i=0;i<n;i++)
         {
-            for(auto &it:find(nums[i]))
+            v[i]=find(nums[i]);
+            for(auto &it:v[i])
             {
                 hash[it]=i;
             }
@@ -36,7 +38,7 @@ public:
         int comman=0;
         for(int i=0;i<n-1;i++)
         {
-            for(auto &it:find(nums[i]))
+            for(auto &it:v[i])
             {
                 comman=max(comman,hash[it]);
             }
