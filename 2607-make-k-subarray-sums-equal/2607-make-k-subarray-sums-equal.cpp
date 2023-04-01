@@ -7,7 +7,7 @@ public:
         long long cost=0;
         for(int i=0;i<n;i++)
         {
-            cost+=abs(nums[n/2]-nums[i]);
+            cost+=max(nums[n/2],nums[i])-min(nums[n/2],nums[i]);
         }
         return cost;
     }
