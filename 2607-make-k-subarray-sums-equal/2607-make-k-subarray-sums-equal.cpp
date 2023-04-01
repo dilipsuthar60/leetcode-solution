@@ -15,7 +15,7 @@ public:
     {
         int n=nums.size();
         vector<int>vis(n,0);
-        vector<vector<int>>dp;
+        vector<vector<int>>value(k);
         for(int i=0;i<k;i++)
         {
             vector<int>v;
@@ -26,10 +26,10 @@ public:
                 v.push_back(nums[j]);
                 j=(j+k)%n;
             }
-            dp.push_back(v);
+            value[i]=v;
         }
         long long cost=0;
-        for(auto &it:dp)
+        for(auto &it:value)
         {
             cost+=find(it);
         }
