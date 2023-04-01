@@ -14,8 +14,8 @@ public:
     long long makeSubKSumEqual(vector<int>&nums, int k) 
     {
         int n=nums.size();
+        long long cost=0;
         vector<int>vis(n,0);
-        vector<vector<int>>value(k);
         for(int i=0;i<k;i++)
         {
             vector<int>v;
@@ -26,12 +26,7 @@ public:
                 v.push_back(nums[j]);
                 j=(j+k)%n;
             }
-            value[i]=v;
-        }
-        long long cost=0;
-        for(auto &it:value)
-        {
-            cost+=find(it);
+            cost+=find(v);
         }
         return cost;
     }
