@@ -5,9 +5,15 @@ public:
         int n=nums.size();
         sort(nums.begin(),nums.end());
         long long cost=0;
+        auto MAX=[&](int a,int b){
+            return a>b?a:b;
+        };
+        auto MIN=[&](int a,int b){
+            return a>b?b:a;
+        };
         for(int i=0;i<n;i++)
         {
-            cost+=max(nums[n/2],nums[i])-min(nums[n/2],nums[i]);
+            cost+=MAX(nums[n/2],nums[i])-MIN(nums[n/2],nums[i]);
         }
         return cost;
     }
