@@ -2,10 +2,15 @@ class Solution {
 public:
     int find(vector<int>&nums)
     {
-        vector<int> dp(nums);
-        for(int i = 1; i < size(nums); i++) 
-            dp[i] = max(nums[i], nums[i] + dp[i-1]);        
-        return *max_element(begin(dp), end(dp));
+        int n=nums.size();
+        int max_sum=0;
+        int curr_sum=0;
+        for(int i=0;i<n;i++)
+        {
+            curr_sum=max(curr_sum+nums[i],nums[i]);
+            max_sum=max(max_sum,curr_sum);
+        }
+        return max_sum;
     }
     int maximumCostSubstring(string s, string chars, vector<int>& vals) 
     {
@@ -26,6 +31,6 @@ public:
                 nums[i]=(s[i]-'a'+1);
             }
         }
-        return max(0,find(nums));
+        return find(nums);
     }
 };
