@@ -11,15 +11,14 @@ public:
         {
             if(nums[l]+nums[r]<=li)
             {
-                count++;
                 l++;
                 r--;
             }
             else
             {
                 r--;
-                count++;
             }
+            count++;
         }
         return count;
     }
