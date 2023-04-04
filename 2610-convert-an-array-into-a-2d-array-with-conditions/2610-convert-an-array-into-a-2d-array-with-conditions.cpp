@@ -3,12 +3,12 @@ public:
     vector<vector<int>> findMatrix(vector<int>& nums) 
     {
         unordered_map<int,int>mp;
-        for(auto it:nums)
+        for(auto &it:nums)
         {
             mp[it]++;
         }
         int row=0;
-        for(auto &&[a,b]:mp)
+        for(auto &[a,b]:mp)
         {
             row=max(row,b);
         }
