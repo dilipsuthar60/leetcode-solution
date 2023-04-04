@@ -32,7 +32,7 @@ public:
                     }
                     j++;
                 }
-                if(unique==countu&&unique==countk)
+                if(unique==countu and unique==countk)
                 {
                     ans=max(ans,i-j+1);
                 }
