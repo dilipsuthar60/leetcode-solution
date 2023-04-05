@@ -12,7 +12,7 @@ public:
             temp[i+1]=temp[i]+nums[i];    
         }
         for(int i=0;i<q.size();i++)
-        {
+        { 
             int index=lower_bound(nums.begin(),nums.end(),q[i])-nums.begin();
             long long left_sum=1ll*q[i]*(index)-temp[index];
             long long right_sum=(total-temp[index])-1ll*q[i]*(n-index);
