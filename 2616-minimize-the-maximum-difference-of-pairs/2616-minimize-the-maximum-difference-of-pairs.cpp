@@ -3,7 +3,6 @@ public:
     bool find(vector<int>&nums,int p,int mid)
     {
         int n=nums.size();
-        int prev=0;
         int count=0;
         for(int i=1;i<n;i++)
         {
@@ -19,7 +18,7 @@ public:
     {
         sort(nums.begin(),nums.end());
         int l=0;
-        int r=1e9;
+        int r=nums.back();
         int ans=0;
         while(l<=r)
         {
