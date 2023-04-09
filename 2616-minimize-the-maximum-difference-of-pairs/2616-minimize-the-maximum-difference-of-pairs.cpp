@@ -15,7 +15,8 @@ public:
         }
         return count>=p;
     }
-    int minimizeMax(vector<int>& nums, int p) {
+    int minimizeMax(vector<int>& nums, int p)
+    {
         sort(nums.begin(),nums.end());
         int l=0;
         int r=1e9;
