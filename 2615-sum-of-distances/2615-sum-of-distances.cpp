@@ -2,14 +2,13 @@ class Solution {
 public:
     void find(vector<int>&nums,vector<long long>&ans)
     {
-        vector<int>temp(nums.begin(),nums.end());
         long long right=accumulate(nums.begin(),nums.end(),0ll);
         long long left=0;
         int n=nums.size();
         for(int i=0;i<n;i++)
         {
             right-=nums[i];
-            ans[temp[i]]=(1ll*nums[i]*(i)-left)+(right-1ll*nums[i]*(n-i-1));
+            ans[nums[i]]=(1ll*nums[i]*(i)-left)+(right-1ll*nums[i]*(n-i-1));
             left+=nums[i];
         }
     }
