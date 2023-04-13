@@ -16,10 +16,10 @@ public:
     }
     int minimizeMax(vector<int>& nums, int p)
     {
+        int ans=0;
         sort(nums.begin(),nums.end());
         int l=0;
-        int r=nums.back();
-        int ans=0;
+        int r=1e9;
         while(l<=r)
         {
             int mid=(l+r)/2;
