@@ -1,30 +1,33 @@
 class Solution {
 public:
+    int n;
+    int find(string &s,int index,char want)
+    {
+        if(want=='d')
+        {
+            want='a';
+        }
+        if(index>=n)
+        {
+            if(want=='b')
+            {
+                return 2;
+            }
+            if(want=='c')
+            {
+                return 1;
+            }
+            return 0;
+        }
+        if(s[index]==want)
+        {
+            return find(s,index+1,want+1);
+        }
+        return 1+find(s,index,want+1);
+    }
     int addMinimum(string s) 
     {
-        int n=s.size();
-        int i=0;
-        int ans=0;
-        while(i<n)
-        {
-            int count=0;
-            if(s[i]=='a')
-            {
-                i++;
-                count++;
-            }
-            if(i<n&&s[i]=='b')
-            {
-                i++;
-                count++;
-            }
-            if(i<n&&s[i]=='c')
-            {
-                i++;
-                count++;
-            }
-            ans+=3-count;
-        }
-        return ans;
+        n=s.size();
+        return find(s,0,'a');
     }
 };
