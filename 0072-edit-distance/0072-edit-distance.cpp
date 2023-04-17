@@ -1,32 +1,32 @@
 class Solution {
 public:
-    int dp[501][501];
-    int find(string &s1,string &s2,int i,int j)
-    {
-        if(i==s1.size()&&j==s2.size())
+    int minDistance(string s1, string s2) {
+        int n=s1.size();
+        int m=s2.size();
+        int dp[n+1][m+1];
+        memset(dp,0,sizeof(dp));
+        for(int i=0;i<=n;i++)
         {
-            return 0;
+            dp[i][0]=i;
         }
-        if(i==s1.size())
+        for(int i=0;i<=m;i++)
         {
-            return s2.size()-j;
+            dp[0][i]=i;
         }
-        if(j==s2.size())
+        for(int i=1;i<=n;i++)
         {
-            return s1.size()-i;
+            for(int j=1;j<=m;j++)
+            {
+                if(s1[i-1]==s2[j-1])
+                {
+                    dp[i][j]=dp[i-1][j-1];
+                }
+                else
+                {
+                    dp[i][j]=1+min({dp[i-1][j-1],dp[i-1][j],dp[i][j-1]});
+                }
+            }
         }
-        if(dp[i][j]!=-1)
-        {
-            return dp[i][j];
-        }
-        if(s1[i]==s2[j])
-        {
-            return dp[i][j]= find(s1,s2,i+1,j+1);
-        }
-        return dp[i][j]= 1+min({find(s1,s2,i+1,j),find(s1,s2,i,j+1),find(s1,s2,i+1,j+1)});
-    }
-    int minDistance(string word1, string word2) {
-        memset(dp,-1,sizeof(dp));
-        return find(word1,word2,0,0);
+        return dp[n][m];
     }
 };
