@@ -4,7 +4,7 @@ public:
         int n=s1.size();
         int m=s2.size();
         string ans(n+m,'a');
-        for(int i=0,index=0;i<max(n,m);i++)
+        for(int i=0,index=0,len=max(n,m);i<len;i++)
         {
             if(i<n)
             {
