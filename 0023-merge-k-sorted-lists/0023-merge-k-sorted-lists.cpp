@@ -32,18 +32,24 @@ public:
         newTail->next=(l1==NULL)?l2:l1;
         return newHead->next;
     }
-    ListNode*find(vector<ListNode*>&list,int l,int r)
-    {
-        if(l==r)
-        {
-            return list[l];
-        }
-        int mid=(l+r)/2;
-        return mergelist(find(list,l,mid),find(list,mid+1,r));
-    }
+    // ListNode*find(vector<ListNode*>&list,int l,int r)
+    // {
+    //     if(l==r)
+    //     {
+    //         return list[l];
+    //     }
+    //     int mid=(l+r)/2;
+    //     return mergelist(find(list,l,mid),find(list,mid+1,r));
+    // }
     ListNode* mergeKLists(vector<ListNode*>& lists) 
     {
         if(lists.size()==0) return NULL;
-        return find(lists,0,lists.size()-1);
+        ListNode*now=NULL;
+        for(int i=0;i<lists.size();i++)
+        {
+            now=mergelist(now,lists[i]);
+        }
+        return now;
+        // return find(lists,0,lists.size()-1);
     }
 };
