@@ -2,44 +2,46 @@ class Solution {
 public:
     int find(vector<vector<int>>&mat,int mid)
     {
-        int n=mat.size();
-        int m=mat[0].size();
-        vector<vector<int>>dp(n+1,vector<int>(m+1,0));
-        dp[0][0]=mat[0][0]+mid;
-        for(int i=0;i<n;i++)
+        int r=mat.size();
+        int c=mat[0].size();
+        vector<vector<int>>dp(r+1,vector<int>(c+1,1e9));
+        dp[r][c-1]=dp[r-1][c]=1;
+        for(int i=r-1;i>=0;i--)
         {
-            for(int j=0;j<m;j++)
+            for(int j=c-1;j>=0;j--)
             {
-                if(i&&dp[i-1][j])
+                int need=min(dp[i+1][j],dp[i][j+1])-mat[i][j];
+                if(need<=0)
                 {
-                    dp[i][j]=max(dp[i][j],mat[i][j]+dp[i-1][j]);
+                    dp[i][j]=1;
                 }
-                if(j&&dp[i][j-1])
+                else
                 {
-                    dp[i][j]=max(dp[i][j],mat[i][j]+dp[i][j-1]);
+                    dp[i][j]=need;
                 }
             }
         }
-        return (dp[n-1][m-1]>0);
+        return dp[0][0];
     }
     int calculateMinimumHP(vector<vector<int>>& dungeon) 
     {
-        int ans=0;
-        int l=1;
-        int r=1e9;
-        while(l<=r)
-        {
-            int mid=(l+r)/2;
-            if(find(dungeon,mid))
-            {
-                r=mid-1;
-                ans=mid;
-            }
-            else
-            {
-                l=mid+1;
-            }
-        }
-        return ans;
+        return find(dungeon,0);
+        // int ans=0;
+        // int l=1;
+        // int r=1e9;
+        // while(l<=r)
+        // {
+        //     int mid=(l+r)/2;
+        //     if(find(dungeon,mid))
+        //     {
+        //         r=mid-1;
+        //         ans=mid;
+        //     }
+        //     else
+        //     {
+        //         l=mid+1;
+        //     }
+        // }
+        // return ans;
     }
 };
