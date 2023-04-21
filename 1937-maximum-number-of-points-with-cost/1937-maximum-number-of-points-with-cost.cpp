@@ -11,7 +11,7 @@ public:
         }
         for(int i=1;i<n;i++)
         {
-            vector<long long>value=dp[i-1];
+            vector<long long>&value=dp[i-1];
             vector<long long>left(m,0);
             vector<long long>right(m,0);
             left[0]=value[0];
