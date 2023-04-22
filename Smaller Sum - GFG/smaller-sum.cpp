@@ -10,7 +10,7 @@ class Solution{
 public:
     vector<long long> smallerSum(int n,vector<int> &arr){
         // Code here
-        map<long long ,long long>mp{{0,0},{-1,0}};
+        map<long long ,long long>mp{{-1,0}};
         for(auto&it:arr)
         {
             mp[it]+=it;
