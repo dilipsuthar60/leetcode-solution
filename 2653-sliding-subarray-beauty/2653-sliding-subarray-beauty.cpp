@@ -1,10 +1,10 @@
 class Solution {
 public:
-    int bit[500];
+    int bit[200];
     void update(int i,int val)
     {
         i++;
-        while(i<500)
+        while(i<200)
         {
             bit[i]+=val;
             i+=(i&-i);
