@@ -1,18 +1,11 @@
 class Solution {
 public:
-    int addDigits(int num) 
+    int addDigits(int n) 
     {
-        while(num>=10)
+        if(n==0)
         {
-            int n=num;
-            int sum=0;
-            while(n)
-            {
-                sum+=n%10;
-                n/=10;
-            }
-            num=sum;
+            return 0;
         }
-        return num;
+        return n%9==0?9:n%9;
     }
 };
