@@ -1,7 +1,7 @@
 class Solution {
 public:
-    const int N=1e5+10;
-    int bit[100000+20];
+    int N;
+    vector<int>bit;
     void update(int i,int val)
     {
         while(i<N)
@@ -22,6 +22,8 @@ public:
     }
     long long countOperationsToEmptyArray(vector<int>& nums) {
         int n=nums.size();
+        bit=vector<int>(n+10);
+        N=bit.size();
         vector<pair<int,int>>v;
         for(int i=0;i<n;i++)
         {
@@ -40,7 +42,7 @@ public:
             }
             else
             {
-                ans+=find(n+10)-find(last-1)+find(v[i].second);;
+                ans+=find(n+1)-find(last-1)+find(v[i].second);;
                 update(v[i].second,-1);
             }
             last=v[i].second;
