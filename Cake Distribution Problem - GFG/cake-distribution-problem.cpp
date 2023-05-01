@@ -16,9 +16,8 @@ class Solution{
         int l=1;
         int r=accumulate(nums.begin(),nums.end(),0);
         int ans=0;
-        while(l<=r)
+        auto find=[&](int mid)
         {
-            int mid=(l+r)/2;
             int sum=0;
             int count=0;
             for(int i=0;i<n;i++)
@@ -30,6 +29,12 @@ class Solution{
                     count++;
                 }
             }
+            return count;
+        };
+        while(l<=r)
+        {
+            int mid=(l+r)/2;
+            int count=find(mid);
             if(count>=k)
             {
                 ans=mid;
