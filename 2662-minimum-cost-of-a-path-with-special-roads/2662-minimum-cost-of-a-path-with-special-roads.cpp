@@ -1,5 +1,6 @@
 class Solution {
 public:
+    using pp=pair<long long,long long>;
     int minimumCost(vector<int>& start, vector<int>& target, vector<vector<int>>& sp) {
         long long n=1e5+1;
         unordered_map<long long,vector<pair<long long,long long>>>dp;
@@ -7,7 +8,7 @@ public:
         {
             dp[it[0]*n+it[1]].push_back({it[2]*n+it[3],it[4]});
         }
-        priority_queue<pair<long long,long long>,vector<pair<long long,long long>>,greater<pair<long long,long long>>>pq;
+        priority_queue<pp,vector<pp>,greater<pp>>pq;
         pq.push({0,start[0]*n+start[1]});
         unordered_map<long long,long long>dis;
         dis[start[0]*n+start[1]]=0;
