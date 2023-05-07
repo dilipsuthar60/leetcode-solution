@@ -1,41 +1,23 @@
 class Solution {
 public:
-    int N=1e5+10;
-    vector<int>bit;
-    void update(int i,int val)
-    {
-        while(i<N)
-        {
-            bit[i]=max(bit[i],val);
-            i=i+(i&-i);
-        }
-    }
-    int find(int i)
-    {
-        int ans=0;
-        while(i>0)
-        {
-            ans=max(bit[i],ans);
-            i=i-(i&-i);
-        }
-        return ans;
-    }
-    vector<int> longestObstacleCourseAtEachPosition(vector<int>&nums)
-    {
-        bit=vector<int>(N,0);
+    vector<int> longestObstacleCourseAtEachPosition(vector<int>& nums) {
+        set<int>s;
+        vector<int>ans;
         int n=nums.size();
-       vector<int>temp=nums;
-        sort(temp.begin(),temp.end());
+        vector<int>array;
         for(int i=0;i<n;i++)
         {
-            nums[i]=lower_bound(temp.begin(),temp.end(),nums[i])-temp.begin()+1;
-        }
-        vector<int>ans(n,0);
-        for(int i=0;i<n;i++)
-        {
-            int x=find(nums[i]);
-            ans[i]=x+1;
-            update(nums[i],x+1);
+            if(array.size()==0||array.back()<=nums[i])
+            {
+                array.push_back(nums[i]);
+                ans.push_back(array.size());
+            }
+            else
+            {
+                auto index=upper_bound(array.begin(),array.end(),nums[i])-array.begin();
+                array[index]=nums[i];
+                ans.push_back(index+1);
+            }
         }
         return ans;
     }
