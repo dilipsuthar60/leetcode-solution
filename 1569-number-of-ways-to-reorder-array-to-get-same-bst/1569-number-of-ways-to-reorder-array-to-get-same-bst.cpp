@@ -35,7 +35,7 @@ public:
         }
          long long lc=find(left);
          long long lr=find(right);
-        return (((lc*lr)%mod)*table[nums.size()-1][left.size()])%mod;
+        return (((lc*lr)%mod)*table[nums.size()-1][right.size()])%mod;
     }
     int numOfWays(vector<int>& nums) 
     {
