@@ -5,25 +5,21 @@ public:
         int cost=0;
         int n=nums.size();
         int m=nums[0].size();
-        vector<multiset<int,greater<int>>>v(n);
         for(int i=0;i<n;i++)
         {
-            for(int j=0;j<m;j++)
-            {
-                v[i].insert(nums[i][j]);
-            }
+            sort(nums[i].begin(),nums[i].end());
         }
-        while(m--)
+        while(!nums[0].empty())
         {
-            int max_value=0;
-            for(int i=0;i<n;i++)
+            int value=0;
+            for(int i=0;i<nums.size();i++)
             {
-                max_value=max(max_value,*v[i].begin());
+                value=max(value,nums[i].back());
             }
-            cost+=max_value;
-            for(int i=0;i<n;i++)
+            cost+=value;
+            for(int i=0;i<nums.size();i++)
             {
-                v[i].erase(v[i].begin());
+                nums[i].pop_back();
             }
         }
         return cost;
