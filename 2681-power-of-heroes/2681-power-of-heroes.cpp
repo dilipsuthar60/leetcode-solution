@@ -11,7 +11,7 @@ public:
                 res=(res*a)%mod;
             }
             a=(a*a)%mod;
-            b/=2;
+            b>>=1;
         }
         return res;
     }
