@@ -23,6 +23,7 @@ public:
         for(int i=0,n=nums.size();i<n;i++)
         {
             cost+=power(1ll*nums[i],3);
+            cost%=mod;
             cost+=power(1ll*nums[i],2)*prev;
             cost%=mod;
             prev=(prev*2+nums[i])%mod;
