@@ -2,6 +2,10 @@ class Solution {
 public:
     int n;
     int dp[10][1<<15];
+    int getHash(int x,int y)
+    {
+        return ((1<<x)+(1<<y));
+    }
     int find(vector<int>&nums,int ind,int mask)
     {
         if(ind>n/2)
@@ -17,10 +21,10 @@ public:
         {
             for(int j=i+1;j<n;j++)
             {
-                int m=(1<<i)+(1<<j);
-                if((mask&m)==0)
+                int new_mask=getHash(i,j);
+                if((mask&new_mask)==0)
                 {
-                    val=max(val,ind*(__gcd(nums[i],nums[j]))+find(nums,ind+1,mask|m));
+                    val=max(val,ind*(__gcd(nums[i],nums[j]))+find(nums,ind+1,mask|new_mask));
                 }
             }
         }
