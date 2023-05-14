@@ -1,30 +1,14 @@
 /**
  * @param {Function} fn
-  let nums = [];
-
-    return function curried(...args) {
-        nums = [...nums, ...args];
-
-        if (fn.length === nums.length) {
-            let result = fn(...nums);
-
-            nums = [];
-
-            return result;
-        } else {
-            return curried;
-        }
-    };
  * @return {Function}
  */
 var curry = function(fn) {
     let nums=[];
-    return function curried(...args) 
-    {
+    return function curried(...args) {
         nums=[...nums,...args];
-        if(fn.length==nums.length){
-            let value=fn(...nums);
-            return value;
+        if(nums.length==fn.length){
+            let result=fn(...nums);
+            return result;
         }
         else{
             return curried;
