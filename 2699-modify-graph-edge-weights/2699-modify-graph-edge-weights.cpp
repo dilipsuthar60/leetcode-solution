@@ -3,7 +3,7 @@ public:
     vector<pair<int,int>>dp[200];
     vector<int>find(int n,int src,int dist)
     {
-        vector<int>dis(n+1,INT_MAX);
+        vector<int>dis(n+1,1e9+10);
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
         pq.push({0,src});
         dis[src]=0;
@@ -17,7 +17,7 @@ public:
                 continue;
             }
             vis[node]=1;
-            for(auto&[current_node,current_wt]:dp[node])
+            for(auto &[current_node,current_wt]:dp[node])
             {
                 if(dis[current_node]>current_wt+wt)
                 {
@@ -30,7 +30,7 @@ public:
     }
     vector<vector<int>> modifiedGraphEdges(int n, vector<vector<int>>& edges, int src, int dest, int target) 
     {
-        for(auto it:edges)
+        for(auto &it:edges)
         {
             if(it[2]==-1)
             {
@@ -44,7 +44,6 @@ public:
         {
             return {};
         }
-        // cout<<"yes1"<<endl;
        if(dist[dest]==target)
        {
            for(auto &it:edges)
@@ -55,7 +54,6 @@ public:
            }
            return edges;
        }
-        // cout<<"yes2"<<endl;
         for(int i=0;i<edges.size();i++)
         {
             int u=edges[i][0],v=edges[i][1],w=edges[i][2];
