@@ -7,10 +7,16 @@ public:
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
         pq.push({0,src});
         dis[src]=0;
+        vector<int>vis(n+10,0);
         while(pq.size())
         {
             auto [wt,node]=pq.top();
             pq.pop();
+            if(vis[node])
+            {
+                continue;
+            }
+            vis[node]=1;
             for(auto&[current_node,current_wt]:dp[node])
             {
                 if(dis[current_node]>current_wt+wt)
