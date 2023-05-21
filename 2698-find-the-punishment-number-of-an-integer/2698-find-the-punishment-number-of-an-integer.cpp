@@ -1,8 +1,9 @@
 class Solution {
 public:
-    bool find(string &s,int index,int target)
+    int dp[9][1001000];
+    int  find(string &s,int index,int target)
     {
-        if(index>=s.size())
+        if(index>=s.size()||target<0)
         {
             return target==0;
         }
@@ -11,13 +12,14 @@ public:
             int value=stoi(s.substr(index,i-index+1));
             if(find(s,i+1,target-value))
             {
-                return true;
+                return 1;
             }
         }
-        return false;
+        return 0;
     }
     int punishmentNumber(int n) {
         int cost=0;
+        memset(dp,-1,sizeof(dp));
         for(int i=1;i<=n;i++)
         {
             string s=to_string(i*i);
