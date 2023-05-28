@@ -19,7 +19,7 @@ public:
             curr.push_back(s[i]);
             if(st.find(curr)!=st.end())
             {
-            ans=max(ans,(int)curr.size()+find(s,i+1));
+              ans=max(ans,(int)curr.size()+find(s,i+1));
             }
         }
         ans=max(ans,find(s,index+1));
