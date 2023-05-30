@@ -1,5 +1,6 @@
 class Solution {
 public:
+    vector<int>rank;
     vector<int>prime;
     const int N=1e5+10;
     vector<int>find(int n)
@@ -29,12 +30,22 @@ public:
         {
             return ;
         }
-        parent[x]=y;
+        if(rank[x]<rank[y])
+        {
+            rank[y]+=rank[x];
+            parent[x]=y;
+        }
+        else
+        {
+            rank[x]+=rank[y];
+            parent[y]=x;
+        }
     }
     bool canTraverseAllPairs(vector<int>& nums)
     {
         int n=nums.size();
         vector<int>parent(n);
+        rank=vector<int>(n,1);
         iota(parent.begin(),parent.end(),0);
         prime=vector<int>(N);
         iota(prime.begin(),prime.end(),0);
