@@ -5,7 +5,7 @@ public:
         int n=arrival.size();
         set<int>free;
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-        unordered_map<int,int>mp;
+        vector<int>mp(k,0);
         for(int i=0;i<k;i++)
         {
             free.insert(i);
@@ -29,17 +29,13 @@ public:
                 free.erase(*it);
             }
         }
-        int maxLoad=0;
-        for(auto &it:mp)
-        {
-            maxLoad=max(maxLoad,it.second);
-        }
+        int maxLoad=*max_element(mp.begin(),mp.end());
         vector<int>ans;
-        for(auto it:mp)
+        for(int i=0;i<k;i++)
         {
-            if(it.second==maxLoad)
+            if(mp[i]==maxLoad)
             {
-                ans.push_back(it.first);
+                ans.push_back(i);
             }
         }
         return ans;
